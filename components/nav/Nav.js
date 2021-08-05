@@ -4,6 +4,8 @@ import Image from "next/image";
 import styles from "./nav.module.css";
 import logo from "../../public/main-logo.png";
 import menuNav from "../../public/menu-logo.svg";
+import SearchBar from "../search bar/SearchBar";
+import cartLogo from "../../public/shopping-cart.png";
 
 const Nav = () => {
   const [menuState, setMenuState] = useState(false);
@@ -22,7 +24,7 @@ const Nav = () => {
             width="50px"
             height="50px"
           ></Image>
-          <p>BECHDAL</p>
+          <p>BECHDAL.in</p>
         </div>
         <div className={styles.nav__items}>
           <Link href="/" className={styles.nav__item}>
@@ -41,6 +43,17 @@ const Nav = () => {
             Sign up
           </Link>
         </div>
+        <div className={styles.cart_logo}>
+          <Image
+            src={cartLogo}
+            alt="cart logo"
+            width="35px"
+            height="35px"
+          ></Image>
+          <div className={styles.cart__bubble}>
+            <p>0</p>
+          </div>
+        </div>
         <div className={styles.nav__menu_logo} onClick={navHandler}>
           <Image
             src={menuNav}
@@ -50,6 +63,8 @@ const Nav = () => {
           ></Image>
         </div>
       </nav>
+      <SearchBar />
+
       {menuState && (
         <div className={styles.menu__nav__items}>
           <Link href="/" className={styles.nav__item}>

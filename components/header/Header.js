@@ -10,7 +10,6 @@ const Header = () => {
     <div className="layout-header">
       <Nav />
       <Slider />
-      {/* <Image src={dummyImg} alt="" width="300px" height="400px"></Image> */}
     </div>
   );
 };
