@@ -1,0 +1,17 @@
+.productList {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+
+
+@media screen and (max-width:768px) {
+    .productList {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1rem;
+    }
+
+}

@@ -1,0 +1,32 @@
+.productItem {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+    margin: 0.5rem;
+    /* background-color: var(--sec-bg); */
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.product__image {
+    width: 100%;
+}
+
+.product__image>div {
+    border-radius: 8px;
+}
+
+.product__heading {
+    padding: 0.09rem 0.3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.product__price {
+    padding: 0.09rem 0.3rem;
+    font-family: 0.9rem;
+    font-weight: 600;
+    color: var(--sec-clr);
+}

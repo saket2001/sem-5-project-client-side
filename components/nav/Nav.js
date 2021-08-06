@@ -70,6 +70,9 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item}>
             Home
           </Link>
+          <Link href="/" className={styles.nav__item}>
+            Category
+          </Link>
           <Link href="/sell" className={styles.nav__item}>
             Sell
           </Link>

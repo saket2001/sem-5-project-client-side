@@ -1,0 +1,33 @@
+.productsBanner {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    /* background-color: #fff; */
+    border-radius: 8px;
+}
+
+.productsBanner h1 {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: var(--main-clr);
+    padding: 0.3rem 0.5rem;
+}
+
+.productsBanner .product__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+@media (max-width: 768px) {
+    .productsBanner h1 {
+        font-size: 1.1rem;
+    }
+
+    .productsBanner .product__list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

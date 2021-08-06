@@ -5,8 +5,7 @@
     justify-content: center;
     background-color: #929090;
     color: #fff;
-    padding: 0.2rem 0;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0;
 }
 
 .searchBar label {
@@ -24,11 +23,6 @@
     outline: 0;
     border: 0;
     border-radius: 8px;
-}
-
-.searchBar input[type='search']:hover,
-.searchBar input[type='search']:active {
-    outline: 2px solid yellow;
 }
 
 .searchIcon {

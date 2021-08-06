@@ -16,6 +16,9 @@
   --light-clr: #D9D9D9;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 html,
 body {
@@ -24,6 +27,7 @@ body {
     sans-serif;
   font-weight: 400;
   background-color: var(--sec-bg);
+  color: var(--main-clr);
 }
 
 a {
@@ -65,7 +69,17 @@ p {
   align-items: center;
   width: 100%;
   min-height: 100vh;
+
   /* background-color: #ffffff; */
+}
+
+.card {
+  width: 90%;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem 0;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 .hidden {
