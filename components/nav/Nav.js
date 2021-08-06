@@ -7,9 +7,19 @@ import menuNav from "../../public/menu-logo.svg";
 import SearchBar from "../search bar/SearchBar";
 import cartLogo from "../../public/shopping-cart.png";
 import userLogo from "../../public/user.png";
+import Modal from "../modal/Modal";
 
 const Nav = () => {
   const [menuState, setMenuState] = useState(false);
+  const [modalState, setModalState] = useState(false);
+
+  const showModal = useCallback(() => {
+    setModalState((prevState) => !prevState);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalState((prevState) => !prevState);
+  }, []);
 
   const navHandler = useCallback(() => {
     setMenuState((prevState) => !prevState);
@@ -36,7 +46,7 @@ const Nav = () => {
           <Image src={userLogo} alt="user logo" width="35px" height="35px" />
         </div>
         {/* cart logo */}
-        <div className={styles.cart_logo}>
+        <div className={styles.cart_logo} onClick={showModal}>
           <Image
             src={cartLogo}
             alt="cart logo"
@@ -81,6 +91,13 @@ const Nav = () => {
             Sign up
           </Link>
         </div>
+      )}
+      {modalState && (
+        <Modal
+          title="Your Cart"
+          body="No items in cart yet"
+          buttonText="Close"
+        />
       )}
     </>
   );

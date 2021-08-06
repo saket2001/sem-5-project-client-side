@@ -72,16 +72,3 @@ p {
 
   /* background-color: #ffffff; */
 }
-
-.card {
-  width: 90%;
-  height: auto;
-  padding: 0.5rem 1rem;
-  margin: 0.3rem 0;
-  background-color: #fff;
-  border-radius: 5px;
-}
-
-.hidden {
-  display: none;
-}
