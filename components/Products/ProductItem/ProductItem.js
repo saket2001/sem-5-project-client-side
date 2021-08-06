@@ -16,8 +16,10 @@ const ProductItem = () => {
             height="280px"
           />
         </div>
-        <h2 className={styles.product__heading}>Beautiful Lamp</h2>
-        <p className={styles.product__price}>500 ₹</p>
+        <div className={styles.product__info}>
+          <h2 className={styles.product__heading}>Beautiful Lamp</h2>
+          <p className={styles.product__price}>500 ₹</p>
+        </div>
       </div>
     </Link>
   );

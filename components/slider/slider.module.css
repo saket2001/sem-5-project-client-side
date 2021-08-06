@@ -6,8 +6,8 @@
     grid-gap: 1rem;
     place-items: center;
     border-radius: 5px;
-    padding: 0.5rem 2rem;
-    /* background-color: var(--main-bg); */
+    padding: 2rem;
+    margin-top: 3rem;
 }
 
 .slider__btn {

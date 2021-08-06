@@ -73,7 +73,7 @@ const Slider = () => {
           ></Image>
         </div>
         <div className={styles.slider__image}>
-          <Image src={dummyImg} alt="" width="380px" height="380px"></Image>
+          <Image src={dummyImg} alt="" width="380px" height="350px"></Image>
         </div>
         <div className={styles.slider__content}>
           <h1 className={styles.slider__heading}>
