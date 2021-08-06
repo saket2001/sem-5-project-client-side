@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: transparent;
     padding: 0.2rem 0.5rem;
     background-color: #929090;
@@ -125,9 +126,9 @@
     }
 
     .menu__searchBar {
-        width: 100vw;
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .searchBar {
@@ -144,7 +145,7 @@
 
     .menu__nav__items a {
         font-size: 1.2rem;
-        border-bottom: 2px solid #fff;
+        /* border-bottom: 2px solid #fff; */
     }
 
     .navbar .nav__menu_logo {
