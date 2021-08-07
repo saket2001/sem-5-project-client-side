@@ -1,10 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import Header from "../header/Header";
 
 const Layout = ({ children }) => {
+  const [authState, setAuthState] = useState(true);
+
   return (
     <div className="layout">
-      <Header />
+      {authState && <Header />}
       {children}
     </div>
   );

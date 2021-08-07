@@ -84,11 +84,8 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item}>
             Contact us
           </Link>
-          <Link href="/" className={styles.nav__item}>
+          <Link href="/usersauth" className={styles.nav__item}>
             Sign in
-          </Link>
-          <Link href="/" className={styles.nav__item}>
-            Sign up
           </Link>
         </div>
       )}

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import styles from "../styles/Home.module.css";
 
@@ -14,6 +15,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
+      <Slider />
       <main className={styles.main}>
         <div className={styles.categories}>
           <h2>Categories</h2>

@@ -6,8 +6,9 @@
     /* background-color: var(--sec-bg); */
     /* border: 2px solid #eee; */
     cursor: pointer;
-    border-radius: 8px;
     transition: all .2s ease;
+    box-shadow: 7px 7px 16px #e6e6e6,
+        -7px -7px 16px #ffffff;
 }
 
 .productItem:hover {
@@ -28,7 +29,6 @@
     display: flex;
     flex-direction: column;
     padding: 0 0.5rem;
-    border-bottom: 2px solid var(--main-clr);
 }
 
 .product__heading {
@@ -42,7 +42,6 @@
     padding: 0.09rem 0.3rem;
     font-family: 0.9rem;
     font-weight: 600;
-    color: var(--sec-clr);
 }
 
 @media screen and (max-width:768px) {

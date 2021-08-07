@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className="layout-header">
       <Nav />
-      <Slider />
+      {/* <Slider /> */}
     </div>
   );
 };

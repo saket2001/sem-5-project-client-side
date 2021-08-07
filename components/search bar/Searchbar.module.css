@@ -33,7 +33,8 @@
     justify-content: center;
     cursor: pointer;
     background-color: yellow;
-    border-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .searchBar .user {
