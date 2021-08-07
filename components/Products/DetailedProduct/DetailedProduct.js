@@ -5,10 +5,6 @@ import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
 import dummyImg from "../../../public/dummy1.jpg";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-
 const DetailedProduct = () => {
   const router = useRouter();
 
@@ -20,8 +16,7 @@ const DetailedProduct = () => {
     <div className="container">
       <div className={styles.backButton}>
         <Button type="button" onClick={goBack}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-          Back
+          Go Back
         </Button>
       </div>
       <div className={styles.detailedProduct}>
@@ -64,10 +59,7 @@ const DetailedProduct = () => {
             exercitationem?
           </p>
           <p className={styles.product__price}>500 ₹</p>
-          <Button type="button">
-            <FontAwesomeIcon icon={faShoppingBag} />
-            Buy now
-          </Button>
+          <Button type="button">Buy now</Button>
         </div>
       </div>
     </div>

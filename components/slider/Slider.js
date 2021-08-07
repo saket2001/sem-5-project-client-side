@@ -50,14 +50,14 @@ const Slider = () => {
       return setSliderState(0);
     }
     setSliderState((prevState) => prevState + 1);
-  });
+  }, [sliderState]);
 
   const leftHandler = useCallback(() => {
     if (sliderState === 0) {
       return setSliderState(dummyData.length - 1);
     }
     if (sliderState > 0) setSliderState((prevState) => prevState - 1);
-  });
+  }, [sliderState]);
 
   let sliderContent = dummyData[sliderState];
 
