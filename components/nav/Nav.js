@@ -73,19 +73,23 @@ const Nav = () => {
       {menuState && (
         <div className={styles.menu__nav__items}>
           <Link href="/" className={styles.nav__item}>
-            Home
+            <a onClick={navHandler}>Home</a>
           </Link>
-          <Link href="/" className={styles.nav__item}>
-            Category
+          <Link href="/" className={styles.nav__item} onClick={navHandler}>
+            <a onClick={navHandler}>Category</a>
           </Link>
-          <Link href="/sell" className={styles.nav__item}>
-            Sell
+          <Link href="/sell" className={styles.nav__item} onClick={navHandler}>
+            <a onClick={navHandler}>Sell</a>
           </Link>
-          <Link href="/" className={styles.nav__item}>
-            Contact us
+          <Link href="/" className={styles.nav__item} onClick={navHandler}>
+            <a onClick={navHandler}>Contact us</a>
           </Link>
-          <Link href="/usersauth" className={styles.nav__item}>
-            Sign in
+          <Link
+            href="/usersauth"
+            className={styles.nav__item}
+            onClick={navHandler}
+          >
+            <a onClick={navHandler}>Sign in / Sign up</a>
           </Link>
         </div>
       )}

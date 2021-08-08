@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import styles from "./modal.module.css";
+import Button from "../assets/button/Button";
 
 const Modal = ({ title, body, buttonText }) => {
   //   const [modalState, setModalState] = useState(false);
@@ -9,9 +10,7 @@ const Modal = ({ title, body, buttonText }) => {
   //   }, []);
   const [modalState, setModalState] = useState(false);
 
-  const closeModal = useCallback(() => {
-    setModalState(false);
-  }, []);
+  const closeModal = useCallback(() => {}, []);
 
   return (
     <>
@@ -25,7 +24,9 @@ const Modal = ({ title, body, buttonText }) => {
             <p>{body}</p>
           </div>
           <div className={styles.modal__button}>
-            <button onClick={closeModal}>{buttonText}</button>
+            <Button type="button" onClick={closeModal}>
+              {buttonText}
+            </Button>
           </div>
         </div>
       </div>

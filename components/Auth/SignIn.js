@@ -1,6 +1,7 @@
 // import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import InputField from "../assets/formField/InputField";
+import InputText from "../assets/formField/InputText";
 import Button from "../assets/button/Button";
 import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
@@ -110,6 +111,17 @@ const SignIN = (props) => {
                 id="contact no"
                 type="numeric"
                 ref={inputPassword}
+              />
+            )}
+            {state === "sign-in" ? (
+              ""
+            ) : (
+              <InputText
+                label="Address"
+                for="address"
+                id="address"
+                rows="7"
+                cols="30"
               />
             )}
             <div className={styles.form__action}>

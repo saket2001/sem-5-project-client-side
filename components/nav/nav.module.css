@@ -42,7 +42,7 @@
     transition: all 0.2s ease;
 }
 
-.nav__items a:hover {
+.menu__nav__items a:hover {
     transform: scale(1.17);
 }
 

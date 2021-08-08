@@ -57,11 +57,7 @@
 
 .modal__button button {
     padding: 0.3rem 1rem;
-    outline: 0;
     border: 1px solid #929090;
-    border-radius: 5px;
-    color: #fff;
-    background-color: #929090;
 }
 
 @media screen and (max-width:768px) {

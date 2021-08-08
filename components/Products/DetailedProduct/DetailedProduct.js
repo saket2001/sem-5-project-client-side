@@ -4,6 +4,7 @@ import Image from "next/image";
 import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
 import dummyImg from "../../../public/dummy1.jpg";
+import saveLogo from "../../../public/save.png";
 
 const DetailedProduct = () => {
   const router = useRouter();
@@ -59,7 +60,18 @@ const DetailedProduct = () => {
             exercitationem?
           </p>
           <p className={styles.product__price}>500 ₹</p>
-          <Button type="button">Buy now</Button>
+          <div className={styles.product__buttons}>
+            <Button type="button">Buy now</Button>
+            <Button type="button" styles={styles.saveBtn}>
+              <Image
+                src={saveLogo}
+                alt="save button"
+                height="22px"
+                width="22px"
+              />
+              Save
+            </Button>
+          </div>
         </div>
       </div>
     </div>
