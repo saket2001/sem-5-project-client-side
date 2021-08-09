@@ -78,7 +78,11 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item} onClick={navHandler}>
             <a onClick={navHandler}>Category</a>
           </Link>
-          <Link href="/sell" className={styles.nav__item} onClick={navHandler}>
+          <Link
+            href="/sellproduct"
+            className={styles.nav__item}
+            onClick={navHandler}
+          >
             <a onClick={navHandler}>Sell</a>
           </Link>
           <Link href="/" className={styles.nav__item} onClick={navHandler}>

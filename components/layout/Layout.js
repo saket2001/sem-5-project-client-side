@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
     <div className="layout">
       {authState && <Header />}
       {children}
+      {/* footer here */}
     </div>
   );
 };
