@@ -1,7 +1,12 @@
 import React, { useCallback, useState } from "react";
 import styles from "./sellProduct.module.css";
+import Button from "../assets/button/Button";
+import InputField from "../assets/formField/InputField";
+import InputText from "../assets/formField/InputText";
+import { useRouter } from "next/dist/client/router";
 
 const SellProductForm = () => {
+  const router = useRouter();
   const [categoryState, setCategoryState] = useState(false);
   const [subCategoryState, setSubCategoryState] = useState(false);
 
@@ -12,12 +17,24 @@ const SellProductForm = () => {
 
   const subCategoryHandler = useCallback((e) => {
     console.log(e.target.innerHTML);
-
     setSubCategoryState(e.target.innerHTML);
   }, []);
 
+  const backHandler = useCallback(() => {
+    setCategoryState(false);
+    setSubCategoryState(false);
+    router.replace("/sellproduct");
+  }, [router]);
+
   return (
     <div className={styles.container}>
+      {subCategoryState && (
+        <div className={styles.form__button}>
+          <Button type="button" onClick={backHandler}>
+            Go Back
+          </Button>
+        </div>
+      )}
       <h2>Post Your Ad</h2>
       {/* category form */}
       {!subCategoryState && (
@@ -38,8 +55,8 @@ const SellProductForm = () => {
           </details>
           <details className={styles.categoryForm}>
             <summary onClick={categoryHandler}>Furniture</summary>
-            <p onClick={subCategoryHandler}>Sofa & Dining</p>
-            <p onClick={subCategoryHandler}>Beds & Wardrobes</p>
+            <p onClick={subCategoryHandler}>Sofa and Dining</p>
+            <p onClick={subCategoryHandler}>Beds and Wardrobes</p>
             <p onClick={subCategoryHandler}>Home Decor</p>
             <p onClick={subCategoryHandler}>Kids Furniture</p>
             <p onClick={subCategoryHandler}>Other Household Items</p>
@@ -52,10 +69,10 @@ const SellProductForm = () => {
           </details>
           <details className={styles.categoryForm}>
             <summary onClick={categoryHandler}>Electronics</summary>
-            <p onClick={subCategoryHandler}>Tvs, Video & Audio</p>
-            <p onClick={subCategoryHandler}>Computers & Laptops</p>
+            <p onClick={subCategoryHandler}>Tvs, Video and Audio</p>
+            <p onClick={subCategoryHandler}>Computers and Laptops</p>
             <p onClick={subCategoryHandler}>Computers Accessories</p>
-            <p onClick={subCategoryHandler}>Camera & Lenses</p>
+            <p onClick={subCategoryHandler}>Camera and Lenses</p>
             <p onClick={subCategoryHandler}>Washing Machines</p>
             <p onClick={subCategoryHandler}>Fridges</p>
             <p onClick={subCategoryHandler}>Acs</p>
@@ -63,10 +80,41 @@ const SellProductForm = () => {
         </div>
       )}
       {/* form */}
-      <form>
-        {categoryState}
-        {subCategoryState}
-      </form>
+      {subCategoryState && (
+        <form className={styles.form}>
+          <div className={styles.form__head}>
+            <h3>Selected Category</h3>
+            <p>
+              {categoryState} / {subCategoryState}
+            </p>
+          </div>
+          <hr />
+          <div className={styles.form__body}>
+            <h3>Add Some Details</h3>
+            <InputField type="text" label="Ad Title" />
+            <InputText label="Ad Description" rows="7" cols="10" />
+          </div>
+          <hr />
+          <div className={styles.form__body}>
+            <h3>Set Price</h3>
+            <InputField type="numeric" label="Product Price" />
+            {/* upload file */}
+          </div>
+          <hr />
+          <div className={styles.form__body}>
+            <h3>Confirm Location</h3>
+            <InputField type="text" label="Country" />
+            <InputField type="text" label="State" />
+            <InputText label="Your Address" rows="5" cols="10" />
+          </div>
+          <hr />
+          <div className={styles.form__action}>
+            <Button type="submit" onClick={backHandler}>
+              Post Now
+            </Button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };

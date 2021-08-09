@@ -30,9 +30,9 @@
 }
 
 .form__item label {
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.3rem 0;
-    margin: 0.3rem 0;
+    margin: 0.1rem 0;
 }
 
 .form__item input[type='text'],
@@ -46,8 +46,8 @@
     border: 0;
     font-size: 1rem;
     border-radius: 5px;
-    box-shadow: 11px 11px 22px #d7d9db,
-        -11px -11px 22px #e9ecee;
+    /* box-shadow: 11px 11px 22px #d7d9db,
+        -11px -11px 22px #e9ecee; */
 }
 
 .form__item input[type='text']:focus,
@@ -55,7 +55,7 @@
 .form__item input[type='email']:focus,
 .form__item input[type='numeric']:focus,
 .form__item textarea:focus {
-    border: 2px solid blue;
+    border: 0.09rem solid blue;
 }
 
 .form__item textarea {

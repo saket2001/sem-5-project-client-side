@@ -1,3 +1,10 @@
+.form__button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.2rem;
+}
+
 .container,
 .category_container {
     width: 80%;
@@ -19,6 +26,7 @@
     font-weight: 600;
     padding: 0.5rem 1rem;
     text-transform: uppercase;
+    font-size: 1.4rem;
 }
 
 .container h3 {
@@ -63,7 +71,64 @@
     border-bottom: 1px solid gray;
 }
 
+.container p {
+    font-size: 0.9rem;
+    color: var(--sec-clr);
+}
+
+/* form */
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px solid #ada1a1d8;
+}
+
+.form__head,
+.form__body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem;
+    color: var(--main-clr);
+    /* border-bottom: 2px solid #ada1a1d8; */
+}
+
+
+.form__head p {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sec-clr);
+    padding: 0.2rem 0;
+}
+
+.form__action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 1rem;
+}
+
+.form__action button {
+    width: 9rem;
+}
+
+.container input[type='text'],
+.container input[type='password'],
+.container input[type='email'],
+.container input[type='numeric'],
+.container textarea {
+    border: 1px solid #443d3dd8;
+}
+
 @media screen and (max-width:768px) {
+    .form__button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0.2rem;
+    }
 
     .container,
     .category_container {
@@ -83,5 +148,9 @@
     .container details p {
         padding: 0.3rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .form__action button {
+        width: 7rem;
     }
 }
