@@ -3,10 +3,11 @@ import Link from "next/link";
 import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import styles from "../styles/Home.module.css";
+import Layout from "../components/layout/Layout";
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Home</title>
         <meta
@@ -20,13 +21,13 @@ export default function Home() {
         <div className={styles.categories}>
           <h2>Categories</h2>
           <ul>
-            <Link href="/">
+            <Link href="/" passHref>
               <li>Smartphones</li>
             </Link>
-            <Link href="/">
+            <Link href="/" passHref>
               <li>Clothes</li>
             </Link>
-            <Link href="/">
+            <Link href="/" passHref>
               <li>Furniture</li>
             </Link>
           </ul>
@@ -35,6 +36,6 @@ export default function Home() {
         <div></div>
         <ProductsBanner heading="On Sale Products" />
       </main>
-    </>
+    </Layout>
   );
 }

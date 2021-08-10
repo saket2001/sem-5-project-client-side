@@ -1,17 +1,15 @@
 .searchBar {
-    width: 100%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #929090;
-    color: #fff;
-    padding: 0.2rem 5rem;
+    padding: 0.2rem 0.5rem;
 }
 
 .searchBar label {
     border-radius: 8px;
     background-color: #fff;
-    width: 100%;
+    width: 80%;
     display: grid;
     grid-template-columns: 2fr 0.3fr;
 }
@@ -32,7 +30,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: yellow;
+    background-color: rgb(32, 32, 16);
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -45,8 +43,12 @@
 }
 
 @media screen and (max-width:768px) {
+    .searchBar {
+        width: 90%;
+    }
 
     .searchBar label {
+        width: 100%;
         grid-template-columns: 2fr 0.5fr;
     }
 

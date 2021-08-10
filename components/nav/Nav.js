@@ -4,9 +4,14 @@ import Image from "next/image";
 import styles from "./nav.module.css";
 import logo from "../../public/main-logo.png";
 import menuNav from "../../public/menu-logo.svg";
-import SearchBar from "../search bar/SearchBar";
 import cartLogo from "../../public/shopping-cart.png";
 import userLogo from "../../public/user.png";
+import categoryLogo from "../../public/category.png";
+import sellLogo from "../../public/sell.png";
+import homeLogo from "../../public/home.svg";
+import contactLogo from "../../public/contact.png";
+import loginLogo from "../../public/signin.png";
+import searchLogo from "../../public/search.svg";
 import Modal from "../modal/Modal";
 
 const Nav = () => {
@@ -32,68 +37,138 @@ const Nav = () => {
           <Image
             src={logo}
             alt="company logo"
-            width="50px"
-            height="50px"
+            width="40px"
+            height="40px"
           ></Image>
-          <p>BECHDAL.in</p>
+          <p>BECHDAL</p>
         </div>
-        {/* search bar */}
-        <div className={styles.searchBar}>
-          <SearchBar />
-        </div>
-        {/* user logo */}
-        <div className={styles.user_logo}>
-          <Image src={userLogo} alt="user logo" width="35px" height="35px" />
-        </div>
-        {/* cart logo */}
-        <div className={styles.cart_logo} onClick={showModal}>
-          <Image
-            src={cartLogo}
-            alt="cart logo"
-            width="35px"
-            height="35px"
-          ></Image>
-          <div className={styles.cart__bubble}>
-            <p>0</p>
+        <div className={styles.nav__items}>
+          {/* search logo */}
+          <div className={styles.cart_logo}>
+            <Link href="/search" passHref>
+              <Image
+                src={searchLogo}
+                alt="menu logo"
+                width="30px"
+                height="30px"
+              ></Image>
+            </Link>
+          </div>
+          {/* cart logo */}
+          <div className={styles.cart_logo} onClick={showModal}>
+            <Image
+              src={cartLogo}
+              alt="cart logo"
+              width="30px"
+              height="30px"
+            ></Image>
+            <div className={styles.cart__bubble}>
+              <p>0</p>
+            </div>
+          </div>
+          {/*  */}
+          <div className={styles.nav__menu_logo} onClick={navHandler}>
+            <Image
+              src={menuNav}
+              alt="menu logo"
+              width="30px"
+              height="30px"
+            ></Image>
           </div>
         </div>
-        {/*  */}
-        <div className={styles.nav__menu_logo} onClick={navHandler}>
-          <Image
-            src={menuNav}
-            alt="menu logo"
-            width="35px"
-            height="35px"
-          ></Image>
-        </div>
       </nav>
-      <div className={styles.menu__searchBar}>
-        <SearchBar />
-      </div>
+
       {menuState && (
         <div className={styles.menu__nav__items}>
           <Link href="/" className={styles.nav__item}>
-            <a onClick={navHandler}>Home</a>
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={userLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Welcome, User
+            </a>
           </Link>
-          <Link href="/" className={styles.nav__item} onClick={navHandler}>
-            <a onClick={navHandler}>Category</a>
+          <Link href="/" className={styles.nav__item}>
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={homeLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Home
+            </a>
+          </Link>
+          <Link
+            href="/contactus"
+            className={styles.nav__item}
+            onClick={navHandler}
+          >
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={categoryLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Category
+            </a>
           </Link>
           <Link
             href="/sellproduct"
             className={styles.nav__item}
             onClick={navHandler}
           >
-            <a onClick={navHandler}>Sell</a>
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={sellLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Sell
+            </a>
           </Link>
           <Link href="/" className={styles.nav__item} onClick={navHandler}>
-            <a onClick={navHandler}>Contact us</a>
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={contactLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Contact us
+            </a>
           </Link>
           <Link
             href="/usersauth"
             className={styles.nav__item}
             onClick={navHandler}
           >
-            <a onClick={navHandler}>Sign in / Sign up</a>
+            <a onClick={navHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={loginLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Log in
+            </a>
           </Link>
         </div>
       )}

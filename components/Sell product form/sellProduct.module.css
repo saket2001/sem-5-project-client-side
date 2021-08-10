@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     font-size: 1.2rem;
-    color: var(--sec-clr);
+    color: var(--main-clr);
     border-radius: 5px;
     border: 2px solid #ada1a1d8;
 }
@@ -73,7 +73,6 @@
 
 .container p {
     font-size: 0.9rem;
-    color: var(--sec-clr);
 }
 
 /* form */
@@ -148,6 +147,10 @@
     .container details p {
         padding: 0.3rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .form__action {
+        padding: 0.3rem 1.1rem;
     }
 
     .form__action button {
