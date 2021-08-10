@@ -17,8 +17,8 @@ const MyAdPage = () => {
           <div className={styles.message}>
             <h1>Oops No Ads Found !</h1>
             <p>
-              It looks like you haven't posted any ads for selling yet. What
-              area you waiting for, lets get started
+              It looks like you haven&apos;t posted any ads for selling yet.
+              What area you waiting for, lets get started
             </p>
           </div>
           {/* when content available to show */}

@@ -17,8 +17,8 @@ const MyFavoritesPage = () => {
           <div className={styles.message}>
             <h1>Oops No Saved Ads Found !</h1>
             <p>
-              It looks like you haven't saved any ads yet. What are you waiting
-              for, lets get started
+              It looks like you haven &apos; t saved any ads yet. What are you
+              waiting for, lets get started
             </p>
           </div>
           {/* when content available to show */}
