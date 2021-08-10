@@ -1,0 +1,47 @@
+/* my ads and my favorites page css */
+
+.container {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.container .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+}
+
+.message h1 {
+    width: 50%;
+
+    font-size: 1.5rem;
+    padding: 0.1rem;
+}
+
+.message p {
+    width: 50%;
+    color: var(--sec-clr);
+    padding: 0.1rem;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width:768px) {
+    .message h1 {
+        width: 100%;
+        font-size: 1.35rem;
+    }
+
+    .message p {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+}
+
+/* my profile page css */

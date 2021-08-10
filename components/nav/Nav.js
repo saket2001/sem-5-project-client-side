@@ -12,22 +12,22 @@ import homeLogo from "../../public/home.svg";
 import contactLogo from "../../public/contact.png";
 import loginLogo from "../../public/signin.png";
 import searchLogo from "../../public/search.svg";
-import Modal from "../modal/Modal";
+import contentLogo from "../../public/content.png";
+import saveLogo from "../../public/save.png";
+import lockLogo from "../../public/lock.png";
 
 const Nav = () => {
   const [menuState, setMenuState] = useState(false);
-  const [modalState, setModalState] = useState(false);
-
-  const showModal = useCallback(() => {
-    setModalState((prevState) => !prevState);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setModalState((prevState) => !prevState);
-  }, []);
+  const [userMenuState, setUserMenuState] = useState(false);
 
   const navHandler = useCallback(() => {
+    setUserMenuState(false);
     setMenuState((prevState) => !prevState);
+  }, []);
+
+  const UserMenuHandler = useCallback(() => {
+    setUserMenuState((prevState) => !prevState);
+    setMenuState(false);
   }, []);
 
   return (
@@ -43,6 +43,10 @@ const Nav = () => {
           <p>BECHDAL</p>
         </div>
         <div className={styles.nav__items}>
+          {/* user logo */}
+          <div className={styles.user_logo} onClick={UserMenuHandler}>
+            <Image src={userLogo} alt="user logo" width="30px" height="30px" />
+          </div>
           {/* search logo */}
           <div className={styles.cart_logo}>
             <Link href="/search" passHref>
@@ -55,7 +59,7 @@ const Nav = () => {
             </Link>
           </div>
           {/* cart logo */}
-          <div className={styles.cart_logo} onClick={showModal}>
+          <div className={styles.cart_logo}>
             <Image
               src={cartLogo}
               alt="cart logo"
@@ -78,10 +82,10 @@ const Nav = () => {
         </div>
       </nav>
 
-      {menuState && (
+      {userMenuState && (
         <div className={styles.menu__nav__items}>
-          <Link href="/" className={styles.nav__item}>
-            <a onClick={navHandler}>
+          <Link href="/user/myprofile" className={styles.nav__item}>
+            <a onClick={UserMenuHandler}>
               <div className={styles.user_logo}>
                 <Image
                   src={userLogo}
@@ -90,9 +94,53 @@ const Nav = () => {
                   height="28px"
                 />
               </div>
-              Welcome, User
+              My Profile
             </a>
           </Link>
+          <Link href="/user/myads" className={styles.nav__item}>
+            <a onClick={UserMenuHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={contentLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              My Ads
+            </a>
+          </Link>
+          <Link href="/user/myfavorites" className={styles.nav__item}>
+            <a onClick={UserMenuHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={saveLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              My Favorites
+            </a>
+          </Link>
+          <Link href="/" className={styles.nav__item}>
+            <a onClick={UserMenuHandler}>
+              <div className={styles.user_logo}>
+                <Image
+                  src={lockLogo}
+                  alt="user logo"
+                  width="28px"
+                  height="28px"
+                />
+              </div>
+              Logout
+            </a>
+          </Link>
+        </div>
+      )}
+
+      {menuState && (
+        <div className={styles.menu__nav__items}>
           <Link href="/" className={styles.nav__item}>
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
@@ -171,13 +219,6 @@ const Nav = () => {
             </a>
           </Link>
         </div>
-      )}
-      {modalState && (
-        <Modal
-          title="Your Cart"
-          body="No items in cart yet"
-          buttonText="Close"
-        />
       )}
     </>
   );
