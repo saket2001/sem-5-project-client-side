@@ -185,4 +185,20 @@
         font-size: 0.8rem;
     }
 
+    /*  */
+    .seller__container {
+        padding: 0.5rem;
+    }
+
+    .seller__container h2 {
+        font-size: 1.1rem;
+    }
+
+    .seller__info div {
+        width: 110px;
+    }
+
+    .seller__info p {
+        font-size: 0.8rem;
+    }
 }

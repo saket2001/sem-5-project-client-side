@@ -47,15 +47,32 @@
 }
 
 .filter__container {
+    position: relative;
+    z-index: 1;
     border-right: 2px solid #ccc;
+}
+
+.filter__container h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+.filter__container h2 div {
+    margin-right: 0.4rem;
 }
 
 @media screen and (max-width:768px) {
     .main {
-        grid-template-columns: 0.3fr 1fr;
+        grid-template-columns: 1fr;
         grid-gap: 0.2rem;
         padding: 0.3rem 1rem;
         margin: 0.5rem 0.3rem;
+    }
+
+    .filter__container h2 div {
+        opacity: 1;
     }
 
 }
