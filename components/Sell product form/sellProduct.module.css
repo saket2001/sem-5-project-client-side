@@ -16,7 +16,7 @@
 }
 
 .category_container {
-    border: 2px solid #ada1a1d8;
+    border: 2px solid var(--spl-clr);
 }
 
 .container h2,
@@ -44,16 +44,16 @@
     font-size: 1.2rem;
     color: var(--main-clr);
     border-radius: 5px;
-    border: 2px solid #ada1a1d8;
+    border: 2px solid var(--spl-clr);
 }
 
 .container summary:hover {
-    background-color: #b4abab81;
+    background-color: #d4cccc81;
     color: rgb(0, 0, 0);
 }
 
 .container details p:hover {
-    background-color: #b4abab81;
+    background-color: #d4cccc81;
     color: rgb(0, 0, 0);
 }
 
@@ -81,7 +81,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    border: 2px solid #ada1a1d8;
+    background-color: #fff;
+    border: 2px solid var(--spl-clr);
 }
 
 .form__head,
@@ -91,14 +92,13 @@
     padding: 0.5rem 1rem;
     margin: 0.2rem;
     color: var(--main-clr);
-    /* border-bottom: 2px solid #ada1a1d8; */
 }
 
 
 .form__head p {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--sec-clr);
+    color: var(--spl-clr);
     padding: 0.2rem 0;
 }
 

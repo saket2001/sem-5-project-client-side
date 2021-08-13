@@ -9,7 +9,7 @@
     font-size: 1rem;
     outline: 0;
     border: 0;
-    background-color: #929090;
+    background-color: var(--spl-clr);
     border: 2px solid transparent;
     color: #fff;
     border-radius: 5px;
@@ -17,7 +17,6 @@
 }
 
 .button:hover {
-    background-color: #555151;
     transform: scale(0.95);
 }
 
@@ -46,8 +45,8 @@
     border: 0;
     font-size: 1rem;
     border-radius: 5px;
-    /* box-shadow: 11px 11px 22px #d7d9db,
-        -11px -11px 22px #e9ecee; */
+    border: 2px solid var(--spl-clr);
+    background-color: transparent;
 }
 
 .form__item input[type='text']:focus,

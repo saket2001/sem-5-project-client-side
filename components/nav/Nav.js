@@ -154,11 +154,7 @@ const Nav = () => {
               Home
             </a>
           </Link>
-          <Link
-            href="/contactus"
-            className={styles.nav__item}
-            onClick={navHandler}
-          >
+          <Link href="/cars" className={styles.nav__item} onClick={navHandler}>
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
                 <Image

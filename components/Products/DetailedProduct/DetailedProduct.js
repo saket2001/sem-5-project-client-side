@@ -5,6 +5,7 @@ import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
 import dummyImg from "../../../public/dummy1.jpg";
 import saveLogo from "../../../public/save.png";
+import Link from "next/link";
 
 const DetailedProduct = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const DetailedProduct = () => {
 
         <div className={styles.product__right}>
           <p className={styles.product__seller}>William H Brock</p>
+          <p className={styles.product__address}>Lorem ipsum dolor sit amet.</p>
           <h2 className={styles.product__name}>Small Classic Chair</h2>
           <p className={styles.product__category}>Furniture</p>
           <p className={styles.product__description}>
@@ -71,6 +73,24 @@ const DetailedProduct = () => {
               />
               Save
             </Button>
+          </div>
+          <div className={styles.seller__container}>
+            <h2>Seller Description</h2>
+            <div className={styles.seller__info}>
+              <Image
+                src={dummyImg}
+                alt="User picture"
+                height="70px"
+                width="70px"
+              />
+              <p>Seller Name</p>
+              <Button type="button">
+                <Link href="/user/myprofile">View</Link>
+              </Button>
+            </div>
+            <div className={styles.product__buttons}>
+              <Button type="button">Chat with Seller</Button>
+            </div>
           </div>
         </div>
       </div>

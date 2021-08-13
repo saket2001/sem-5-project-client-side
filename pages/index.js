@@ -18,20 +18,6 @@ export default function Home() {
       </Head>
       <Slider />
       <main className={styles.main}>
-        <div className={styles.categories}>
-          <h2>Categories</h2>
-          <ul>
-            <Link href="/" passHref>
-              <li>Smartphones</li>
-            </Link>
-            <Link href="/" passHref>
-              <li>Clothes</li>
-            </Link>
-            <Link href="/" passHref>
-              <li>Furniture</li>
-            </Link>
-          </ul>
-        </div>
         <ProductsBanner heading="Featured Products" />
         <div></div>
         <ProductsBanner heading="On Sale Products" />

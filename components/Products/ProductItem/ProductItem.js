@@ -6,7 +6,7 @@ import styles from "./product.module.css";
 
 const ProductItem = () => {
   return (
-    <Link href="/product/1223">
+    <Link href="/furniture/1231" passHref>
       <div className={styles.productItem}>
         <div className={styles.product__img}>
           <Image
@@ -19,6 +19,10 @@ const ProductItem = () => {
         <div className={styles.product__info}>
           <h2 className={styles.product__heading}>Beautiful Lamp</h2>
           <p className={styles.product__price}>500 ₹</p>
+          <div className={styles.product__details}>
+            <p className={styles.product__country}>Maharashtra</p>
+            <p className={styles.product__date}>20/08/21</p>
+          </div>
         </div>
       </div>
     </Link>
