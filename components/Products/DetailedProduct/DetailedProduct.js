@@ -11,7 +11,7 @@ const DetailedProduct = () => {
   const router = useRouter();
 
   const goBack = useCallback(() => {
-    router.replace("/");
+    router.replace(`/${router.query.productType}`);
   }, [router]);
 
   return (
