@@ -154,7 +154,11 @@ const Nav = () => {
               Home
             </a>
           </Link>
-          <Link href="/cars" className={styles.nav__item} onClick={navHandler}>
+          <Link
+            href="/category"
+            className={styles.nav__item}
+            onClick={navHandler}
+          >
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
                 <Image
@@ -164,7 +168,7 @@ const Nav = () => {
                   height="28px"
                 />
               </div>
-              Category
+              Shop By Category
             </a>
           </Link>
           <Link
