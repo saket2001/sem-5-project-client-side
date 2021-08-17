@@ -72,12 +72,14 @@
     z-index: 2;
     width: 30%;
     align-self: flex-end;
-    margin-top: 4rem;
+    margin-top: 4.3rem;
     display: flex;
     flex-direction: column;
     padding: 1.5rem 1rem;
     background-color: #CB3514;
     color: #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .menu__nav__items a {
