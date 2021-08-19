@@ -3,18 +3,18 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./nav.module.css";
 import logo from "../../public/main-logo.png";
-import menuNav from "../../public/menu-logo.svg";
-import cartLogo from "../../public/shopping-cart.png";
-import userLogo from "../../public/user.png";
-import categoryLogo from "../../public/category.png";
-import sellLogo from "../../public/sell.png";
-import homeLogo from "../../public/home.svg";
-import contactLogo from "../../public/contact.png";
-import loginLogo from "../../public/signin.png";
-import searchLogo from "../../public/search.svg";
-import contentLogo from "../../public/content.png";
-import saveLogo from "../../public/save.png";
-import lockLogo from "../../public/lock.png";
+import {
+  FaUser,
+  FaSearch,
+  FaBars,
+  FaCartPlus,
+  FaHome,
+  FaRegEdit,
+  FaList,
+  FaHeadset,
+  FaLock,
+  FaSave,
+} from "react-icons/fa";
 
 const Nav = () => {
   const [menuState, setMenuState] = useState(false);
@@ -45,39 +45,24 @@ const Nav = () => {
         <div className={styles.nav__items}>
           {/* user logo */}
           <div className={styles.user_logo} onClick={UserMenuHandler}>
-            <Image src={userLogo} alt="user logo" width="30px" height="30px" />
+            <FaUser style={{ fontSize: "26px" }} />
           </div>
           {/* search logo */}
           <div className={styles.cart_logo}>
             <Link href="/search" passHref>
-              <Image
-                src={searchLogo}
-                alt="menu logo"
-                width="30px"
-                height="30px"
-              ></Image>
+              <FaSearch style={{ fontSize: "26px" }} />
             </Link>
           </div>
           {/* cart logo */}
           <div className={styles.cart_logo}>
-            <Image
-              src={cartLogo}
-              alt="cart logo"
-              width="30px"
-              height="30px"
-            ></Image>
+            <FaCartPlus style={{ fontSize: "26px" }} />
             <div className={styles.cart__bubble}>
               <p>0</p>
             </div>
           </div>
           {/*  */}
           <div className={styles.nav__menu_logo} onClick={navHandler}>
-            <Image
-              src={menuNav}
-              alt="menu logo"
-              width="30px"
-              height="30px"
-            ></Image>
+            <FaBars style={{ fontSize: "26px" }} />
           </div>
         </div>
       </nav>
@@ -87,12 +72,7 @@ const Nav = () => {
           <Link href="/user/myprofile" className={styles.nav__item}>
             <a onClick={UserMenuHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={userLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaUser style={{ fontSize: "26px" }} />
               </div>
               My Profile
             </a>
@@ -100,12 +80,7 @@ const Nav = () => {
           <Link href="/user/myads" className={styles.nav__item}>
             <a onClick={UserMenuHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={contentLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaList style={{ fontSize: "26px" }} />
               </div>
               My Ads
             </a>
@@ -113,12 +88,7 @@ const Nav = () => {
           <Link href="/user/myfavorites" className={styles.nav__item}>
             <a onClick={UserMenuHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={saveLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaSave style={{ fontSize: "26px" }} />
               </div>
               My Favorites
             </a>
@@ -126,12 +96,7 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item}>
             <a onClick={UserMenuHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={lockLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaLock style={{ fontSize: "26px" }} />
               </div>
               Logout
             </a>
@@ -144,12 +109,7 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item}>
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={homeLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaHome style={{ fontSize: "26px" }} />
               </div>
               Home
             </a>
@@ -161,12 +121,7 @@ const Nav = () => {
           >
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={categoryLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaList style={{ fontSize: "26px" }} />
               </div>
               Shop By Category
             </a>
@@ -178,12 +133,7 @@ const Nav = () => {
           >
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={sellLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaRegEdit style={{ fontSize: "26px" }} />
               </div>
               Sell
             </a>
@@ -191,12 +141,7 @@ const Nav = () => {
           <Link href="/" className={styles.nav__item} onClick={navHandler}>
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={contactLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaHeadset style={{ fontSize: "26px" }} />
               </div>
               Contact us
             </a>
@@ -208,12 +153,7 @@ const Nav = () => {
           >
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
-                <Image
-                  src={loginLogo}
-                  alt="user logo"
-                  width="28px"
-                  height="28px"
-                />
+                <FaUser style={{ fontSize: "26px" }} />
               </div>
               Log in
             </a>

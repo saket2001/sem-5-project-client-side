@@ -4,8 +4,9 @@ import Image from "next/image";
 import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
 import dummyImg from "../../../public/dummy1.jpg";
-import saveLogo from "../../../public/save.png";
 import Link from "next/link";
+import VerifiedTag from "../../Verified Tag/VerifiedTag";
+import { FaHeart, FaArrowLeft } from "react-icons/fa";
 
 const DetailedProduct = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const DetailedProduct = () => {
     <div className="container">
       <div className={styles.backButton}>
         <Button type="button" onClick={goBack}>
+          <FaArrowLeft />
           Go Back
         </Button>
       </div>
@@ -46,10 +48,17 @@ const DetailedProduct = () => {
               height="70px"
               width="70px"
             />
+            <Image
+              src={dummyImg}
+              alt="product image"
+              height="70px"
+              width="70px"
+            />
           </div>
         </div>
 
         <div className={styles.product__right}>
+          <VerifiedTag message="Verified Ad" />
           <p className={styles.product__seller}>William H Brock</p>
           <p className={styles.product__address}>Lorem ipsum dolor sit amet.</p>
           <h2 className={styles.product__name}>Small Classic Chair</h2>
@@ -65,12 +74,7 @@ const DetailedProduct = () => {
           <div className={styles.product__buttons}>
             <Button type="button">Buy now</Button>
             <Button type="button" styles={styles.saveBtn}>
-              <Image
-                src={saveLogo}
-                alt="save button"
-                height="22px"
-                width="22px"
-              />
+              <FaHeart style={{ fontSize: "22px" }} />
               Save
             </Button>
           </div>

@@ -5,6 +5,10 @@
     padding: 0.2rem;
 }
 
+.form__button button {
+    width: 10rem;
+}
+
 .container,
 .category_container {
     width: 80%;
@@ -85,6 +89,13 @@
     border: 2px solid var(--spl-clr);
 }
 
+.form p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--main-clr);
+    padding: 0.2rem 1rem;
+}
+
 .form__head,
 .form__body {
     display: flex;
@@ -94,6 +105,9 @@
     color: var(--main-clr);
 }
 
+.form__body p {
+    padding: 0.2rem 0;
+}
 
 .form__head p {
     font-size: 1rem;

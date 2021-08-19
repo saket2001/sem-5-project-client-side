@@ -124,6 +124,14 @@ const SignIN = (props) => {
                 cols="30"
               />
             )}
+            {state === "sign-in" ? (
+              ""
+            ) : (
+              <p className={styles.extra__text}>
+                Add real and accurate details only as your account will be
+                verified based on this details
+              </p>
+            )}
             <div className={styles.form__action}>
               <Button type="submit">
                 {state === "sign-in" ? "Sign In" : "Sign Up"}

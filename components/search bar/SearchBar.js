@@ -1,8 +1,6 @@
 import React from "react";
-
 import styles from "./Searchbar.module.css";
-import searchLogo from "../../public/search.svg";
-import Image from "next/image";
+import { FaSearch } from "react-icons/fa";
 
 const SearchBar = () => {
   return (
@@ -10,12 +8,7 @@ const SearchBar = () => {
       <label htmlFor="search">
         <input type="search" id="search" />
         <div className={styles.searchIcon}>
-          <Image
-            src={searchLogo}
-            alt="search icon"
-            width="30px"
-            height="26px"
-          />
+          <FaSearch style={{ fontSize: "26px", color: "#fff" }} />
         </div>
       </label>
     </div>

@@ -1,10 +1,7 @@
 import React, { useCallback, useState } from "react";
-import Image from "next/image";
 import styles from "./slider.module.css";
 import Link from "next/link";
-
-import leftBtn from "../../public/left-arrow.png";
-import rightBtn from "../../public/right-arrow.png";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 
 const dummyData = [
   {
@@ -13,7 +10,7 @@ const dummyData = [
       "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     content: {
       heading: "Good quality furniture",
-      link: "/",
+      link: "/furniture",
     },
   },
   {
@@ -22,7 +19,7 @@ const dummyData = [
       "https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?cs=srgb&dl=pexels-pixabay-4158.jpg&fm=jpg",
     content: {
       heading: "New and serviced Electronics",
-      link: "/",
+      link: "/Electronics",
     },
   },
   {
@@ -31,7 +28,7 @@ const dummyData = [
       "https://images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     content: {
       heading: "Good condition second hand books",
-      link: "/",
+      link: "/Books",
     },
   },
   {
@@ -40,7 +37,7 @@ const dummyData = [
       "https://images.pexels.com/photos/2747539/pexels-photo-2747539.jpeg?cs=srgb&dl=pexels-sourav-mishra-2747539.jpg&fm=jpg",
     content: {
       heading: "Good condition second hand bikes",
-      link: "/",
+      link: "/Bikes",
     },
   },
 ];
@@ -78,16 +75,9 @@ const Slider = () => {
       ></div>
       <div className={styles.slider}>
         <div className={styles.slider__btn} onClick={leftHandler}>
-          <Image
-            src={leftBtn}
-            alt="left button"
-            width="40px"
-            height="40px"
-          ></Image>
+          <FaChevronCircleLeft style={{ fontSize: "30px" }} />
         </div>
-        {/* <div className={styles.slider__image}>
-          <Image src={dummyImg} alt="" width="380px" height="350px"></Image>
-        </div> */}
+
         <div className={styles.slider__content}>
           <h1 className={styles.slider__heading}>
             {sliderContent.content.heading}
@@ -95,35 +85,19 @@ const Slider = () => {
           <Link href={sliderContent.content.link}>Shop now</Link>
         </div>
         <div className={styles.slider__btn} onClick={rightHandler}>
-          <Image
-            src={rightBtn}
-            alt="left button"
-            width="40px"
-            height="40px"
-          ></Image>
+          <FaChevronCircleRight style={{ fontSize: "30px" }} />
         </div>
         <div className={styles.slider__controls}>
-          <Image
-            src={leftBtn}
+          <FaChevronCircleLeft
+            style={{ fontSize: "24px" }}
             onClick={leftHandler}
-            alt="left button"
-            width="30px"
-            height="30px"
-          ></Image>
-          <Image
-            src={rightBtn}
+          />
+          <FaChevronCircleRight
+            style={{ fontSize: "24px" }}
             onClick={rightHandler}
-            alt="left button"
-            width="30px"
-            height="30px"
-          ></Image>
+          />
         </div>
       </div>
-      {/* <div className={styles.slider__page}>
-        <p>
-          {sliderState + 1} of {dummyData.length}
-        </p>
-      </div> */}
     </>
   );
 };

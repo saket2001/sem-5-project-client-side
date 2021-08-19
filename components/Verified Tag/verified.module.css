@@ -1,0 +1,18 @@
+.tag_container {
+    /* width: 10rem; */
+    padding: 0.3rem 0;
+    background-color: var(--sec-bg);
+    /* border: 1px solid var(--spl-clr); */
+    border-radius: 6px;
+    margin: 0.2rem;
+    display: flex;
+    grid-gap: 0.1rem;
+    place-items: center;
+}
+
+.tag_container p {
+    font-size: 1rem;
+    color: var(--spl-clr);
+    font-weight: 600;
+    margin: 0 0.2rem;
+}

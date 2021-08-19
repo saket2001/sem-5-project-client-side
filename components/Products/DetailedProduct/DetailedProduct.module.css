@@ -1,7 +1,11 @@
 .backButton {
     display: flex;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     width: 100%;
+}
+
+.backButton button {
+    width: 10rem;
 }
 
 /*  */
@@ -84,6 +88,10 @@
 .product__buttons button {
     width: auto;
     margin-right: 0.3rem;
+}
+
+.product__buttons button svg {
+    margin-right: 0.2rem;
 }
 
 .product__buttons button:last-child {

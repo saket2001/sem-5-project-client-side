@@ -22,6 +22,12 @@
     flex-direction: column;
 }
 
+.form .extra__text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--sec-clr);
+}
+
 .form__head,
 .form__body {
     display: flex;

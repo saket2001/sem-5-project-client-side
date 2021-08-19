@@ -4,6 +4,7 @@ import Button from "../assets/button/Button";
 import InputField from "../assets/formField/InputField";
 import InputText from "../assets/formField/InputText";
 import { useRouter } from "next/dist/client/router";
+import { FaArrowLeft } from "react-icons/fa";
 
 const SellProductForm = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const SellProductForm = () => {
       {subCategoryState && (
         <div className={styles.form__button}>
           <Button type="button" onClick={backHandler}>
+            <FaArrowLeft />
             Go Back
           </Button>
         </div>
@@ -93,6 +95,11 @@ const SellProductForm = () => {
             <h3>Add Some Details</h3>
             <InputField type="text" label="Ad Title" />
             <InputText label="Ad Description" rows="7" cols="10" />
+            <p>Always add pictures from different angles of your product</p>
+            <InputField type="file" label="Ad image 1" />
+            <InputField type="file" label="Ad image 2" />
+            <InputField type="file" label="Ad image 3" />
+            <InputField type="file" label="Ad image 4" />
           </div>
           <hr />
           <div className={styles.form__body}>
@@ -108,9 +115,14 @@ const SellProductForm = () => {
             <InputText label="Your Address" rows="5" cols="10" />
           </div>
           <hr />
+          <p>
+            Your ad will be revived by our team in person by visiting your house
+            in next 24hrs <br /> If your ad product passes the inspection your
+            ad will be made online to other users
+          </p>
           <div className={styles.form__action}>
             <Button type="submit" onClick={backHandler}>
-              Post Now
+              Submit Ad
             </Button>
           </div>
         </form>
