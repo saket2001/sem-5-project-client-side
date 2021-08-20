@@ -1,16 +1,17 @@
 .productsBanner {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 1rem 2rem;
     background-color: #fff;
     border-radius: 8px;
 }
 
 .productsBanner h1 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
     color: var(--main-clr);
-    padding: 0.3rem 0.5rem;
+    padding: 0.35rem 2rem;
 }
 
 .productsBanner .product__list {

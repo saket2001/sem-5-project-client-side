@@ -9,16 +9,24 @@
 
 /* about us section */
 .about__us {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  place-items: center;
+  grid-gap: 2rem;
   width: 100%;
-  padding: 0.5rem 1rem;
+  min-height: 70vh;
+  padding: 1rem 2rem;
+  background-color: #fff;
 }
 
-.main h1 {
+
+.about__us h1 {
   font-size: 2.5rem;
 }
 
 .about__us p {
-  font-size: 1.1rem;
+  width: 80%;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--sec-clr);
   padding-bottom: 0.1rem;
@@ -26,17 +34,18 @@
 
 .about__service {
   width: 100%;
-  padding: 0.5rem 0;
+  min-height: 60vh;
+  padding: 1rem 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  place-items: flex-start center;
+  place-items: center center;
   grid-gap: 1rem;
+  background-color: var(--sec-bg);
 }
 
 .card {
   height: 50vh;
   padding: 1rem;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,22 +59,20 @@
 
 .card p {
   margin: 0.25rem 0;
-  width: 80%;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--sec-clr);
 }
 
 /* instructions */
 .instructions__container {
   width: 100%;
-  padding: 1rem;
-  margin: 1rem 0;
+  min-height: 70vh;
+  padding: 1rem 2rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  place-items: flex-start center;
+  place-items: center;
   grid-gap: 1rem;
-  background-color: #fff;
   border-radius: 8px;
 }
 
@@ -81,13 +88,13 @@
 }
 
 .instructions__container .block p {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--sec-clr);
   padding: 0.1rem 0;
 }
 
 .instructions__container .block .block__no {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 900;
   padding: 0.1rem 0;
 }
@@ -99,20 +106,27 @@
 
 
 @media (max-width: 768px) {
-  .main {
-    width: 100%;
-    grid-template-columns: 1fr;
-    grid-gap: 0.5rem;
-    padding: 1rem;
-  }
 
   /* about us */
-  .main h1 {
-    font-size: 1.5rem;
+
+  .about__us {
+    padding: 2rem 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .about__us div {
+    width: 80%;
+  }
+
+  .about__us h1 {
+    text-align: center;
+    font-size: 1.3rem;
   }
 
   .about__us p {
-    font-size: 0.8rem;
+    text-align: justify;
+    width: 100%;
+    font-size: 0.75rem;
   }
 
   .about__service {
@@ -129,6 +143,7 @@
   }
 
   .about__service .card p {
+    text-align: justify;
     width: 90%;
     font-size: 0.7rem;
   }
