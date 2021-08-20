@@ -43,6 +43,23 @@ const Nav = () => {
           <p>BECHDAL</p>
         </div>
         <div className={styles.nav__items}>
+          <Link href="/">
+            <a className={styles.nav__item}>Home</a>
+          </Link>
+          <Link href="/category">
+            <a className={styles.nav__item}>Categories</a>
+          </Link>
+          <Link href="/sellproduct">
+            <a className={styles.nav__item}>Sell</a>
+          </Link>
+          <Link href="/contactus">
+            <a className={styles.nav__item}>Contact us</a>
+          </Link>
+          <Link href="/usersauth">
+            <a className={styles.nav__item}>Login</a>
+          </Link>
+        </div>
+        <div className={styles.nav__logos}>
           {/* user logo */}
           <div className={styles.user_logo} onClick={UserMenuHandler}>
             <FaUser style={{ fontSize: "26px" }} />
