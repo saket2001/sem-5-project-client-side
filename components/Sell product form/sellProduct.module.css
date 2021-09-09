@@ -1,173 +1,173 @@
 .form__button {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding: 0.2rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.2rem;
 }
 
 .form__button button {
-    width: 10rem;
+  width: 10rem;
 }
 
 .container,
 .category_container {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-radius: 5px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 5px;
 }
 
 .category_container {
-    border: 2px solid var(--spl-clr);
+  border: 2px solid var(--spl-clr);
 }
 
 .container h2,
 .container h3 {
-    width: 100%;
-    text-align: center;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    text-transform: uppercase;
-    font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
 }
 
 .container h3 {
-    text-align: start;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
+  text-align: start;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
 }
 
 .container details {
-    width: 100%;
-    padding: 0.2 0;
-    margin: 0.2rem 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
-    color: var(--main-clr);
-    border-radius: 5px;
-    border: 2px solid var(--spl-clr);
+  width: 100%;
+  padding: 0.2 0;
+  margin: 0.2rem 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  color: var(--main-clr);
+  border-radius: 5px;
+  border: 2px solid var(--spl-clr);
 }
 
 .container summary:hover {
-    background-color: #d4cccc81;
-    color: rgb(0, 0, 0);
+  background-color: #d4cccc81;
+  color: rgb(0, 0, 0);
 }
 
 .container details p:hover {
-    background-color: #d4cccc81;
-    color: rgb(0, 0, 0);
+  background-color: #d4cccc81;
+  color: rgb(0, 0, 0);
 }
 
 .container summary {
-    padding: 0.4rem 0.2rem;
-    display: flex;
-    font-size: 1.1rem;
+  padding: 0.4rem 0.2rem;
+  display: flex;
+  font-size: 1.1rem;
 }
 
 .container details p {
-    margin: 0.1rem;
-    padding: 0.4rem 2rem;
-    display: flex;
-    font-size: 1rem;
-    border-bottom: 1px solid gray;
+  margin: 0.1rem;
+  padding: 0.4rem 2rem;
+  display: flex;
+  font-size: 1rem;
+  border-bottom: 1px solid gray;
 }
 
 .container p {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 /* form */
 .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    background-color: #fff;
-    border: 2px solid var(--spl-clr);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 2px solid var(--spl-clr);
 }
 
 .form p {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--main-clr);
-    padding: 0.2rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--main-clr);
+  padding: 0.2rem 1rem;
 }
 
 .form__head,
 .form__body {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem 1rem;
-    margin: 0.2rem;
-    color: var(--main-clr);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  color: var(--main-clr);
 }
 
 .form__body p {
-    padding: 0.2rem 0;
+  padding: 0.2rem 0;
 }
 
 .form__head p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--spl-clr);
-    padding: 0.2rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--spl-clr);
+  padding: 0.2rem 0;
 }
 
 .form__action {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0.3rem 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 1rem;
 }
 
 .form__action button {
-    width: 9rem;
+  width: 9rem;
 }
 
-.container input[type='text'],
-.container input[type='password'],
-.container input[type='email'],
-.container input[type='numeric'],
+.container input[type="text"],
+.container input[type="password"],
+.container input[type="email"],
+.container input[type="numeric"],
 .container textarea {
-    border: 1px solid #443d3dd8;
+  border: 1px solid #443d3dd8;
 }
 
-@media screen and (max-width:768px) {
-    .form__button {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding: 0.2rem;
-    }
+@media screen and (max-width: 768px) {
+  .form__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.2rem;
+  }
 
-    .container,
-    .category_container {
-        width: 100%;
-        padding: 1rem;
-    }
+  .container,
+  .category_container {
+    width: 100%;
+    padding: 1rem;
+  }
 
-    .container details {
-        font-size: 1.1rem;
-    }
+  .container details {
+    font-size: 1.1rem;
+  }
 
-    .container summary {
-        padding: 0.4rem 0.2rem;
-        font-size: 1rem;
-    }
+  .container summary {
+    padding: 0.4rem 0.2rem;
+    font-size: 1rem;
+  }
 
-    .container details p {
-        padding: 0.3rem 1rem;
-        font-size: 0.9rem;
-    }
+  .container details p {
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+  }
 
-    .form__action {
-        padding: 0.3rem 1.1rem;
-    }
+  .form__action {
+    padding: 0.3rem 1.1rem;
+  }
 
-    .form__action button {
-        width: 7rem;
-    }
+  .form__action button {
+    width: 7rem;
+  }
 }

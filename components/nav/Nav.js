@@ -155,7 +155,11 @@ const Nav = () => {
               Sell
             </a>
           </Link>
-          <Link href="/" className={styles.nav__item} onClick={navHandler}>
+          <Link
+            href="/contactus"
+            className={styles.nav__item}
+            onClick={navHandler}
+          >
             <a onClick={navHandler}>
               <div className={styles.user_logo}>
                 <FaHeadset style={{ fontSize: "26px" }} />
