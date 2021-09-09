@@ -40,7 +40,9 @@ const Nav = () => {
             width="40px"
             height="40px"
           ></Image>
-          <p>BECHDAL</p>
+          <p>
+            <Link href="/">BECHDAL</Link>
+          </p>
         </div>
         <div className={styles.nav__items}>
           <Link href="/">
