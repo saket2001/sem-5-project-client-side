@@ -7,10 +7,11 @@ const InputField = (props) => {
     <div className={styles.form__item}>
       <label htmlFor={props.for}>{props.label}</label>
       <input
-        type={props.type}
+        type={props.type || text}
         id={props.id}
         ref={props.ref}
         value={props.value}
+        placeholder={props.placeholder}
         required
       />
     </div>

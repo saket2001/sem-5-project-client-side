@@ -11,6 +11,8 @@ const InputText = (props) => {
         ref={props.ref}
         rows={props.rows}
         cols={props.cols}
+        value={props.value}
+        placeholder={props.placeholder}
         required
       />
     </div>
