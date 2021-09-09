@@ -6,7 +6,13 @@ const InputField = (props) => {
   return (
     <div className={styles.form__item}>
       <label htmlFor={props.for}>{props.label}</label>
-      <input type={props.type} id={props.id} ref={props.ref} required />
+      <input
+        type={props.type}
+        id={props.id}
+        ref={props.ref}
+        value={props.value}
+        required
+      />
     </div>
   );
 };
