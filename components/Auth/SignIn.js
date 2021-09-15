@@ -1,157 +1,56 @@
 // import { useRouter } from "next/router";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import InputField from "../assets/formField/InputField";
-import InputText from "../assets/formField/InputText";
 import Button from "../assets/button/Button";
 import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
-import signUpLogo from "../../public/signup.svg";
 import styles from "./auth.module.css";
 // import { useDispatch, useSelector } from "react-redux";
 // import { authActions } from "../../store/auth";
 
-const SignIN = (props) => {
+const SignIN = () => {
   const [state, setState] = useState("sign-in");
 
   const inputName = useRef();
   const inputPassword = useRef();
   const inputEmail = useRef();
 
-  const changeLink = () => {
-    if (state === "sign-in") setState("sign-up");
-    else setState("sign-in");
-  };
-
-  let MainImage = (
-    <Image alt="" src={signInLogo} height="400px" width="400px" />
-  );
-
-  if (state === "sign-up")
-    MainImage = <Image alt="" src={signUpLogo} height="400px" width="400px" />;
-
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.image}>{MainImage}</div>
+        <div className={styles.image}>
+          <Image alt="" src={signInLogo} height="400px" width="400px" />
+        </div>
         <form className={styles.form}>
           <div className={styles.form__head}>
-            <h1>
-              {state === "sign-in" ? "Welcome Back" : "Welcome Fellow Shopper"}
-            </h1>
-            <p>
-              {" "}
-              {state === "sign-in"
-                ? "We love seeing you coming back to our site "
-                : "Sign up and get ready to shop many awesome products ar great deals"}
-            </p>
+            <h1>Welcome Back</h1>
+            <p>We love seeing you coming back to our site</p>
           </div>
           <div className={styles.form__body}>
-            {state === "sign-in" ? (
-              <InputField
-                label="Username"
-                for="username"
-                id="username"
-                type="text"
-                ref={inputName}
-              />
-            ) : (
-              <InputField
-                label="Full Name"
-                for="fullname"
-                id="fullname"
-                type="text"
-                ref={inputName}
-              />
-            )}
-            {state === "sign-in" ? (
-              <InputField
-                label="Password"
-                for="Password"
-                id="Password"
-                type="password"
-                ref={inputPassword}
-              />
-            ) : (
-              <InputField
-                label="Username"
-                for="Username"
-                id="Username"
-                type="text"
-                ref={inputName}
-              />
-            )}
-            {state === "sign-in" ? (
-              ""
-            ) : (
-              <InputField
-                label="Email"
-                for="Email"
-                id="Email"
-                type="email"
-                ref={inputPassword}
-              />
-            )}
-            {state === "sign-in" ? (
-              ""
-            ) : (
-              <InputField
-                label="Password"
-                for="Password"
-                id="Password"
-                type="password"
-                ref={inputPassword}
-              />
-            )}
-            {state === "sign-in" ? (
-              ""
-            ) : (
-              <InputField
-                label="Contact no"
-                for="contact no"
-                id="contact no"
-                type="numeric"
-                ref={inputPassword}
-              />
-            )}
-            {state === "sign-in" ? (
-              ""
-            ) : (
-              <InputText
-                label="Address"
-                for="address"
-                id="address"
-                rows="7"
-                cols="30"
-              />
-            )}
-            {state === "sign-in" ? (
-              ""
-            ) : (
-              <p className={styles.extra__text}>
-                Add real and accurate details only as your account will be
-                verified based on this details
-              </p>
-            )}
+            <InputField
+              label="Username"
+              for="username"
+              id="username"
+              type="text"
+              ref={inputName}
+            />
+
+            <InputField
+              label="Password"
+              for="Password"
+              id="Password"
+              type="password"
+              ref={inputPassword}
+            />
+
             <div className={styles.form__action}>
-              <Button type="submit">
-                {state === "sign-in" ? "Sign In" : "Sign Up"}
-              </Button>
+              <Button type="submit">Sign In</Button>
             </div>
-            {state === "sign-in" ? (
-              <p>
-                New here ?{" "}
-                <a className={styles.form__link} onClick={changeLink}>
-                  Create a new account
-                </a>{" "}
-              </p>
-            ) : (
-              <p>
-                Already a user here?{" "}
-                <a className={styles.form__link} onClick={changeLink}>
-                  Sign in
-                </a>{" "}
-              </p>
-            )}
+            <hr />
+            <div className={styles.form__link}>
+              New here ? <Link href="/sign-up">Create a new account</Link>
+            </div>
           </div>
         </form>
       </div>

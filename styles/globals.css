@@ -12,7 +12,8 @@
   --spl-bg: #303030;
   --main-clr: #2d393e;
   --sec-clr: #6e7175;
-  --spl-clr: #cb3514;
+  /* --spl-clr: #cb3514; */
+  --spl-clr: #1329b9;
   --light-clr: #d9d9d9;
 }
 
@@ -94,4 +95,6 @@ p {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  background-color: var(--spl-clr);
+  /* background-color: var(--spl-clr); */
 }

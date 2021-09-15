@@ -1,35 +1,44 @@
 .container {
     display: grid;
-    grid-template-columns: 0.5fr 1fr;
-    grid-gap: 1rem;
+    grid-template-columns: 0.5fr 0.5fr;
+    grid-gap: 0.2rem;
     place-items: center;
     width: 90%;
-    min-height: 80vh;
-    background-color: var(--sec-bg);
-    padding: 1rem 2rem;
+    min-height: 90vh;
+    background-color: #fff;
     border-radius: 8px;
 }
 
 .image {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--sec-bg);
 }
 
 .form {
-    width: 60%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.form .extra__text {
-    font-size: 0.9rem;
+.form .form__head p {
+    text-align: center;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--sec-clr);
 }
 
 .form__head,
 .form__body {
+    width: 80%;
     display: flex;
     flex-direction: column;
     padding: 0.5rem 1rem;
@@ -38,8 +47,9 @@
 
 .form__head h1 {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 800;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .form__head p {
@@ -54,8 +64,26 @@
     padding: 0.8rem 0.2rem;
 }
 
-.form__link {
+.form__action button {
+    width: 100%;
+    margin: 0 0.2rem;
+}
+
+.form .extra__text {
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--sec-clr);
+}
+
+.form__link {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.form__link a {
+    color: var(--spl-clr);
     cursor: pointer;
 }
 
@@ -63,8 +91,7 @@
     .container {
         grid-template-columns: 1fr;
         grid-gap: 0.5rem;
-        width: 90%;
-        padding: 1rem;
+        width: 100%;
     }
 
     .image div {
@@ -72,12 +99,9 @@
         height: 80%;
     }
 
-    .form {
-        width: 100%;
-    }
-
     .form__head,
     .form__body {
+        width: 100%;
         padding: 0.5rem 1rem;
     }
 
@@ -94,8 +118,4 @@
         padding: 0.8rem 0.2rem;
     }
 
-    .form__link {
-        color: var(--sec-clr);
-        cursor: pointer;
-    }
 }

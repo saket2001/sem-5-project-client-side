@@ -1,19 +1,17 @@
 import React from "react";
-import SignIN from "../components/Auth/SignIn";
+import SignUp from "../components/Auth/SignUp";
 import Head from "next/head";
 
-const usersAuth = () => {
+export default function signUp() {
   return (
     <>
       <Head>
-        <title>User Authentication</title>
+        <title>User Sign Up</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="signIn_container">
-        <SignIN />
+        <SignUp />
       </div>
     </>
   );
-};
-
-export default usersAuth;
+}

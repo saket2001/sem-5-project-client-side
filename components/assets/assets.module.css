@@ -39,13 +39,13 @@
 .form__item input[type='email'],
 .form__item input[type='numeric'],
 .form__item textarea {
-    width: 17rem;
-    padding: 0.3rem 0.5rem;
+    width: auto;
+    padding: 0.4rem 0.5rem;
     outline: 0;
     border: 0;
     font-size: 0.9rem;
-    border-radius: 5px;
-    border: 1px solid #a8a4a4;
+    border-radius: 3px;
+    border: 1px solid #b8acac;
     background-color: transparent;
     transition: all .3s ease;
 }
@@ -165,7 +165,6 @@
     .form__item input[type='email'],
     .form__item input[type='numeric'],
     .form__item textarea {
-        width: 10rem;
         padding: 0.2rem 0.35rem;
     }
 

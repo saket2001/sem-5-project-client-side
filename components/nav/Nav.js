@@ -57,7 +57,7 @@ const Nav = () => {
           <Link href="/contactus">
             <a className={styles.nav__item}>Contact us</a>
           </Link>
-          <Link href="/usersauth">
+          <Link href="/sign-in">
             <a className={styles.nav__item}>Login</a>
           </Link>
         </div>
