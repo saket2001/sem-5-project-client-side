@@ -4,7 +4,7 @@ import styles from "../assets.module.css";
 const Button = (props) => {
   return (
     <button
-      type={props.type}
+      type={props.type || "button"}
       className={(props.styles, styles.button)}
       onClick={props.onClick}
     >

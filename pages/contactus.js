@@ -17,8 +17,10 @@ const contactUs = () => {
       <div className="layout">
         <div className={styles.contact_container}>
           <div className={styles.left_container}>
-            <h2>Have Some Questions?</h2>
-            <p>Fill up the form and get contacted by us in 24 hours</p>
+            <div>
+              <h2>Have Some Questions?</h2>
+              <p>Fill up the form and get contacted by us in 24 hours</p>
+            </div>
             <Image
               src={contactImg}
               alt="contact img"

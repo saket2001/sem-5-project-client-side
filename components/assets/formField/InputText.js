@@ -8,7 +8,7 @@ const InputText = (props) => {
       <label htmlFor={props.for}>{props.label}</label>
       <textarea
         id={props.id}
-        ref={props.ref}
+        ref={props.refer}
         rows={props.rows}
         cols={props.cols}
         value={props.value}

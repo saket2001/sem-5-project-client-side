@@ -58,6 +58,13 @@
     padding: 0.2rem 0;
 }
 
+.form_error {
+    color: #bd1616;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.1rem 0.2rem;
+}
+
 .form__action {
     display: flex;
     align-items: center;

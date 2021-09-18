@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "../assets.module.css";
 
 const InputField = (props) => {
@@ -9,10 +7,13 @@ const InputField = (props) => {
       <input
         type={props.type || text}
         id={props.id}
-        ref={props.ref}
+        ref={props.refer}
         value={props.value}
         placeholder={props.placeholder}
-        required
+        minLength={props.minL || 8}
+        maxLength={props.maxL || 30}
+        required={true}
+        onBlur={props.onBlur}
       />
     </div>
   );

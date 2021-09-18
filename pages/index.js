@@ -103,7 +103,7 @@ export default function Home() {
         </div>
       </div>
       {/*  */}
-      <ProductsBanner heading="Featured Products" />
+      <ProductsBanner heading="Featured Products" dataList={""} />
       {/* <ProductsBanner heading="On Sale Products" /> */}
     </Layout>
   );

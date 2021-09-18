@@ -23,7 +23,8 @@
 
 @media (max-width: 768px) {
     .productsBanner h1 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        padding: 0.2rem;
     }
 
     .productsBanner .product__list {

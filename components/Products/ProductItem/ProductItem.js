@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import styles from "./product.module.css";
 
-const ProductItem = () => {
+const ProductItem = ({ Data }) => {
   return (
-    <Link href="/furniture/1231" passHref>
+    <Link href={`${Data.category}/${Data._id}`} passHref>
       <div className={styles.productItem}>
         <div className={styles.product__img}>
           <Image
@@ -17,11 +17,15 @@ const ProductItem = () => {
           />
         </div>
         <div className={styles.product__info}>
-          <h2 className={styles.product__heading}>Beautiful Lamp</h2>
-          <p className={styles.product__price}>500 ₹</p>
+          <h2 className={styles.product__heading}>{Data.title}</h2>
+          <p className={styles.product__price}>{Data.price} ₹</p>
           <div className={styles.product__details}>
-            <p className={styles.product__country}>Maharashtra</p>
-            <p className={styles.product__date}>20/08/21</p>
+            <p className={styles.product__country}>
+              {Data.state}, {Data.city}
+            </p>
+          </div>
+          <div className={styles.product__details}>
+            <p className={styles.product__date}>Posted on {Data.adDate}</p>
           </div>
         </div>
       </div>
