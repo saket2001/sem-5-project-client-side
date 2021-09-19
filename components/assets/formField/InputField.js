@@ -7,13 +7,12 @@ const InputField = (props) => {
       <input
         type={props.type || text}
         id={props.id}
-        ref={props.refer}
+        ref={props.innerRef}
         value={props.value}
         placeholder={props.placeholder}
-        minLength={props.minL || 8}
+        minLength={props.minL || 5}
         maxLength={props.maxL || 30}
         required={true}
-        onBlur={props.onBlur}
       />
     </div>
   );

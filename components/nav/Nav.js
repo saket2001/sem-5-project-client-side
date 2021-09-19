@@ -16,7 +16,14 @@ import {
   FaSave,
 } from "react-icons/fa";
 
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../../Store/auth";
+
 const Nav = () => {
+  // redux logic
+  const dispatch = useDispatch(authActions);
+  const isLoggedIn = useSelector((state) => state?.auth?.isValid);
+  //
   const [menuState, setMenuState] = useState(false);
   const [userMenuState, setUserMenuState] = useState(false);
 
@@ -29,6 +36,10 @@ const Nav = () => {
     setUserMenuState((prevState) => !prevState);
     setMenuState(false);
   }, []);
+
+  const LogoutHandler = () => {
+    dispatch(authActions.updateStatus());
+  };
 
   return (
     <>
@@ -57,9 +68,11 @@ const Nav = () => {
           <Link href="/contactus">
             <a className={styles.nav__item}>Contact us</a>
           </Link>
-          <Link href="/sign-in">
-            <a className={styles.nav__item}>Login</a>
-          </Link>
+          {!isLoggedIn && (
+            <Link href="/sign-in">
+              <a className={styles.nav__item}>Login</a>
+            </Link>
+          )}
         </div>
         <div className={styles.nav__logos}>
           {/* user logo */}
@@ -112,14 +125,16 @@ const Nav = () => {
               My Favorites
             </a>
           </Link>
-          <Link href="/" className={styles.nav__item}>
-            <a onClick={UserMenuHandler}>
-              <div className={styles.user_logo}>
-                <FaLock style={{ fontSize: "26px" }} />
-              </div>
-              Logout
-            </a>
-          </Link>
+          {isLoggedIn && (
+            <Link href="/" className={styles.nav__item}>
+              <a onClick={LogoutHandler}>
+                <div className={styles.user_logo}>
+                  <FaLock style={{ fontSize: "26px" }} />
+                </div>
+                Logout
+              </a>
+            </Link>
+          )}
         </div>
       )}
 
@@ -169,18 +184,20 @@ const Nav = () => {
               Contact us
             </a>
           </Link>
-          <Link
-            href="/usersauth"
-            className={styles.nav__item}
-            onClick={navHandler}
-          >
-            <a onClick={navHandler}>
-              <div className={styles.user_logo}>
-                <FaUser style={{ fontSize: "26px" }} />
-              </div>
-              Log in
-            </a>
-          </Link>
+          {!isLoggedIn && (
+            <Link
+              href="/sign-in"
+              className={styles.nav__item}
+              onClick={navHandler}
+            >
+              <a onClick={navHandler}>
+                <div className={styles.user_logo}>
+                  <FaUser style={{ fontSize: "26px" }} />
+                </div>
+                Log in
+              </a>
+            </Link>
+          )}
         </div>
       )}
     </>

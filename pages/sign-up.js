@@ -9,9 +9,9 @@ export default function signUp() {
         <title>User Sign Up</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className="signIn_container">
-        <SignUp />
-      </div>
+      {/* <div className="signIn_container"> */}
+      <SignUp />
+      {/* </div> */}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import InputField from "../assets/formField/InputField";
@@ -8,56 +8,16 @@ import Button from "../assets/button/Button";
 import Image from "next/image";
 import signUpLogo from "../../public/signup.svg";
 import styles from "./auth.module.css";
-// import { useDispatch, useSelector } from "react-redux";
-// import { authActions } from "../../store/auth";
-
-// reducers
-const nameReducer = (state, { type, payload }) => {
-  if (type === "name")
-    return { name: payload, isValid: payload.length > 8 ? true : false };
-};
-
-const usernameReducer = (state, { type, payload }) => {
-  if (type === "username") {
-    const pattern = /\d{3}/;
-    return {
-      username: payload,
-      isValid: payload.length > 5 && pattern.test(payload) ? true : false,
-    };
-  }
-};
-
-const passwordReducer = (state, { type, payload }) => {
-  if (type === "password") {
-    const pattern = /\d{3}/;
-    return {
-      password: payload,
-      isValid: payload.length > 8 && pattern.test(payload) ? true : false,
-    };
-  }
-};
-
-const emailReducer = (state, { type, payload }) => {
-  if (type === "email") {
-    const pattern = /\d{3}@/;
-    return {
-      email: payload,
-      isValid: payload.length > 8 && pattern.test(payload) ? true : false,
-    };
-  }
-};
-
-const contactReducer = (state, { type, payload }) => {
-  if (type === "contact") {
-    const pattern = /\d{10}/;
-    return {
-      contact: payload,
-      isValid: payload.length >= 10 && pattern.test(payload) ? true : false,
-    };
-  }
-};
+import Loader from "../Loader/Loader";
+import Modal from "../modal/Modal";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/auth";
 
 export default function SignUp() {
+  // redux
+  const dispatch = useDispatch(authActions);
+  const router = useRouter();
+
   const inputName = useRef();
   const inputUsername = useRef();
   const inputPassword = useRef();
@@ -68,223 +28,208 @@ export default function SignUp() {
   const inputCity = useRef();
   const inputCode = useRef();
 
-  const [emailState, emailDispatch] = useReducer(emailReducer, {
-    email: null,
-    isValid: null,
-  });
-  const [nameState, nameDispatch] = useReducer(nameReducer, {
-    name: null,
-    isValid: null,
-  });
-  const [usernameState, usernameDispatch] = useReducer(usernameReducer, {
-    username: null,
-    isValid: null,
-  });
-  const [passwordState, passwordDispatch] = useReducer(passwordReducer, {
-    password: null,
-    isValid: null,
-  });
-  const [contactState, contactDispatch] = useReducer(contactReducer, {
-    contact: null,
-    isValid: null,
-  });
+  const [loaderState, setLoaderState] = useState(null);
+  const [modalData, setModalData] = useState(null);
 
   const formHandler = async (e) => {
     e.preventDefault();
 
-    // submit form only if this is true
-    if (
-      emailState.isValid &&
-      nameState.isValid &&
-      passwordState.isValid &&
-      contactState.isValid &&
-      usernameState.isValid
-    ) {
+    setLoaderState(true);
+    const userData = {
+      fullName: inputName.current.value,
+      username: inputUsername.current.value,
+      email: inputEmail.current.value,
+      password: inputPassword.current.value,
+      contact: inputContact.current.value,
+      address: inputAddress.current.value,
+      state: inputState.current.value,
+      city: inputCity.current.value,
+      pinCode: inputCode.current.value,
+    };
+    console.log(userData);
+    // checking if entered email is already entered in db
+    const emailRes = await fetch(
+      `https://bechdal-api.herokuapp.com/api/v1/check-email/${inputEmail.current.value}`
+    );
+
+    const emailData = await emailRes.json();
+
+    // if user exists with mail entered then show error msg
+    if (emailData) {
+      setLoaderState(false);
+      setModalData({
+        title: "User Already Exists",
+        text: "Entered Email is already in use by another user. Please use another email id.",
+        btnText: "close",
+      });
+      // else if doesn't exists then send to db
+    } else {
       const res = await fetch(
-        "https://bechdal-api.herokuapp.com/api/v1/users/sign-up",
+        "https://bechdal-api.herokuapp.com/api/v1/user-sign-up",
         {
           method: "POST",
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify({
-            fullName: nameState.name,
-            username: usernameState.username,
-            email: emailState.email,
-            password: passwordState.password,
-            contact: contactState.contact,
-            address: inputAddress.current.value,
-            state: inputState.current.value,
-            city: inputCity.current.value,
-            pinCode: inputCode.current.value,
-            userStatus: "unverified",
-            createdAds: [],
-            savedAds: [],
-          }),
+          body: JSON.stringify(userData),
         }
       );
 
       const data = await res.json();
-
       console.log(data);
+
+      if (data) {
+        // storing user id in redux
+        dispatch(authActions.updateUserData(data._id));
+        dispatch(authActions.updateStatus());
+
+        setLoaderState(false);
+        setModalData({
+          title: "New User Created",
+          text: "Your Account will go under inspection for verified status, then only you can shop from another users or sell products. \n Thank You ",
+          btnText: "Close",
+        });
+        // push to home screen
+        router.replace("/");
+      } else {
+        setLoaderState(false);
+        setModalData({
+          title: "Error in account creation",
+          text: "Sorry for inconvenience caused, but Some error occurred while creating your account. \n Please try again later.",
+          btnText: "Close",
+        });
+      }
     }
   };
 
-  // steps to follow:
-  // post user data via inside a function
-  // check for error if any and display it
-  // have a loading state once user clicks submit button
-
   return (
-    <div className={styles.container}>
-      <div className={styles.image}>
-        <Image alt="" src={signUpLogo} height="400px" width="400px" />
+    <>
+      {!loaderState && modalData && (
+        <Modal
+          title={modalData?.title}
+          body={modalData?.text}
+          buttonText={modalData?.btnText}
+        />
+      )}
+      <div className="signIn_container">
+        {loaderState && (
+          <Loader text="Creating your account..." textColour="#FFf" />
+        )}
+        {!loaderState && (
+          <div className={styles.container}>
+            <div className={styles.image}>
+              <Image alt="" src={signUpLogo} height="400px" width="400px" />
+            </div>
+            <form className={styles.form} onSubmit={formHandler}>
+              <div className={styles.form__head}>
+                <h1>Welcome Fellow Shopper</h1>
+                <p>
+                  Sign up and get ready to shop many awesome products ar great
+                  deals
+                </p>
+              </div>
+
+              <div className={styles.form__body}>
+                <div className={styles.form__item}>
+                  <label htmlFor="fullname">Full Name</label>
+                  <input id="fullname" type="text" ref={inputName} required />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="username">Username</label>
+                  <input
+                    id="username"
+                    type="text"
+                    ref={inputUsername}
+                    required
+                  />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="password">Password</label>
+                  <input
+                    id="password"
+                    type="password"
+                    ref={inputPassword}
+                    minLength="8"
+                    required
+                  />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="email">Email</label>
+                  <input id="email" type="email" ref={inputEmail} required />
+                </div>
+
+                <div className={styles.form__item}>
+                  <label htmlFor="contact">Contact no</label>
+                  <input
+                    id="contact"
+                    type="numeric"
+                    ref={inputContact}
+                    minLength="10"
+                    maxLength="10"
+                    required
+                  />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="address">Address</label>
+                  <textarea
+                    id="address"
+                    ref={inputAddress}
+                    rows="7"
+                    cols="30"
+                    required
+                  />
+                </div>
+
+                <div className={styles.form__item}>
+                  <label htmlFor="state">State</label>
+                  <input
+                    id="state"
+                    type="text"
+                    ref={inputState}
+                    minLength="5"
+                    required
+                  />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="city">City</label>
+                  <input
+                    id="city"
+                    type="text"
+                    ref={inputCity}
+                    minLength="5"
+                    required
+                  />
+                </div>
+                <div className={styles.form__item}>
+                  <label htmlFor="code">Pin code</label>
+                  <input
+                    id="code"
+                    type="text"
+                    ref={inputCode}
+                    minLength="4"
+                    maxLength="7"
+                    required
+                  />
+                </div>
+
+                <p className={styles.extra__text}>
+                  Add real and accurate details only as your account will be
+                  verified based on this details
+                </p>
+
+                <div className={styles.form__action}>
+                  <Button type="submit">Sign Up</Button>
+                </div>
+
+                <hr />
+                <div className={styles.form__link}>
+                  Already have an account ? <Link href="/sign-in">Sign in</Link>
+                </div>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
-      <form className={styles.form} onSubmit={formHandler}>
-        <div className={styles.form__head}>
-          <h1>Welcome Fellow Shopper</h1>
-          <p>
-            Sign up and get ready to shop many awesome products ar great deals
-          </p>
-        </div>
-        <div className={styles.form__body}>
-          <InputField
-            label="Full Name"
-            for="fullname"
-            id="fullname"
-            type="text"
-            refer={inputName}
-            onBlur={() =>
-              nameDispatch({ type: "name", payload: inputName.current.value })
-            }
-          />
-          {nameState.isValid === false && (
-            <p className={styles.form_error}>
-              Please enter a valid name of minimum length 8
-            </p>
-          )}
-          <InputField
-            label="Username"
-            for="Username"
-            id="Username"
-            type="text"
-            refer={inputUsername}
-            onBlur={() =>
-              usernameDispatch({
-                type: "username",
-                payload: inputUsername.current.value,
-              })
-            }
-          />
-          {usernameState.isValid === false && (
-            <p className={styles.form_error}>
-              Please enter a valid username of minimum length 5 and containing
-              minimum 3 digits
-            </p>
-          )}
-          <InputField
-            label="Password"
-            for="Password"
-            id="Password"
-            type="password"
-            refer={inputPassword}
-            onBlur={() =>
-              passwordDispatch({
-                type: "password",
-                payload: inputPassword.current.value,
-              })
-            }
-          />
-          {passwordState.isValid === false && (
-            <p className={styles.form_error}>
-              Please enter a valid password of minimum length 8 and containing
-              minimum 3 digits
-            </p>
-          )}
-          <InputField
-            label="Email"
-            for="email"
-            id="email"
-            type="email"
-            refer={inputEmail}
-            onBlur={() =>
-              emailDispatch({
-                type: "email",
-                payload: inputEmail.current.value,
-              })
-            }
-          />
-          {emailState.isValid === false && (
-            <p className={styles.form_error}>
-              Please enter a valid email of minimum length 8 and containing
-              minimum 3 digits and @ symbol
-            </p>
-          )}
-          <InputField
-            label="Contact no"
-            for="contact no"
-            id="contact no"
-            type="numeric"
-            refer={inputContact}
-            onBlur={() =>
-              contactDispatch({
-                type: "contact",
-                payload: inputContact.current.value,
-              })
-            }
-          />
-          {contactState.isValid === false && (
-            <p className={styles.form_error}>
-              Please enter a valid contact number of minimum length 10
-            </p>
-          )}
-          <InputText
-            label="Address"
-            for="address"
-            id="address"
-            rows="7"
-            cols="30"
-            refer={inputAddress}
-          />
-          <InputField
-            label="State"
-            for="State"
-            id="State"
-            type="text"
-            refer={inputState}
-          />
-          <InputField
-            label="City"
-            for="City"
-            id="City"
-            type="text"
-            refer={inputCity}
-          />
-          <InputField
-            label="Pin Code"
-            for="Pin Code"
-            id="Pin Code"
-            type="text"
-            refer={inputCode}
-          />
-
-          <p className={styles.extra__text}>
-            Add real and accurate details only as your account will be verified
-            based on this details
-          </p>
-
-          <div className={styles.form__action}>
-            <Button type="submit" onClick={formHandler}>
-              Sign Up
-            </Button>
-          </div>
-
-          <hr />
-          <div className={styles.form__link}>
-            Already have an account ? <Link href="/sign-in">Sign in</Link>
-          </div>
-        </div>
-      </form>
-    </div>
+    </>
   );
 }

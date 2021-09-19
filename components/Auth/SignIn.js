@@ -10,11 +10,9 @@ import styles from "./auth.module.css";
 // import { authActions } from "../../store/auth";
 
 const SignIN = () => {
-  const [state, setState] = useState("sign-in");
-
-  const inputName = useRef();
-  const inputPassword = useRef();
-  const inputEmail = useRef();
+  const UsernameRef = useRef();
+  const PasswordRef = useRef();
+  const EmailRef = useRef();
 
   return (
     <>
@@ -28,21 +26,39 @@ const SignIN = () => {
             <p>We love seeing you coming back to our site</p>
           </div>
           <div className={styles.form__body}>
-            <InputField
-              label="Username"
-              for="username"
-              id="username"
-              type="text"
-              ref={inputName}
-            />
+            <div className={styles.form__item}>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                minLength="5"
+                ref={UsernameRef}
+                onChange={() => console.log(UsernameRef.current.value)}
+                required
+              />
+            </div>
+            <div className={styles.form__item}>
+              <label htmlFor="Email">Email</label>
+              <input
+                id="Email"
+                type="text"
+                minLength="5"
+                ref={EmailRef}
+                required
+              />
+            </div>
 
-            <InputField
-              label="Password"
-              for="Password"
-              id="Password"
-              type="password"
-              ref={inputPassword}
-            />
+            <div className={styles.form__item}>
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                minLength="8"
+                autoComplete="off"
+                ref={PasswordRef}
+                required
+              />
+            </div>
 
             <div className={styles.form__action}>
               <Button type="submit">Sign In</Button>
