@@ -4,6 +4,7 @@
     flex-direction: column;
     padding-bottom: 0.5rem;
     margin: 0.5rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all .2s ease;
     box-shadow: 7px 7px 16px #f5efef,
@@ -11,11 +12,16 @@
 }
 
 .product__img {
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.product__img>div {
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
 }
 
 .product__image>div {
@@ -57,5 +63,17 @@
 @media screen and (max-width:768px) {
     .productItem:hover {
         transform: none;
+    }
+
+    .product__heading {
+        font-size: 1rem;
+    }
+
+    .product__price {
+        font-family: 0.8rem;
+    }
+
+    .product__details p {
+        font-size: 0.7em;
     }
 }

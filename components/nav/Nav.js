@@ -76,9 +76,11 @@ const Nav = () => {
         </div>
         <div className={styles.nav__logos}>
           {/* user logo */}
-          <div className={styles.user_logo} onClick={UserMenuHandler}>
-            <FaUser style={{ fontSize: "26px" }} />
-          </div>
+          {isLoggedIn && (
+            <div className={styles.user_logo} onClick={UserMenuHandler}>
+              <FaUser style={{ fontSize: "26px" }} />
+            </div>
+          )}
           {/* search logo */}
           <div className={styles.cart_logo}>
             <Link href="/search" passHref>
@@ -99,7 +101,7 @@ const Nav = () => {
         </div>
       </nav>
 
-      {userMenuState && (
+      {userMenuState && isLoggedIn && (
         <div className={styles.menu__nav__items}>
           <Link href="/user/myprofile" className={styles.nav__item}>
             <a onClick={UserMenuHandler}>
@@ -125,16 +127,14 @@ const Nav = () => {
               My Favorites
             </a>
           </Link>
-          {isLoggedIn && (
-            <Link href="/" className={styles.nav__item}>
-              <a onClick={LogoutHandler}>
-                <div className={styles.user_logo}>
-                  <FaLock style={{ fontSize: "26px" }} />
-                </div>
-                Logout
-              </a>
-            </Link>
-          )}
+          <Link href="/" className={styles.nav__item}>
+            <a onClick={LogoutHandler}>
+              <div className={styles.user_logo}>
+                <FaLock style={{ fontSize: "26px" }} />
+              </div>
+              Logout
+            </a>
+          </Link>
         </div>
       )}
 
