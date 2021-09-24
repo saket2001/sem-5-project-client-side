@@ -6,21 +6,68 @@ import Button from "../assets/button/Button";
 import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
 import styles from "./auth.module.css";
-// import { useDispatch, useSelector } from "react-redux";
-// import { authActions } from "../../store/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const SignIN = () => {
-  const UsernameRef = useRef();
-  const PasswordRef = useRef();
-  const EmailRef = useRef();
+  const dispatch = useDispatch(authActions);
+  // const router = useRouter();
 
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const formHandler = async (e) => {
+    setLoaderState(true);
+    // get data from form
+    e.preventDefault();
+    const data = {
+      username: usernameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    // post data via api
+    const res = await fetch(
+      "https://bechdal-api.herokuapp.com/api/v1/users-sign-in",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    const userData = await res.json();
+    console.log(userData);
+
+    // check data
+    // if (userData.type) {
+    //   dispatch(authActions.updateUserData(userData.data));
+    //   dispatch(authActions.updateUserStatus());
+    // } else {
+    //   setLoaderState(false);
+    //   setModalState(true);
+    //   setModalData(
+    //     <Modal
+    //       title="Error !!"
+    //       message="User login has failed.Please try again with correct details"
+    //       closeOnOk={closeModal}
+    //       closeModal={closeModal}
+    //     />
+    //   );
+    // }
+  };
+
+  // "https://bechdal-api.herokuapp.com/api/v1/users-sign-in";
   return (
     <>
       <div className={styles.container}>
         <div className={styles.image}>
           <Image alt="" src={signInLogo} height="400px" width="400px" />
         </div>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={formHandler}>
           <div className={styles.form__head}>
             <h1>Welcome Back</h1>
             <p>We love seeing you coming back to our site</p>
@@ -32,8 +79,7 @@ const SignIN = () => {
                 id="username"
                 type="text"
                 minLength="5"
-                ref={UsernameRef}
-                onChange={() => console.log(UsernameRef.current.value)}
+                ref={usernameRef}
                 required
               />
             </div>
@@ -43,7 +89,7 @@ const SignIN = () => {
                 id="Email"
                 type="text"
                 minLength="5"
-                ref={EmailRef}
+                ref={emailRef}
                 required
               />
             </div>
@@ -55,13 +101,15 @@ const SignIN = () => {
                 type="password"
                 minLength="8"
                 autoComplete="off"
-                ref={PasswordRef}
+                ref={passwordRef}
                 required
               />
             </div>
 
             <div className={styles.form__action}>
-              <Button type="submit">Sign In</Button>
+              <Button type="submit" onClick={formHandler}>
+                Sign In
+              </Button>
             </div>
             <hr />
             <div className={styles.form__link}>
