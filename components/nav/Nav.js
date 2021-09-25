@@ -62,9 +62,11 @@ const Nav = () => {
           <Link href="/category">
             <a className={styles.nav__item}>Categories</a>
           </Link>
-          <Link href="/sellproduct">
-            <a className={styles.nav__item}>Sell</a>
-          </Link>
+          {isLoggedIn && (
+            <Link href="/sellproduct">
+              <a className={styles.nav__item}>Sell</a>
+            </Link>
+          )}
           <Link href="/contactus">
             <a className={styles.nav__item}>Contact us</a>
           </Link>
@@ -160,18 +162,20 @@ const Nav = () => {
               Shop By Category
             </a>
           </Link>
-          <Link
-            href="/sellproduct"
-            className={styles.nav__item}
-            onClick={navHandler}
-          >
-            <a onClick={navHandler}>
-              <div className={styles.user_logo}>
-                <FaRegEdit style={{ fontSize: "26px" }} />
-              </div>
-              Sell
-            </a>
-          </Link>
+          {isLoggedIn && (
+            <Link
+              href="/sellproduct"
+              className={styles.nav__item}
+              onClick={navHandler}
+            >
+              <a onClick={navHandler}>
+                <div className={styles.user_logo}>
+                  <FaRegEdit style={{ fontSize: "26px" }} />
+                </div>
+                Sell
+              </a>
+            </Link>
+          )}
           <Link
             href="/contactus"
             className={styles.nav__item}

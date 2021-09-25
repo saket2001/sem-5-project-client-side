@@ -64,6 +64,7 @@ p {
   font-size: 0.8rem;
   color: var(--sec-clr);
   width: 80%;
+  text-align: center;
 }
 
 .link {

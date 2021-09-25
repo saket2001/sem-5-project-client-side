@@ -16,18 +16,19 @@ const MyProfilePage = () => {
   const { isValid, data } = useSelector((state) => state.auth);
 
   const [loader, setLoaderState] = useState(null);
-  const [userData, setUserData] = useState(null);
-  console.log(userData);
+  const [userData, setUserData] = useState(data);
+  console.log({ userData });
 
   useEffect(() => {
     const loadData = async () => {
       setLoaderState(true);
 
       const res = await fetch(
-        `https://bechdal-api.herokuapp.com/api/v1/users/${data}`
+        `https://bechdal-api.herokuapp.com/api/v1/users/${data.id}`
       );
 
       const resData = await res.json();
+      console.log({ resData });
       if (resData) {
         setUserData(resData);
         setLoaderState(false);
@@ -91,7 +92,7 @@ const MyProfilePage = () => {
               <InputField
                 type="text"
                 label="Username"
-                value={Decrypt(userData?.username)}
+                value={userData?.username}
               />
               <InputField
                 type="text"
