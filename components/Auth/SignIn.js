@@ -6,7 +6,7 @@ import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
 import styles from "./auth.module.css";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth";
+import { authActions } from "../../Store/auth";
 import Modal from "../modal/Modal";
 import Loader from "../Loader/Loader";
 
