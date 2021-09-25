@@ -1,17 +1,17 @@
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Button from "../assets/button/Button";
 import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
 import styles from "./auth.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 import Modal from "./../modal/Modal";
 import Loader from "../Loader/Loader";
-import router from "next/router";
 
 const SignIN = () => {
+  const router = useRouter();
   const dispatch = useDispatch(authActions);
   // const router = useRouter();
   const [loaderState, setLoaderState] = useState(null);
@@ -68,7 +68,6 @@ const SignIN = () => {
     }
   };
 
-  // "https://bechdal-api.herokuapp.com/api/v1/users-sign-in";
   return (
     <>
       {!loaderState && modalData && (
