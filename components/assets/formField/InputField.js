@@ -12,7 +12,6 @@ const InputField = (props) => {
         placeholder={props.placeholder}
         minLength={props.minL || 5}
         maxLength={props.maxL || 30}
-        required={true}
       />
     </div>
   );

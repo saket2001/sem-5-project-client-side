@@ -13,7 +13,7 @@ const categoryPage = () => {
       </Head>
       <Layout>
         <Head>
-          <title>Sell Product</title>
+          <title>Categories</title>
           <link rel="icon" href="/favicon.png" />
         </Head>
         <main className={styles.section}>

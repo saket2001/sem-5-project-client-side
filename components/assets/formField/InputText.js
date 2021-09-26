@@ -13,7 +13,6 @@ const InputText = (props) => {
         cols={props.cols}
         value={props.value}
         placeholder={props.placeholder}
-        required
       />
     </div>
   );

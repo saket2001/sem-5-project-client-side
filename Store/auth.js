@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const authSlice = createSlice({
   name: "userAuth",
   initialState: {
-    isValid: null,
-    data: null,
+    isValid: true,
+    data: "6141ef2563a1d60d48acd955",
   },
   reducers: {
     //   for changing the auth signed in or signup status
