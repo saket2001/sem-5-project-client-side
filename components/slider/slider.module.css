@@ -1,17 +1,16 @@
 .slider {
-    width: 60%;
+    width: 70%;
     display: grid;
     grid-template-columns: 0.3fr 2fr 0.3fr;
     grid-gap: 1rem;
     place-items: center;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 1rem 2rem;
     color: #e6e8f0;
-    background-color: #3737496c;
+    background-color: #42425062;
     z-index: 1;
     position: absolute;
-    top: 50%;
-    right: 2%;
+    top: 70%;
     transform: translate(0%, -50%);
 }
 
@@ -51,7 +50,7 @@
 
 .slider__content h1 {
     font-size: 2.5rem;
-    font-size: 600;
+    font-weight: 600;
     text-transform: capitalize;
     padding: 0.2rem 0;
 }
@@ -77,12 +76,12 @@
 @media screen and (max-width:768px) {
 
     .slider__image {
-        height: 50vh;
+        height: 60vh;
         padding: 1rem;
     }
 
     .slider {
-        top: 30%;
+        top: 50%;
         right: 5%;
         width: 90%;
         height: auto;

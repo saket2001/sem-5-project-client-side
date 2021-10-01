@@ -19,6 +19,7 @@ export default function Home({ ads }) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Slider />
+      {/* <Image src={imgSrc} alt="" width="200" height="200" /> */}
       {/* about us info */}
       <div className={styles.about__us}>
         <Image src={aboutUs} alt="" width="350px" height="300px" />
@@ -39,7 +40,6 @@ export default function Home({ ads }) {
           </Link>
         </div>
       </div>
-
       {/*  */}
       <ProductsBanner heading="Featured Products" dataList={ads} />
       {/* <ProductsBanner heading="On Sale Products" /> */}
@@ -58,6 +58,6 @@ export async function getStaticProps() {
     props: {
       ads: data,
     },
-    revalidate: 3,
+    revalidate: 2,
   };
 }

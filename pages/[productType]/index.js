@@ -31,7 +31,7 @@ const ProductPage = () => {
       setLoaderState(true);
 
       const res = await fetch(
-        `https://bechdal-api.herokuapp.com/api/v1/ad/${productCategoryTitle?.toLowerCase()}`
+        `https://bechdal-api.herokuapp.com/api/v1/ad/${productCategoryTitle}`
       );
 
       const data = await res.json();

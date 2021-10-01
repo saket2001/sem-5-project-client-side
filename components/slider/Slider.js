@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./slider.module.css";
 import Link from "next/link";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
@@ -45,11 +45,21 @@ const dummyData = [
 const Slider = () => {
   const [sliderState, setSliderState] = useState(0);
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (sliderState === dummyData.length) return setSliderState(0);
+  //     if (sliderState === dummyData.length - 1) return setSliderState(0);
+  //     if (sliderState < 3) return setSliderState((prevState) => prevState + 1);
+  //   }, 3000);
+  // }, [sliderState]);
+
+  // console.log(sliderState);
+
   const rightHandler = useCallback(() => {
     if (sliderState === dummyData.length - 1) {
       return setSliderState(0);
     }
-    setSliderState((prevState) => prevState + 1);
+    if (sliderState < 3) setSliderState((prevState) => prevState + 1);
   }, [sliderState]);
 
   const leftHandler = useCallback(() => {

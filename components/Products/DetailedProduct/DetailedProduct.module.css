@@ -13,27 +13,20 @@
 .detailedProduct {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     padding: 0.5rem 2rem;
+    grid-gap: 1rem;
 }
 
 .product__left {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    right: -3rem;
-}
-
-.product__left .product__images {
-    width: auto;
     display: grid;
-    grid-template-columns: repeat(3, 0.2fr);
-    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 0.4rem;
 }
 
-.product__left .product__images div {
+.product__left div {
     margin: 0.2rem;
 }
 
@@ -46,11 +39,13 @@
     color: var(--main-clr);
     padding: 3rem;
     padding-left: 5rem;
+    border-radius: 5px;
 }
 
 
 .product__name,
-.product__price {
+.product__price,
+.product__category {
     text-transform: capitalize;
     font-size: 2rem;
     font-weight: 700;
@@ -58,10 +53,9 @@
 }
 
 .product__category {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--sec-clr);
     font-weight: 600;
-    padding: 0.2rem 0;
 }
 
 .product__address {
@@ -73,7 +67,7 @@
 .product__description,
 .product__seller {
     width: 80%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     padding: 0.2rem 0;
     color: var(--sec-clr);
@@ -105,42 +99,28 @@
     justify-content: center;
     color: var(--main-clr);
     padding: 1rem;
-    border: 2px solid var(--sec-clr);
-    border-radius: 5px;
+    border-top: 2px solid var(--sec-clr);
     margin: 2rem 0;
 }
 
 .seller__container h2 {
-    padding: 0.3rem 0;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.seller__info {
+.seller__container h2,
+.seller__container div,
+.seller__container p,
+.seller__container button {
+    margin: 0.2rem 0;
+    text-transform: capitalize;
+}
+
+.seller__container p {
     width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0.3rem 0;
+    font-size: 0.9rem;
 }
 
-.seller__info div,
-.seller__info p,
-.seller__info button {
-    margin: 0 0.2rem;
-}
-
-.seller__info p {
-    width: 100%;
-    margin: 0 0.2rem;
-}
-
-.seller__info div {
-    border-radius: 50%;
-}
-
-.seller__info button {
-    background-color: transparent;
-    border: 2px solid var(--spl-clr);
-    color: var(--spl-clr);
-}
 
 @media screen and (max-width:768px) {
     .backButton {
@@ -199,14 +179,10 @@
     }
 
     .seller__container h2 {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
-    .seller__info div {
-        width: 110px;
-    }
-
-    .seller__info p {
-        font-size: 0.8rem;
+    .seller__container p {
+        font-size: 0.7rem;
     }
 }

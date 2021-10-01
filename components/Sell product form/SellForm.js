@@ -21,13 +21,13 @@ const SellForm = ({ categoryState, subCategoryState }) => {
     formData.append("images", file2);
     formData.append("images", file3);
     formData.append("images", file4);
-    formData.append("category", `${categoryState}-${subCategoryState}`);
+    formData.append("category", subCategoryState);
     formData.append("userId", loggedInId);
 
     console.log(formData);
 
     const res = await axios.post(
-      "http://localhost:5000/api/v1/post-ad",
+      "`https://bechdal-api.herokuapp.com/api/v1/post-ad",
       formData,
       {
         headers: {
@@ -77,7 +77,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             cols="10"
             required
             name="description"
-            maxLength="50"
+            maxLength="200"
             minLength="20"
           />
         </div>
@@ -177,7 +177,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             id="ad_address"
             rows="7"
             cols="10"
-            maxLength="50"
+            maxLength="100"
             minLength="20"
             required
             name="address"

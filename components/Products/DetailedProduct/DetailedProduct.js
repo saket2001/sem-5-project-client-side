@@ -1,19 +1,52 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
-import dummyImg from "../../../public/dummy1.jpg";
-import Link from "next/link";
 import VerifiedTag from "../../Verified Tag/VerifiedTag";
 import { FaHeart, FaArrowLeft } from "react-icons/fa";
+import axios from "axios";
+import Decrypt from "../../../hooks/Decrypt";
+import Loader from "../../Loader/Loader";
 
 const DetailedProduct = () => {
   const router = useRouter();
+  const p_id = router.query.productID;
+
+  const [loaderState, setLoaderState] = useState("");
+  const [dataSet, setDataSet] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      setLoaderState(true);
+      const { data } = await axios.get(
+        `https://bechdal-api.herokuapp.com/api/v1/ads/${p_id}`
+      );
+
+      console.log(data);
+      if (data) {
+        setDataSet(data);
+        setLoaderState(false);
+      }
+    };
+    getData();
+  }, [p_id]);
 
   const goBack = useCallback(() => {
     router.replace(`/${router.query.productType}`);
   }, [router]);
+
+  let images = [];
+  if (dataSet.images)
+    images = dataSet?.images?.map((img, i) => (
+      <Image
+        key={i}
+        src={`data:${img.contentType};base64,${img.data.toString("base64")}`}
+        alt="product image"
+        height="500px"
+        width="400px"
+      />
+    ));
 
   return (
     <div className="container">
@@ -23,81 +56,43 @@ const DetailedProduct = () => {
           Go Back
         </Button>
       </div>
-      <div className={styles.detailedProduct}>
-        <div className={styles.product__left}>
-          {/* big image */}
-          <div className={styles.product__image}>
-            <Image
-              src={dummyImg}
-              alt="product image"
-              height="350px"
-              width="350px"
-            />
+      {loaderState && <Loader text="Getting Ad for you..." />}
+      {!loaderState && (
+        <div className={styles.detailedProduct}>
+          <div className={styles.product__left}>
+            <div>{images[0]}</div>
+            <div>{images[1]}</div>
+            <div>{images[2]}</div>
+            <div>{images[3]}</div>
           </div>
-          {/* other small images */}
-          <div className={styles.product__images}>
-            <Image
-              src={dummyImg}
-              alt="product image"
-              height="70px"
-              width="70px"
-            />
-            <Image
-              src={dummyImg}
-              alt="product image"
-              height="70px"
-              width="70px"
-            />
-            <Image
-              src={dummyImg}
-              alt="product image"
-              height="70px"
-              width="70px"
-            />
-          </div>
-        </div>
 
-        <div className={styles.product__right}>
-          <VerifiedTag message="Verified Ad" />
-          <p className={styles.product__seller}>William H Brock</p>
-          <p className={styles.product__address}>Lorem ipsum dolor sit amet.</p>
-          <h2 className={styles.product__name}>Small Classic Chair</h2>
-          <p className={styles.product__category}>Furniture</p>
-          <p className={styles.product__description}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum non
-            quas id quis ab porro? Ut soluta accusamus quam? Debitis, assumenda
-            nostrum. Quaerat debitis numquam culpa repellat fugiat recusandae
-            omnis id, at unde vero similique nostrum obcaecati corporis et
-            exercitationem?
-          </p>
-          <p className={styles.product__price}>500 ₹</p>
-          <div className={styles.product__buttons}>
-            <Button type="button">Buy now</Button>
-            <Button type="button" styles={styles.saveBtn}>
-              <FaHeart style={{ fontSize: "22px" }} />
-              Save
-            </Button>
-          </div>
-          <div className={styles.seller__container}>
-            <h2>Seller Description</h2>
-            <div className={styles.seller__info}>
-              <Image
-                src={dummyImg}
-                alt="User picture"
-                height="70px"
-                width="70px"
-              />
-              <p>Seller Name</p>
-              <Button type="button">
-                <Link href="/user/myprofile">View</Link>
+          <div className={styles.product__right}>
+            <VerifiedTag
+              message={dataSet.adStatus + " Ad"}
+              status={dataSet.adStatus === "verified" ? true : false}
+            />
+            <p className={styles.product__category}>{dataSet.category}</p>
+
+            <h2 className={styles.product__name}>{dataSet.title}</h2>
+            <p className={styles.product__description}>{dataSet.description}</p>
+            <p className={styles.product__price}>{dataSet.price} ₹</p>
+            <div className={styles.product__buttons}>
+              <Button type="button">Buy now</Button>
+              <Button type="button" styles={styles.saveBtn}>
+                <FaHeart style={{ fontSize: "22px" }} />
+                Save
               </Button>
             </div>
-            <div className={styles.product__buttons}>
-              <Button type="button">Chat with Seller</Button>
+            <div className={styles.seller__container}>
+              <p>Posted By</p>
+              <h2>{Decrypt(dataSet.Username?.toString())}Seller Name</h2>
+              <p>AD Address</p>
+              <h2>{dataSet.state}</h2>
+              <h2>{dataSet.city}</h2>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

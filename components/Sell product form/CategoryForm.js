@@ -14,8 +14,8 @@ const CategoryForm = ({ onClickCate, onClickCateSub }) => {
       <h3>Choose A Category</h3>
       <details className={styles.categoryForm}>
         <summary onClick={categoryHandler}>Vehicles</summary>
-        <p onClick={subCategoryHandler}>Car</p>
-        <p onClick={subCategoryHandler}>Bike</p>
+        <p onClick={subCategoryHandler}>Cars</p>
+        <p onClick={subCategoryHandler}>Bikes</p>
         <p onClick={subCategoryHandler}>Scooters</p>
         <p onClick={subCategoryHandler}>Accessories</p>
       </details>
