@@ -8,8 +8,8 @@ export const authSlice = createSlice({
   },
   reducers: {
     //   for changing the auth signed in or signup status
-    updateStatus(state) {
-      state.isValid = !state.isValid;
+    updateStatus(state, action) {
+      state.isValid = action.payload;
     },
     //   for storing any user data in redux (mostly user id)
     updateUserData(state, action) {

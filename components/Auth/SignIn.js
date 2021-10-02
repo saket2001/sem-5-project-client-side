@@ -49,13 +49,11 @@ const SignIN = () => {
     // check data
     if (userData.type) {
       dispatch(authActions.updateUserData(userData.data));
-      dispatch(authActions.updateStatus());
+      dispatch(authActions.updateStatus(true));
+      // set session
+      window.sessionStorage.setItem("IsLoggedIn", "true");
+      window.sessionStorage.setItem("LoggedId", userData.data.id);
       setLoaderState(false);
-      setModalData({
-        title: "Success!!",
-        text: "User login was successful. Enjoy your visit at our site",
-        btnText: "Close",
-      });
       // push to home screen
       router.replace("/");
     } else {

@@ -2,8 +2,11 @@ import React from "react";
 import Head from "next/head";
 import SellProductForm from "../components/Sell product form/SellProductForm";
 import Layout from "../components/layout/Layout";
+import useSession from "../hooks/useSession";
 
-const usersAuth = () => {
+const SellProduct = () => {
+  useSession();
+
   return (
     <Layout>
       <Head>
@@ -17,4 +20,4 @@ const usersAuth = () => {
   );
 };
 
-export default usersAuth;
+export default SellProduct;

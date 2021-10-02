@@ -18,8 +18,10 @@ import {
 
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
+import { useClearSessionStorage } from "react-use-window-sessionstorage";
 
 const Nav = () => {
+  const clearSessionStorage = useClearSessionStorage();
   // redux logic
   const dispatch = useDispatch(authActions);
   const isLoggedIn = useSelector((state) => state?.auth?.isValid);
@@ -38,7 +40,9 @@ const Nav = () => {
   }, []);
 
   const LogoutHandler = () => {
+    clearSessionStorage();
     dispatch(authActions.updateStatus());
+    dispatch(authActions.updateUserData(""));
   };
 
   return (

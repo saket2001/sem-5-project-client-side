@@ -6,8 +6,11 @@ import Layout from "../components/layout/Layout";
 import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import aboutUs from "../public/aboutus.jpg";
+import useSession from "../hooks/useSession";
 
 export default function Home({ ads }) {
+  useSession();
+
   return (
     <Layout>
       <Head>
@@ -19,7 +22,6 @@ export default function Home({ ads }) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Slider />
-      {/* <Image src={imgSrc} alt="" width="200" height="200" /> */}
       {/* about us info */}
       <div className={styles.about__us}>
         <Image src={aboutUs} alt="" width="350px" height="300px" />
@@ -41,8 +43,8 @@ export default function Home({ ads }) {
         </div>
       </div>
       {/*  */}
-      <ProductsBanner heading="Featured Products" dataList={ads} />
-      {/* <ProductsBanner heading="On Sale Products" /> */}
+      <ProductsBanner heading="Featured Ads" dataList={ads} />
+      {/* <ProductsBanner heading="On Sale Ads" dataList={""} /> */}
     </Layout>
   );
 }

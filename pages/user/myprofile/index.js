@@ -5,26 +5,27 @@ import InputField from "../../../components/assets/formField/InputField";
 import InputText from "../../../components/assets/formField/InputText";
 import styles from "../../../styles/Profile.module.css";
 import { FaUserAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import notFoundImg from "../../../public/notFound.svg";
 import Loader from "../../../components/Loader/Loader";
 import Decrypt from "../../../hooks/Decrypt";
+import useSession from "../../../hooks/useSession";
 
 const MyProfilePage = () => {
+  useSession();
   // redux
   const { isValid, data } = useSelector((state) => state.auth);
 
   const [loader, setLoaderState] = useState(null);
   const [userData, setUserData] = useState(data);
-  console.log({ userData });
 
   useEffect(() => {
     const loadData = async () => {
       setLoaderState(true);
 
       const res = await fetch(
-        `https://bechdal-api.herokuapp.com/api/v1/users/${data.id}`
+        `https://bechdal-api.herokuapp.com/api/v1/users/${data}`
       );
 
       const resData = await res.json();

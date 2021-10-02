@@ -23,7 +23,6 @@ const DetailedProduct = () => {
         `https://bechdal-api.herokuapp.com/api/v1/ads/${p_id}`
       );
 
-      console.log(data);
       if (data) {
         setDataSet(data);
         setLoaderState(false);
@@ -41,7 +40,9 @@ const DetailedProduct = () => {
     images = dataSet?.images?.map((img, i) => (
       <Image
         key={i}
-        src={`data:${img.contentType};base64,${img.data.toString("base64")}`}
+        src={`data:${img?.contentType};base64,${btoa(
+          String.fromCharCode(...new Uint8Array(img?.data.data))
+        )}`}
         alt="product image"
         height="500px"
         width="400px"
