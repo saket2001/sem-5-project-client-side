@@ -15,11 +15,11 @@
     "btoa": "^1.2.1",
     "crypto-js": "^4.1.1",
     "next": "^11.1.0",
+    "number-string": "^1.1.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.5",
-    "react-storage-hooks": "^4.0.1",
     "react-use-window-sessionstorage": "^1.0.9"
   },
   "devDependencies": {

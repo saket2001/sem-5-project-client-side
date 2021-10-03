@@ -5,8 +5,10 @@ import Button from "../components/assets/button/Button";
 import SearchBar from "../components/search bar/SearchBar";
 import styles from "../styles/search.module.css";
 import { useRouter } from "next/dist/client/router";
+import useSession from "../hooks/useSession";
 
 const Search = () => {
+  useSession();
   const router = useRouter();
 
   const goBackHandler = () => {

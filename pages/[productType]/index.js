@@ -54,7 +54,7 @@ const ProductPage = () => {
       <Layout>
         <div className={styles.info__block}>
           <Link href="/" passHref>
-            <p>Home / {productCategoryTitle}</p>
+            <p>Home &gt; {productCategoryTitle}</p>
           </Link>
         </div>
 
@@ -81,7 +81,9 @@ const ProductPage = () => {
             <div className={styles.products__container}>
               <div className={styles.info__block}>
                 <p>
-                  <b>8</b> ads Found
+                  {DataState.length > 1
+                    ? `${DataState.length} Ads Found`
+                    : `${DataState.length} Ad Found`}
                 </p>
                 {/* <Button>Sort Date By- Asc </Button> */}
                 <h2>

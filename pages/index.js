@@ -44,6 +44,7 @@ export default function Home({ ads }) {
       </div>
       {/*  */}
       <ProductsBanner heading="Featured Ads" dataList={ads} />
+      <ProductsBanner heading="Latest Ads" dataList={""} />
       {/* <ProductsBanner heading="On Sale Ads" dataList={""} /> */}
     </Layout>
   );

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./product.module.css";
 import btoa from "btoa";
+import MoneyFormatter from "../../../hooks/MoneyFormatter";
+import VerifiedTag from "../../Verified Tag/VerifiedTag";
 
 const ProductItem = ({ Data }) => {
   let imagesArr = [];
@@ -16,6 +18,8 @@ const ProductItem = ({ Data }) => {
         alt="product cover image"
         width="300px"
         height="280px"
+        layout="responsive"
+        loading="lazy"
       />
     ));
 
@@ -24,15 +28,23 @@ const ProductItem = ({ Data }) => {
       <div className={styles.productItem}>
         <div className={styles.product__img}>{imagesArr[0]}</div>
         <div className={styles.product__info}>
-          <h2 className={styles.product__heading}>{Data.title}</h2>
-          <p className={styles.product__price}>{Data.price} ₹</p>
+          <h2 className={styles.product__heading}>
+            {Data.title}
+            <VerifiedTag
+              message={""}
+              status={Data.adStatus === "verified" ? true : false}
+            />
+          </h2>
+          <p className={styles.product__price}>{MoneyFormatter(Data.price)}</p>
           <div className={styles.product__details}>
             <p className={styles.product__country}>
               {Data.state}, {Data.city}
             </p>
           </div>
           <div className={styles.product__details}>
-            <p className={styles.product__date}>Posted on {Data.adDate}</p>
+            <p className={styles.product__date}>
+              Posted on <b>{new Date(Data.adDate).toDateString()}</b>
+            </p>
           </div>
         </div>
       </div>

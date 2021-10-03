@@ -6,8 +6,10 @@ import styles from "../styles/Contact.module.css";
 import InputField from "../components/assets/formField/InputField";
 import InputText from "../components/assets/formField/InputText";
 import Button from "../components/assets/button/Button";
+import useSession from "../hooks/useSession";
 
-const contactUs = () => {
+const ContactUs = () => {
+  useSession();
   return (
     <Layout>
       <Head>
@@ -52,4 +54,4 @@ const contactUs = () => {
   );
 };
 
-export default contactUs;
+export default ContactUs;

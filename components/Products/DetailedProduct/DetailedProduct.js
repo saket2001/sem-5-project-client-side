@@ -8,6 +8,7 @@ import { FaHeart, FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
 import Decrypt from "../../../hooks/Decrypt";
 import Loader from "../../Loader/Loader";
+import MoneyFormatter from "../../../hooks/MoneyFormatter";
 
 const DetailedProduct = () => {
   const router = useRouter();
@@ -46,6 +47,8 @@ const DetailedProduct = () => {
         alt="product image"
         height="500px"
         width="400px"
+        layout="responsive"
+        loading="lazy"
       />
     ));
 
@@ -76,7 +79,9 @@ const DetailedProduct = () => {
 
             <h2 className={styles.product__name}>{dataSet.title}</h2>
             <p className={styles.product__description}>{dataSet.description}</p>
-            <p className={styles.product__price}>{dataSet.price} ₹</p>
+            <p className={styles.product__price}>
+              {MoneyFormatter(dataSet.price)}
+            </p>
             <div className={styles.product__buttons}>
               <Button type="button">Buy now</Button>
               <Button type="button" styles={styles.saveBtn}>
@@ -86,7 +91,12 @@ const DetailedProduct = () => {
             </div>
             <div className={styles.seller__container}>
               <p>Posted By</p>
-              <h2>{Decrypt(dataSet.Username?.toString())}Seller Name</h2>
+              <h2>
+                {Decrypt(dataSet.Username?.toString()) ||
+                  "Seller Name Not Available"}
+              </h2>
+              <p>Posted On</p>
+              <h2>{new Date(dataSet.adDate).toDateString()}</h2>
               <p>AD Address</p>
               <h2>{dataSet.state}</h2>
               <h2>{dataSet.city}</h2>

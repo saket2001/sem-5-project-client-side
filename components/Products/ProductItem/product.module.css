@@ -40,6 +40,10 @@
     font-size: 1.1rem;
     font-weight: 500;
     text-transform: capitalize;
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    place-items: center start;
+    grid-gap: 0.5rem;
 }
 
 .product__price {

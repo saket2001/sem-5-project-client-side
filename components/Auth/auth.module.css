@@ -68,7 +68,7 @@
 .form__action {
     display: flex;
     align-items: center;
-    padding: 0.8rem 0.2rem;
+    padding: 0.8rem 0;
 }
 
 .form__action button {
@@ -80,6 +80,7 @@
     margin-top: 0.2rem;
     font-size: 0.85rem;
     font-weight: 600;
+    padding: 0 0.2rem;
     color: var(--sec-clr);
 }
 
@@ -114,7 +115,7 @@
 .form__item input[type='numeric'],
 .form__item textarea {
     width: auto;
-    padding: 0.4rem 0.5rem;
+    padding: 0.2rem 0.5rem;
     outline: 0;
     border: 0;
     font-size: 0.9rem;
@@ -129,7 +130,7 @@
 .form__item input[type='email']:focus,
 .form__item input[type='numeric']:focus,
 .form__item textarea:focus {
-    border: 0.09rem solid blue;
+    border: 0.05rem solid blue;
 }
 
 .form__item textarea {

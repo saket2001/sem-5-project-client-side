@@ -7,8 +7,10 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import Layout from "../components/layout/Layout";
+import useSession from "../hooks/useSession";
 
-export default function about() {
+export default function About() {
+  useSession();
   return (
     <Layout>
       {" "}

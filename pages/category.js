@@ -3,8 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout/Layout";
 import styles from "../styles/category.module.css";
+import useSession from "../hooks/useSession";
 
-const categoryPage = () => {
+const CategoryPage = () => {
+  useSession();
   return (
     <>
       <Head>
