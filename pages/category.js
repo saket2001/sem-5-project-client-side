@@ -78,4 +78,4 @@ const CategoryPage = () => {
   );
 };
 
-export default categoryPage;
+export default CategoryPage;
