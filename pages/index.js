@@ -7,22 +7,19 @@ import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import aboutUs from "../public/aboutus.jpg";
 import useSession from "../hooks/useSession";
-import useLocation from "../hooks/useLocation";
 import { useDispatch } from "react-redux";
 import { authActions } from "../Store/auth";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-export default function Home({ ads }) {
+export default function Home({ ads, location }) {
   useSession();
   const [AdData, setAdData] = useState("");
 
   const dispatch = useDispatch(authActions);
+  dispatch(authActions.updateUserLocation(location.city.name));
   const userLocation = useSelector((state) => state.auth.location);
-  useLocation().then((data) =>
-    dispatch(authActions.updateUserLocation(data.city.name))
-  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,17 +69,39 @@ export default function Home({ ads }) {
   );
 }
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
+//   const res = await fetch(
+//     "https://bechdal-api.herokuapp.com/api/v1/featured-ads"
+//   );
+
+//   const data = await res.json();
+//   console.log(process.env.GeoApi);
+
+//   return {
+//     props: {
+//       ads: data,
+//     },
+//     revalidate: 2,
+//   };
+// }
+
+export async function getServerSideProps() {
   const res = await fetch(
     "https://bechdal-api.herokuapp.com/api/v1/featured-ads"
   );
 
   const data = await res.json();
 
+  const userLocationRes = await fetch(
+    `https://api.geoapify.com/v1/ipinfo?&apiKey=${process.env.GeoApi}`
+  );
+
+  const locationData = await userLocationRes.json();
+
   return {
     props: {
       ads: data,
+      location: locationData,
     },
-    revalidate: 2,
   };
 }

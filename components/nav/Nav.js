@@ -65,7 +65,7 @@ const Nav = () => {
         <div className={styles.nav__location}>
           <div className={styles.user_logo} onClick={UserMenuHandler}>
             <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
-            <p>{userLocation}</p>
+            <p>{userLocation ? userLocation : "Location Unable"}</p>
           </div>
         </div>
 
@@ -164,7 +164,7 @@ const Nav = () => {
               <FaMapMarkerAlt
                 style={{ fontSize: "26px", marginRight: "2px" }}
               />
-              <p>{userLocation}</p>
+              <p>{userLocation ? userLocation : "Location Unable"}</p>
             </div>
           </div>
           <Link href="/" className={styles.nav__item}>
