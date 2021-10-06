@@ -11,6 +11,8 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const [file3, setFile3] = useState("");
   const [file4, setFile4] = useState("");
 
+  console.log({ file1 });
+
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -100,6 +102,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
           We accept jpg, png and jpeg only.
         </span>
         {/* file input */}
+
         <div className="m-1">
           <input
             type="file"

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./nav.module.css";
@@ -14,6 +14,7 @@ import {
   FaHeadset,
   FaLock,
   FaSave,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -22,9 +23,11 @@ import { useClearSessionStorage } from "react-use-window-sessionstorage";
 
 const Nav = () => {
   const clearSessionStorage = useClearSessionStorage();
+
   // redux logic
   const dispatch = useDispatch(authActions);
   const isLoggedIn = useSelector((state) => state?.auth?.isValid);
+  const userLocation = useSelector((state) => state?.auth?.location);
   //
   const [menuState, setMenuState] = useState(false);
   const [userMenuState, setUserMenuState] = useState(false);
@@ -56,9 +59,16 @@ const Nav = () => {
             height="40px"
           ></Image>
           <p>
-            <Link href="/">BECHDAL</Link>
+            <Link href="/">BECHDAAL</Link>
           </p>
         </div>
+        <div className={styles.nav__location}>
+          <div className={styles.user_logo} onClick={UserMenuHandler}>
+            <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
+            <p>{userLocation}</p>
+          </div>
+        </div>
+
         <div className={styles.nav__items}>
           <Link href="/">
             <a className={styles.nav__item}>Home</a>
@@ -146,6 +156,17 @@ const Nav = () => {
 
       {menuState && (
         <div className={styles.menu__nav__items}>
+          <div
+            className={styles.nav__item}
+            style={{ background: "#cacacab0", borderRadius: "10px" }}
+          >
+            <div className={styles.user_logo} onClick={UserMenuHandler}>
+              <FaMapMarkerAlt
+                style={{ fontSize: "26px", marginRight: "2px" }}
+              />
+              <p>{userLocation}</p>
+            </div>
+          </div>
           <Link href="/" className={styles.nav__item}>
             <a onClick={navHandler}>
               <div className={styles.user_logo}>

@@ -5,6 +5,7 @@ export const authSlice = createSlice({
   initialState: {
     isValid: null,
     data: null,
+    location: null,
   },
   reducers: {
     //   for changing the auth signed in or signup status
@@ -14,6 +15,9 @@ export const authSlice = createSlice({
     //   for storing any user data in redux (mostly user id)
     updateUserData(state, action) {
       state.data = action.payload;
+    },
+    updateUserLocation(state, action) {
+      state.location = action.payload;
     },
   },
 });

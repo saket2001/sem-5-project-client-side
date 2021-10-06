@@ -9,6 +9,8 @@ import axios from "axios";
 import Decrypt from "../../../hooks/Decrypt";
 import Loader from "../../Loader/Loader";
 import MoneyFormatter from "../../../hooks/MoneyFormatter";
+import image from "next/image";
+import ImageSlider from "../../ImageSlider/ImageSlider";
 
 const DetailedProduct = () => {
   const router = useRouter();
@@ -45,7 +47,7 @@ const DetailedProduct = () => {
           String.fromCharCode(...new Uint8Array(img?.data.data))
         )}`}
         alt="product image"
-        height="500px"
+        height="400px"
         width="400px"
         layout="responsive"
         loading="lazy"
@@ -64,10 +66,7 @@ const DetailedProduct = () => {
       {!loaderState && (
         <div className={styles.detailedProduct}>
           <div className={styles.product__left}>
-            <div>{images[0]}</div>
-            <div>{images[1]}</div>
-            <div>{images[2]}</div>
-            <div>{images[3]}</div>
+            <ImageSlider Data={images} />
           </div>
 
           <div className={styles.product__right}>
@@ -92,14 +91,14 @@ const DetailedProduct = () => {
             <div className={styles.seller__container}>
               <p>Posted By</p>
               <h2>
-                {Decrypt(dataSet.Username?.toString()) ||
-                  "Seller Name Not Available"}
+                {Decrypt(dataSet.Username) || "Seller Name Not Available"}
               </h2>
               <p>Posted On</p>
               <h2>{new Date(dataSet.adDate).toDateString()}</h2>
               <p>AD Address</p>
-              <h2>{dataSet.state}</h2>
-              <h2>{dataSet.city}</h2>
+              <h2>
+                {dataSet.state}, {dataSet.city}
+              </h2>
             </div>
           </div>
         </div>

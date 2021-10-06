@@ -12,10 +12,14 @@ import Button from "../../components/assets/button/Button";
 import InputCheckbox from "../../components/assets/formField/InputCheckbox";
 import menuNav from "../../public/menu-logo-black.svg";
 import Loader from "../../components/Loader/Loader";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const ProductPage = () => {
   const router = useRouter();
   const productCategoryTitle = router.query.productType;
+
+  const userLocation = useSelector((state) => state.auth.location);
 
   const [LoaderState, setLoaderState] = useState(null);
   const [DataState, setDataState] = useState(null);
@@ -30,21 +34,18 @@ const ProductPage = () => {
       // turn on loader
       setLoaderState(true);
 
-      const res = await fetch(
-        `https://bechdal-api.herokuapp.com/api/v1/ad/${productCategoryTitle}`
+      const data = await axios.get(
+        `https://bechdal-api.herokuapp.com/api/v1/ad-near-by/${userLocation}`
       );
 
-      const data = await res.json();
-
-      console.log(data);
-      if (data) {
-        setDataState(data);
+      if (data.status === 200) {
+        setDataState(data.data);
         setLoaderState(false);
       }
     };
 
     getData();
-  }, [productCategoryTitle]);
+  }, [userLocation]);
 
   return (
     <>

@@ -7,9 +7,32 @@ import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import aboutUs from "../public/aboutus.jpg";
 import useSession from "../hooks/useSession";
+import useLocation from "../hooks/useLocation";
+import { useDispatch } from "react-redux";
+import { authActions } from "../Store/auth";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export default function Home({ ads }) {
   useSession();
+  const [AdData, setAdData] = useState("");
+
+  const dispatch = useDispatch(authActions);
+  const userLocation = useSelector((state) => state.auth.location);
+  useLocation().then((data) =>
+    dispatch(authActions.updateUserLocation(data.city.name))
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        `https://bechdal-api.herokuapp.com/api/v1/ad-near-by/${userLocation}`
+      );
+      setAdData(res.data);
+    };
+    fetchData();
+  }, [userLocation]);
 
   return (
     <Layout>
@@ -44,8 +67,7 @@ export default function Home({ ads }) {
       </div>
       {/*  */}
       <ProductsBanner heading="Featured Ads" dataList={ads} />
-      <ProductsBanner heading="Latest Ads" dataList={""} />
-      {/* <ProductsBanner heading="On Sale Ads" dataList={""} /> */}
+      <ProductsBanner heading="Ads From Your City" dataList={AdData} />
     </Layout>
   );
 }
