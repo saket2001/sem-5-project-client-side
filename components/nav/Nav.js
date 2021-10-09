@@ -168,11 +168,7 @@ const Nav = () => {
               <FaMapMarkerAlt
                 style={{ fontSize: "26px", marginRight: "2px" }}
               />
-<<<<<<< HEAD
-              <p>{userLocation ? userLocation : "Location Unable"}</p>
-=======
               <p>{userLocation ? userLocation : "Location unable"}</p>
->>>>>>> new-branch
             </div>
           </div>
           <Link href="/" className={styles.nav__item}>
