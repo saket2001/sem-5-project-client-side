@@ -65,11 +65,7 @@ const Nav = () => {
         <div className={styles.nav__location}>
           <div className={styles.user_logo}>
             <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
-<<<<<<< HEAD
-            <p>{userLocation ? userLocation : "Location Unable"}</p>
-=======
             <p>{userLocation ? userLocation : "Location unable"}</p>
->>>>>>> new-branch
           </div>
         </div>
 
