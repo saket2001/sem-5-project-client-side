@@ -5,7 +5,8 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const SellForm = ({ categoryState, subCategoryState }) => {
-  const loggedInId = useSelector((state) => state.auth.data);
+  const loggedInId = useSelector((state) => state?.auth?.data);
+  const loggedInLocation = useSelector((state) => state?.auth?.location);
   const [file1, setFile1] = useState("");
   const [file2, setFile2] = useState("");
   const [file3, setFile3] = useState("");
@@ -25,11 +26,12 @@ const SellForm = ({ categoryState, subCategoryState }) => {
     formData.append("images", file4);
     formData.append("category", subCategoryState);
     formData.append("userId", loggedInId);
+    formData.append("city", loggedInLocation);
 
     console.log(formData);
 
     const res = await axios.post(
-      "`https://bechdal-api.herokuapp.com/api/v1/post-ad",
+      "https://bechdal-api.herokuapp.com/api/v1/post-ad",
       formData,
       {
         headers: {
@@ -200,6 +202,8 @@ const SellForm = ({ categoryState, subCategoryState }) => {
         <div className={styles.form__item}>
           <label htmlFor="ad_city">City</label>
           <input
+            disabled="true"
+            placeholder="Will be detected from your IP address."
             type="text"
             id="ad_city"
             required

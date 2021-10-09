@@ -14,8 +14,10 @@ import menuNav from "../../public/menu-logo-black.svg";
 import Loader from "../../components/Loader/Loader";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import useSession from "../../hooks/useSession";
 
 const ProductPage = () => {
+  useSession();
   const router = useRouter();
   const productCategoryTitle = router.query.productType;
 
@@ -35,7 +37,7 @@ const ProductPage = () => {
       setLoaderState(true);
 
       const data = await axios.get(
-        `https://bechdal-api.herokuapp.com/api/v1/ad-near-by/${userLocation}`
+        `https://bechdal-api.herokuapp.com/api/v1/ad/${productCategoryTitle}?location=${userLocation}`
       );
 
       if (data.status === 200) {
@@ -45,7 +47,7 @@ const ProductPage = () => {
     };
 
     getData();
-  }, [userLocation]);
+  }, [userLocation, productCategoryTitle]);
 
   return (
     <>
@@ -54,9 +56,16 @@ const ProductPage = () => {
       </Head>
       <Layout>
         <div className={styles.info__block}>
-          <Link href="/" passHref>
-            <p>Home &gt; {productCategoryTitle}</p>
-          </Link>
+          <p>
+            <Link href="/" passHref>
+              Home
+            </Link>{" "}
+            &gt;{" "}
+            <Link href="/category" passHref>
+              Categories
+            </Link>{" "}
+            &gt; {productCategoryTitle}
+          </p>
         </div>
 
         <main className={styles.main}>
