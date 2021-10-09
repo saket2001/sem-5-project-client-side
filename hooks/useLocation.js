@@ -7,6 +7,7 @@ const useLocation = async () => {
 
   if (res.status !== 200) alert("Error in getting your location");
   // console.log(res.data.city);
+  window.sessionStorage.setItem("Location", res.data.city.name);
   return res.data;
 };
 

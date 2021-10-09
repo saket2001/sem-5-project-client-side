@@ -24,7 +24,7 @@ const ProductItem = ({ Data }) => {
     ));
 
   return (
-    <Link href={`${Data.category}/${Data._id}`} passHref>
+    <Link href={`/${Data.category}/${Data._id}`} passHref>
       <div className={styles.productItem}>
         <div className={styles.product__img}>{imagesArr[0]}</div>
         <div className={styles.product__info}>

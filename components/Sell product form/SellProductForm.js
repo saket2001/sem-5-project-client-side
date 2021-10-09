@@ -7,8 +7,10 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import CategoryForm from "./CategoryForm";
 import SellForm from "./SellForm";
+import useSession from "../../hooks/useSession";
 
 const SellProductForm = () => {
+  useSession();
   const isLoggedIn = useSelector((state) => state.auth.isValid);
 
   const router = useRouter();

@@ -63,9 +63,9 @@ const Nav = () => {
           </p>
         </div>
         <div className={styles.nav__location}>
-          <div className={styles.user_logo} onClick={UserMenuHandler}>
+          <div className={styles.user_logo}>
             <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
-            <p>{userLocation}</p>
+            <p>{userLocation ? userLocation : "Location unable"}</p>
           </div>
         </div>
 
@@ -160,11 +160,11 @@ const Nav = () => {
             className={styles.nav__item}
             style={{ background: "#cacacab0", borderRadius: "10px" }}
           >
-            <div className={styles.user_logo} onClick={UserMenuHandler}>
+            <div className={styles.user_logo}>
               <FaMapMarkerAlt
                 style={{ fontSize: "26px", marginRight: "2px" }}
               />
-              <p>{userLocation}</p>
+              <p>{userLocation ? userLocation : "Location unable"}</p>
             </div>
           </div>
           <Link href="/" className={styles.nav__item}>
