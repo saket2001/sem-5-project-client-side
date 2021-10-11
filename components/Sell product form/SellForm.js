@@ -12,8 +12,6 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const [file3, setFile3] = useState("");
   const [file4, setFile4] = useState("");
 
-  console.log({ file1 });
-
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -109,6 +107,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
           <input
             type="file"
             id="File1"
+            accept=".jpg, .png, .jpeg"
             required
             onChange={(e) => setFile1(e.target.files[0])}
           />
@@ -118,6 +117,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             type="file"
             id="File2"
             required
+            accept=".jpg, .png, .jpeg"
             onChange={(e) => setFile2(e.target.files[0])}
           />
         </div>
@@ -126,6 +126,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             type="file"
             id="File3"
             required
+            accept=".jpg, .png, .jpeg"
             onChange={(e) => setFile3(e.target.files[0])}
           />
         </div>
@@ -134,6 +135,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             type="file"
             id="File4"
             required
+            accept=".jpg, .png, .jpeg"
             onChange={(e) => setFile4(e.target.files[0])}
           />
         </div>

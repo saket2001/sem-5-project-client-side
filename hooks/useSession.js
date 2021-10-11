@@ -13,6 +13,10 @@ export default function useSession() {
     useSessionStorageString("Location");
 
   useEffect(() => {
+    if (LoggedLocation !== "") {
+      dispatch(authActions.updateUserLocation(LoggedLocation));
+    }
+
     if (isLoggedIn === "true" && LoggedId != "" && LoggedLocation !== "") {
       dispatch(authActions.updateStatus(true));
       dispatch(authActions.updateUserData(LoggedId));

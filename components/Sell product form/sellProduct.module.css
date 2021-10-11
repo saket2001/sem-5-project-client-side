@@ -87,8 +87,6 @@
   flex-direction: column;
   border-radius: 5px;
   border: 0.06rem double var(--spl-clr);
-  /* box-shadow: 2px 5px 20px #fcf7f7,
-    -2px -5px 20px #fcf7f7; */
 }
 
 .form p {
@@ -208,6 +206,5 @@
   .form p {
     font-size: 0.8rem;
   }
-
 
 }

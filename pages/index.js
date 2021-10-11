@@ -12,13 +12,17 @@ import { authActions } from "../Store/auth";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import useLocation from "../hooks/useLocation";
 
-export default function Home({ ads, location }) {
+export default function Home({ ads }) {
   useSession();
+  const dispatch = useDispatch(authActions);
   const [AdData, setAdData] = useState("");
 
-  const dispatch = useDispatch(authActions);
-  dispatch(authActions.updateUserLocation(location.city.name));
+  // getting user location
+  useLocation().then((data) => {
+    dispatch(authActions.updateUserLocation(data?.city?.name));
+  });
   const userLocation = useSelector((state) => state.auth.location);
 
   useEffect(() => {
@@ -69,39 +73,17 @@ export default function Home({ ads, location }) {
   );
 }
 
-// export async function getStaticProps() {
-//   const res = await fetch(
-//     "https://bechdal-api.herokuapp.com/api/v1/featured-ads"
-//   );
-
-//   const data = await res.json();
-//   console.log(process.env.GeoApi);
-
-//   return {
-//     props: {
-//       ads: data,
-//     },
-//     revalidate: 2,
-//   };
-// }
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     "https://bechdal-api.herokuapp.com/api/v1/featured-ads"
   );
 
   const data = await res.json();
 
-  const userLocationRes = await fetch(
-    `https://api.geoapify.com/v1/ipinfo?&apiKey=${process.env.GeoApi}`
-  );
-
-  const locationData = await userLocationRes.json();
-
   return {
     props: {
       ads: data,
-      location: locationData,
     },
+    revalidate: 2,
   };
 }

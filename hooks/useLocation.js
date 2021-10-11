@@ -2,7 +2,7 @@ import axios from "axios";
 
 const useLocation = async () => {
   const res = await axios.get(
-    `https://api.geoapify.com/v1/ipinfo?&apiKey=e285f35a1a8848b3a5b839a1f1775b8e`
+    `https://api.geoapify.com/v1/ipinfo?&apiKey=${process.env.NEXT_PUBLIC_Geo_API_Key}`
   );
 
   if (res.status !== 200) alert("Error in getting your location");

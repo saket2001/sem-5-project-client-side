@@ -11,7 +11,7 @@ import useSession from "../../hooks/useSession";
 
 const SellProductForm = () => {
   useSession();
-  const isLoggedIn = useSelector((state) => state.auth.isValid);
+  const isLoggedIn = useSelector((state) => state?.auth.isValid);
 
   const router = useRouter();
   const [categoryState, setCategoryState] = useState(false);
