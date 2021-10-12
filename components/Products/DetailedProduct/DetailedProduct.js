@@ -9,7 +9,6 @@ import axios from "axios";
 import Decrypt from "../../../hooks/Decrypt";
 import Loader from "../../Loader/Loader";
 import MoneyFormatter from "../../../hooks/MoneyFormatter";
-import image from "next/image";
 import ImageSlider from "../../ImageSlider/ImageSlider";
 
 const DetailedProduct = () => {
@@ -39,7 +38,7 @@ const DetailedProduct = () => {
   }, [router]);
 
   let images = [];
-  if (dataSet.images)
+  if (dataSet?.images)
     images = dataSet?.images?.map((img, i) => (
       <Image
         key={i}
@@ -53,6 +52,8 @@ const DetailedProduct = () => {
         loading="lazy"
       />
     ));
+
+  console.log(dataSet);
 
   return (
     <div className="container">
@@ -90,9 +91,7 @@ const DetailedProduct = () => {
             </div>
             <div className={styles.seller__container}>
               <p>Posted By</p>
-              <h2>
-                {Decrypt(dataSet.Username) || "Seller Name Not Available"}
-              </h2>
+              <h2>{dataSet.fullName || "Seller Name Not Available"}</h2>
               <p>Posted On</p>
               <h2>{new Date(dataSet.adDate).toDateString()}</h2>
               <p>AD Address</p>

@@ -115,13 +115,18 @@ export default function SignUp() {
         {!loaderState && (
           <div className={styles.container}>
             <div className={styles.image}>
-              <Image alt="" src={signUpLogo} height="400px" width="400px" />
+              <Image
+                alt="Sign in cover image"
+                src={signUpLogo}
+                height="400px"
+                width="400px"
+              />
             </div>
             <form className={styles.form} onSubmit={formHandler}>
               <div className={styles.form__head}>
                 <h1>Welcome Fellow Shopper</h1>
                 <p>
-                  Sign up and get ready to shop many awesome products ar great
+                  Sign up and get ready to shop many awesome products at great
                   deals
                 </p>
               </div>

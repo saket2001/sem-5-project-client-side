@@ -145,39 +145,16 @@ const SellForm = ({ categoryState, subCategoryState }) => {
         <h3>Seller Details</h3>
 
         <div className={styles.form__item}>
-          <label htmlFor="ad_name">Full name</label>
+          <label htmlFor="name">Full name</label>
           <input
             type="text"
-            id="ad_name"
+            id="name"
             required
-            name="Username"
+            name="name"
             maxLength="20"
             minLength="5"
           />
         </div>
-        <div className={styles.form__item}>
-          <label htmlFor="ad_email">Email</label>
-          <input
-            type="email"
-            id="ad_email"
-            required
-            name="email"
-            maxLength="40"
-            minLength="10"
-          />
-        </div>
-        <div className={styles.form__item}>
-          <label htmlFor="ad_contact">Contact no</label>
-          <input
-            type="number"
-            id="ad_contact"
-            required
-            name="contact"
-            maxLength="10"
-            size="10"
-          />
-        </div>
-
         <div className={styles.form__item}>
           <label htmlFor="ad_address">Address</label>
           <textarea

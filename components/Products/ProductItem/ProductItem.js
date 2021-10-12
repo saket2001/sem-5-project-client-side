@@ -8,12 +8,12 @@ import VerifiedTag from "../../Verified Tag/VerifiedTag";
 
 const ProductItem = ({ Data }) => {
   let imagesArr = [];
+
   if (Data.images)
-    imagesArr = Data?.images?.map((img, i) => (
+    imagesArr = (
       <Image
-        key={i}
-        src={`data:${img?.contentType};base64,${btoa(
-          String.fromCharCode(...new Uint8Array(img?.data.data))
+        src={`data:${Data?.images[0].contentType};base64,${btoa(
+          String.fromCharCode(...new Uint8Array(Data?.images[0]?.data.data))
         )}`}
         alt="product cover image"
         width="300px"
@@ -21,12 +21,12 @@ const ProductItem = ({ Data }) => {
         layout="responsive"
         loading="lazy"
       />
-    ));
+    );
 
   return (
     <Link href={`/${Data.category}/${Data._id}`} passHref>
       <div className={styles.productItem}>
-        <div className={styles.product__img}>{imagesArr[0]}</div>
+        <div className={styles.product__img}>{imagesArr}</div>
         <div className={styles.product__info}>
           <h2 className={styles.product__heading}>
             {Data.title}

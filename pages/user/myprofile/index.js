@@ -124,12 +124,20 @@ const MyProfilePage = () => {
                 rows="6"
                 value={Decrypt(userData?.address)}
               />
-              <InputField type="text" label="State" value={userData?.state} />
-              <InputField type="text" label="City" value={userData?.city} />
+              <InputField
+                type="text"
+                label="State"
+                value={Decrypt(userData?.state)}
+              />
+              <InputField
+                type="text"
+                label="City"
+                value={Decrypt(userData?.city)}
+              />
               <InputField
                 type="text"
                 label="Pin code"
-                value={userData?.pinCode}
+                value={Decrypt(userData?.pinCode)}
               />
             </div>
           </div>
