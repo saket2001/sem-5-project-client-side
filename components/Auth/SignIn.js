@@ -52,9 +52,8 @@ const SignIN = () => {
       // set session
       window.sessionStorage.setItem("IsLoggedIn", "true");
       window.sessionStorage.setItem("LoggedId", userData.data.id);
-      setLoaderState(false);
-      // push to home screen
       router.replace("/");
+      setLoaderState(false);
     } else {
       setLoaderState(false);
       setModalData({

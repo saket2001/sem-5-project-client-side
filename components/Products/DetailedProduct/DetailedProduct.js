@@ -6,17 +6,23 @@ import styles from "./DetailedProduct.module.css";
 import VerifiedTag from "../../Verified Tag/VerifiedTag";
 import { FaHeart, FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
-import Decrypt from "../../../hooks/Decrypt";
 import Loader from "../../Loader/Loader";
 import MoneyFormatter from "../../../hooks/MoneyFormatter";
 import ImageSlider from "../../ImageSlider/ImageSlider";
+import { useSelector } from "react-redux";
+import Modal from "../../modal/Modal";
+import useSession from "../../../hooks/useSession";
 
 const DetailedProduct = () => {
+  useSession();
   const router = useRouter();
   const p_id = router.query.productID;
 
   const [loaderState, setLoaderState] = useState("");
   const [dataSet, setDataSet] = useState("");
+  const [modalData, setModalData] = useState(null);
+
+  const isLoggedIn = useSelector((state) => state?.auth?.isValid);
 
   useEffect(() => {
     const getData = async () => {
@@ -55,54 +61,74 @@ const DetailedProduct = () => {
 
   console.log(dataSet);
 
+  const addToCart = () => {
+    if (!isLoggedIn)
+      return alert(
+        "Please login into your account or create your account to buy any product"
+      );
+  };
+
   return (
-    <div className="container">
-      <div className={styles.backButton}>
-        <Button type="button" onClick={goBack}>
-          <FaArrowLeft />
-          Go Back
-        </Button>
-      </div>
-      {loaderState && <Loader text="Getting Ad for you..." />}
-      {!loaderState && (
-        <div className={styles.detailedProduct}>
-          <div className={styles.product__left}>
-            <ImageSlider Data={images} />
-          </div>
-
-          <div className={styles.product__right}>
-            <VerifiedTag
-              message={dataSet.adStatus + " Ad"}
-              status={dataSet.adStatus === "verified" ? true : false}
-            />
-            <p className={styles.product__category}>{dataSet.category}</p>
-
-            <h2 className={styles.product__name}>{dataSet.title}</h2>
-            <p className={styles.product__description}>{dataSet.description}</p>
-            <p className={styles.product__price}>
-              {MoneyFormatter(dataSet.price)}
-            </p>
-            <div className={styles.product__buttons}>
-              <Button type="button">Buy now</Button>
-              <Button type="button" styles={styles.saveBtn}>
-                <FaHeart style={{ fontSize: "22px" }} />
-                Save
-              </Button>
-            </div>
-            <div className={styles.seller__container}>
-              <p>Posted By</p>
-              <h2>{dataSet.fullName || "Seller Name Not Available"}</h2>
-              <p>Posted On</p>
-              <h2>{new Date(dataSet.adDate).toDateString()}</h2>
-              <p>AD Address</p>
-              <h2>
-                {dataSet.state}, {dataSet.city}
-              </h2>
-            </div>
-          </div>
-        </div>
+    <>
+      {modalData && (
+        <Modal
+          title={modalData?.title}
+          body={modalData?.text}
+          buttonText={modalData?.btnText}
+        />
       )}
-    </div>
+      <div className="container">
+        <div className={styles.backButton}>
+          <Button type="button" onClick={goBack}>
+            <FaArrowLeft />
+            Go Back
+          </Button>
+        </div>
+        {loaderState && <Loader text="Getting Ad for you..." />}
+        {!loaderState && (
+          <div className={styles.detailedProduct}>
+            <div className={styles.product__left}>
+              <ImageSlider Data={images} />
+            </div>
+
+            <div className={styles.product__right}>
+              <VerifiedTag
+                message={dataSet.adStatus + " Ad"}
+                status={dataSet.adStatus === "verified" ? true : false}
+              />
+              <p className={styles.product__category}>{dataSet.category}</p>
+
+              <h2 className={styles.product__name}>{dataSet.title}</h2>
+              <p className={styles.product__description}>
+                {dataSet.description}
+              </p>
+              <p className={styles.product__price}>
+                {MoneyFormatter(dataSet.price)}
+              </p>
+              <div className={styles.product__buttons}>
+                <Button type="button" onClick={addToCart}>
+                  Buy now
+                </Button>
+                <Button type="button" styles={styles.saveBtn}>
+                  <FaHeart style={{ fontSize: "22px" }} />
+                  Save
+                </Button>
+              </div>
+              <div className={styles.seller__container}>
+                <p>Posted By</p>
+                <h2>{dataSet?.fullName || "Seller Name Not Available"}</h2>
+                <p>Posted On</p>
+                <h2>{new Date(dataSet.adDate).toDateString()}</h2>
+                <p>AD Address</p>
+                <h2>
+                  {dataSet.state}, {dataSet.city}
+                </h2>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

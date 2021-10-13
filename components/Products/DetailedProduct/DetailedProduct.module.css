@@ -17,6 +17,7 @@
     padding: 0.5rem 2rem;
     grid-gap: 0.5rem;
     place-items: center;
+    pointer-events: ;
 }
 
 .product__left {
@@ -88,6 +89,7 @@
 .product__buttons button:last-child {
     font-weight: 500;
 }
+
 
 /*  */
 .seller__container {
