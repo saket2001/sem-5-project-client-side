@@ -131,7 +131,11 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               id="File1"
               accept=".jpg, .png, .jpeg"
               required
-              onChange={(e) => setFile1(e.target.files[0])}
+              onChange={(e) => {
+                if (e.target.files[0].size <= 160000)
+                  setFile1(e.target.files[0]);
+                else alert("Upload file smaller then 20kb in size");
+              }}
             />
           </div>
           <div className="m-1">
@@ -140,7 +144,11 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               id="File2"
               required
               accept=".jpg, .png, .jpeg"
-              onChange={(e) => setFile2(e.target.files[0])}
+              onChange={(e) => {
+                if (e.target.files[0].size <= 160000)
+                  setFile2(e.target.files[0]);
+                else alert("Upload file smaller then 20kb in size");
+              }}
             />
           </div>
           <div className="m-1">
@@ -149,7 +157,11 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               id="File3"
               required
               accept=".jpg, .png, .jpeg"
-              onChange={(e) => setFile3(e.target.files[0])}
+              onChange={(e) => {
+                if (e.target.files[0].size <= 160000)
+                  setFile3(e.target.files[0]);
+                else alert("Upload file smaller then 20kb in size");
+              }}
             />
           </div>
           <div className="m-1">
@@ -158,7 +170,11 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               id="File4"
               required
               accept=".jpg, .png, .jpeg"
-              onChange={(e) => setFile4(e.target.files[0])}
+              onChange={(e) => {
+                if (e.target.files[0].size <= 160000)
+                  setFile4(e.target.files[0]);
+                else alert("Upload file smaller then 20kb in size");
+              }}
             />
           </div>
         </div>
