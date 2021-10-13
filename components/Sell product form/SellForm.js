@@ -99,7 +99,8 @@ const SellForm = ({ categoryState, subCategoryState }) => {
           images of your product are required
         </p>
         <span className="mx-1 mb-2 text-sm text-red-600">
-          We accept jpg, png and jpeg only.
+          We accept jpg, png and jpeg only. All your images should be less then
+          25kb in size.
         </span>
         {/* file input */}
 

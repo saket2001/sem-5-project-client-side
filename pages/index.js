@@ -28,7 +28,7 @@ export default function Home({ ads }) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://bechdal-api.herokuapp.com/api/v1/ad-near-by/${userLocation}`
+        `http://localhost:5000/api/v1/ad-near-by/${userLocation}`
       );
       setAdData(res.data);
     };

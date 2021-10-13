@@ -44,7 +44,6 @@ const SignIN = () => {
     );
 
     const userData = await res.json();
-    console.log(userData);
 
     // check data
     if (userData.type) {

@@ -80,7 +80,7 @@ const MyAdPage = () => {
               <>
                 <h1 className={styles.heading}>Ads You Posted</h1>
 
-                <ProductList dataList={AdData} />
+                <ProductList dataList={AdData} option={true} />
               </>
             )}
           </div>
