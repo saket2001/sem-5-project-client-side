@@ -20,6 +20,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
 import { useClearSessionStorage } from "react-use-window-sessionstorage";
+import Modal from "../modal/Modal";
 
 const Nav = () => {
   const clearSessionStorage = useClearSessionStorage();
@@ -31,6 +32,7 @@ const Nav = () => {
   //
   const [menuState, setMenuState] = useState(false);
   const [userMenuState, setUserMenuState] = useState(false);
+  const [modalState, setModalState] = useState(null);
 
   const navHandler = useCallback(() => {
     setUserMenuState(false);
@@ -46,10 +48,18 @@ const Nav = () => {
     clearSessionStorage();
     dispatch(authActions.updateStatus());
     dispatch(authActions.updateUserData(""));
+    setModalState(true);
   };
 
   return (
     <>
+      {modalState && (
+        <Modal
+          title="Success"
+          body="You logged out of your account successfully"
+          buttonText="Close"
+        />
+      )}
       <nav className={styles.navbar}>
         <div className={styles.nav__logo}>
           <Image
@@ -104,12 +114,14 @@ const Nav = () => {
             </Link>
           </div>
           {/* cart logo */}
-          <div className={styles.cart_logo}>
-            <FaCartPlus style={{ fontSize: "26px" }} />
-            <div className={styles.cart__bubble}>
-              <p>0</p>
+          {isLoggedIn && (
+            <div className={styles.cart_logo}>
+              <FaCartPlus style={{ fontSize: "26px" }} />
+              <div className={styles.cart__bubble}>
+                <p>0</p>
+              </div>
             </div>
-          </div>
+          )}
           {/*  */}
           <div className={styles.nav__menu_logo} onClick={navHandler}>
             <FaBars style={{ fontSize: "26px" }} />

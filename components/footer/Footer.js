@@ -1,19 +1,21 @@
 import React from "react";
 import styles from "./footer.module.css";
-import Image from "next/image";
 import Link from "next/link";
-import instalogo from "../../public/Insta_logo1.png";
-import facebooklogo from "../../public/facebook_logo.png";
-import twitterlogo from "../../public/twiiter_logo.png";
 
 const Footer = () => {
   return (
     <div className={styles.main}>
       <div className={styles.footer}>
         <div className={styles.footer__item}>
-          <h4>BechDaal</h4>
-          <p>4041 Cunningham Court Farmington Hills MI Michigan 48335.</p>
-          <Link href="/">Home</Link>
+          <h4>Bechdaal</h4>
+          <ul>
+            <li>
+              <p>4041 Cunningham Court Farmington Hills, Mumbai, India</p>
+            </li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+          </ul>
         </div>
         <div className={styles.footer__item}>
           <h4>Our Services</h4>
@@ -28,42 +30,29 @@ const Footer = () => {
               <Link href="/contactus">Contact us</Link>
             </li>
             <li>
-              <Link href="/usersauth">Log in</Link>
+              <Link href="/sign-in">Sign in</Link>
             </li>
             <li>
-              <Link href="/">Our Policy</Link>
+              <Link href="/sign-up">Sign up</Link>
+            </li>
+            <li>
+              <Link href="/about">About us</Link>
             </li>
           </ul>
         </div>
         <div className={styles.footer__item}>
           <h4>Contact us</h4>
           <ul>
-            <li>BechDaal@gmail.com</li>
-            <li>Service no: 022-1234567/89</li>
+            <li>
+              <a href="mailto:bechdaal@gmail.com">bechdaal@gmail.com</a>
+            </li>
+            <li>Contact no: 022-123456789</li>
           </ul>
-        </div>
-        <div className={styles.footer__item}>
-          <h4>Follow us</h4>
-          <div className={styles.footer__icons}>
-            <Image src={instalogo} alt="Insta logo" width="45x" height="45px" />
-            <Image
-              src={facebooklogo}
-              alt="facebook logo"
-              width="45px"
-              height="45px"
-            ></Image>
-            <Image
-              src={twitterlogo}
-              alt="twitter logo"
-              width="45px"
-              height="45px"
-            ></Image>
-          </div>
         </div>
       </div>
       <div>
         <div className={styles.copyright}>
-          &copy;Copyright 2021.All rights reserved.
+          &copy;Copyright 2021. All rights reserved.
         </div>
       </div>
     </div>

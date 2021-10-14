@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout/Layout";
-import Slider from "../components/slider/Slider";
 import ProductsBanner from "../components/Products/ProductsBanner/ProductsBanner";
 import aboutUs from "../public/aboutus.jpg";
 import useSession from "../hooks/useSession";
@@ -45,7 +44,16 @@ export default function Home({ ads }) {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Slider />
+      <div className={styles.cover}>
+        <div className={styles.cover__content}>
+          <h2 className={styles.content__title}>
+            Shopping & Selling Just Got Easier
+          </h2>
+          <p className={styles.content__small}>
+            Explore Wide Range Of Products{" "}
+          </p>
+        </div>
+      </div>
       {/* about us info */}
       <div className={styles.about__us}>
         <Image src={aboutUs} alt="" width="350px" height="300px" />
@@ -64,6 +72,32 @@ export default function Home({ ads }) {
               Read more
             </a>
           </Link>
+        </div>
+      </div>
+      <div className={styles.products__banner}>
+        <div className={styles.product__banner1} id="banner1">
+          <div className={styles.banner__content}>
+            <h2 className={styles.banner__title}>Good quality furniture</h2>
+            <Link href="/category">
+              <a>Shop now</a>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.product__banner2} id="banner2">
+          <div className={styles.banner__content}>
+            <h2 className={styles.banner__title}>New and Serviced Bikes</h2>
+            <Link href="/category">
+              <a>Shop now</a>
+            </Link>
+          </div>
+        </div>
+        <div className={styles.product__banner3} id="banner3">
+          <div className={styles.banner__content}>
+            <h2 className={styles.banner__title}>Latest Electronics</h2>
+            <Link href="/category">
+              <a>Shop now</a>
+            </Link>
+          </div>
         </div>
       </div>
       {/*  */}

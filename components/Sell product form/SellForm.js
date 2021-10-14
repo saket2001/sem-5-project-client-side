@@ -10,7 +10,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const router = useRouter();
   const loggedInId = useSelector((state) => state?.auth?.data);
   const loggedInLocation = useSelector((state) => state?.auth?.location);
-  const [modalData, setModalData] = useState(false);
+  const [modalData, setModalData] = useState(true);
 
   const [file1, setFile1] = useState("");
   const [file2, setFile2] = useState("");

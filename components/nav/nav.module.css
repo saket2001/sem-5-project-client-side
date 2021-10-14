@@ -3,8 +3,9 @@
     display: grid;
     grid-template-columns: 0.5fr auto 1fr auto;
     place-items: center;
-    padding: 0.2rem 0.5rem;
+    padding: 0 0.5rem;
     background-color: var(--spl-clr);
+    /* background-color: #12245f; */
     color: #fff;
     z-index: 1;
 }
@@ -83,6 +84,11 @@
     transition: border .2s ease;
 }
 
+.nav__items a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
 .nav__item:hover {
     border-bottom: 2px solid #fff;
 }
@@ -125,8 +131,9 @@
 @media screen and (max-width:768px) {
 
     .navbar {
+        padding: 0 1rem;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
 

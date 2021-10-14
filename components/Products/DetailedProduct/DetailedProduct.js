@@ -61,20 +61,18 @@ const DetailedProduct = () => {
 
   console.log(dataSet);
 
-  const addToCart = () => {
-    if (!isLoggedIn)
-      return alert(
-        "Please login into your account or create your account to buy any product"
-      );
+  const addToCart = (e) => {
+    if (isLoggedIn === null) return setModalData(true);
+    alert("proceed");
   };
 
   return (
     <>
       {modalData && (
         <Modal
-          title={modalData?.title}
-          body={modalData?.text}
-          buttonText={modalData?.btnText}
+          title="Account Log in required"
+          body="Please log into your account to proceed further"
+          buttonText="Close"
         />
       )}
       <div className="container">

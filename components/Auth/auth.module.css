@@ -187,7 +187,7 @@
     .form__item input[type='email'],
     .form__item input[type='numeric'],
     .form__item textarea {
-        width: 90%;
+        width: 100%;
         padding: 0.2rem 0.35rem;
     }
 }

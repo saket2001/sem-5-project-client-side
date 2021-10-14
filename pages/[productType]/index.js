@@ -69,7 +69,7 @@ const ProductPage = () => {
         </div>
 
         <main className={styles.main}>
-          {LoaderState && <Loader />}
+          {LoaderState && <Loader text="Getting Ads For You.." />}
           {!LoaderState && DataState?.length === 0 && (
             <div className="layout">
               <Image
