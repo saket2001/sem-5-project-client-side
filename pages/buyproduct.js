@@ -29,7 +29,7 @@ export default function Buyproduct() {
       if (adIdsArr)
         adIdsArr?.forEach(async (ad) => {
           const res = await axios.get(
-            `http://localhost:5000/api/v1/ads/${ad.id}`
+            `https://bechdal-api.herokuapp.com/api/v1/ads/${ad.id}`
           );
 
           if (res.data) dispatch(cartActions.addItem(res.data));
