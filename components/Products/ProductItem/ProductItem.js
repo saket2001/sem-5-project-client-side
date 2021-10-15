@@ -3,17 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./product.module.css";
 import btoa from "btoa";
-import MoneyFormatter from "../../../hooks/MoneyFormatter";
-import VerifiedTag from "../../Verified Tag/VerifiedTag";
+import { VerifiedTag, Modal } from "../../export";
 import { FaTrash, FaEyeSlash } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
-import Modal from "../../modal/Modal";
 import { useRouter } from "next/dist/client/router";
-import Decrypt from "../../../hooks/Decrypt";
+import { Decrypt, MoneyFormatter } from "../../../hooks/export";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../../Store/cart";
 
-const ProductItem = ({ Data, option = false }) => {
+const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
   const router = useRouter();
+  const dispatch = useDispatch(cartActions);
   const [modalData, setModalData] = useState(false);
+  const { data } = useSelector((state) => state?.auth);
 
   let imagesArr = [];
 
@@ -59,7 +61,7 @@ const ProductItem = ({ Data, option = false }) => {
     });
     setTimeout(() => {
       router.reload();
-    }, 3500);
+    }, 3000);
   };
 
   const deleteAd = async () => {
@@ -76,7 +78,19 @@ const ProductItem = ({ Data, option = false }) => {
     });
     setTimeout(() => {
       router.reload();
-    }, 3500);
+    }, 3000);
+  };
+
+  const removeItem = async () => {
+    const message = await callAPi(
+      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${Data._id}?u_id=${data}`
+    );
+    if (message) alert("Product removed from cart successfully");
+    dispatch(cartActions.removeItem(Data._id));
+  };
+
+  const handleBuy = () => {
+    buyProduct(Data._id, data, Data.title);
   };
 
   return (
@@ -142,6 +156,16 @@ const ProductItem = ({ Data, option = false }) => {
               </button>
             </>
           )}
+          {option2 && (
+            <>
+              <button type="button" className={styles.btn} onClick={handleBuy}>
+                Buy
+              </button>
+              <button type="button" className={styles.btn} onClick={removeItem}>
+                <FaTrash style={{ color: "#b82f10" }} />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </>
@@ -149,4 +173,3 @@ const ProductItem = ({ Data, option = false }) => {
 };
 
 export default ProductItem;
-// "https://images.pexels.com/photos/5490290/pexels-photo-5490290.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"

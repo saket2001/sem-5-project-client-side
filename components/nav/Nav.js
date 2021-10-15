@@ -21,14 +21,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
 import { useClearSessionStorage } from "react-use-window-sessionstorage";
 import Modal from "../modal/Modal";
+import { useRouter } from "next/dist/client/router";
 
 const Nav = () => {
+  const router = useRouter();
   const clearSessionStorage = useClearSessionStorage();
 
   // redux logic
   const dispatch = useDispatch(authActions);
   const isLoggedIn = useSelector((state) => state?.auth?.isValid);
   const userLocation = useSelector((state) => state?.auth?.location);
+  const { cart } = useSelector((state) => state?.cart);
   //
   const [menuState, setMenuState] = useState(false);
   const [userMenuState, setUserMenuState] = useState(false);
@@ -49,6 +52,9 @@ const Nav = () => {
     dispatch(authActions.updateStatus());
     dispatch(authActions.updateUserData(""));
     setModalState(true);
+  };
+  const goToCart = () => {
+    router.push("/buyproduct");
   };
 
   return (
@@ -115,11 +121,13 @@ const Nav = () => {
           </div>
           {/* cart logo */}
           {isLoggedIn && (
-            <div className={styles.cart_logo}>
+            <div className={styles.cart_logo} onClick={goToCart}>
               <FaCartPlus style={{ fontSize: "26px" }} />
-              <div className={styles.cart__bubble}>
-                <p>0</p>
-              </div>
+              {cart?.length > 0 && (
+                <div className={styles.cart__bubble}>
+                  <p>{cart?.length}</p>
+                </div>
+              )}
             </div>
           )}
           {/*  */}

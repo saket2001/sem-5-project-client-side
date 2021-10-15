@@ -1,28 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
-import Button from "../../assets/button/Button";
 import styles from "./DetailedProduct.module.css";
-import VerifiedTag from "../../Verified Tag/VerifiedTag";
 import { FaHeart, FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
-import Loader from "../../Loader/Loader";
-import MoneyFormatter from "../../../hooks/MoneyFormatter";
-import ImageSlider from "../../ImageSlider/ImageSlider";
-import { useSelector } from "react-redux";
-import Modal from "../../modal/Modal";
-import useSession from "../../../hooks/useSession";
+import { MoneyFormatter, useSession, Decrypt } from "../../../hooks/export";
+import { useSelector, useDispatch } from "react-redux";
+import { cartActions } from "../../../Store/cart";
+import { Modal, Loader, VerifiedTag, Button, ImageSlider } from "../../export";
 
 const DetailedProduct = () => {
   useSession();
+  const dispatch = useDispatch(cartActions);
   const router = useRouter();
   const p_id = router.query.productID;
 
   const [loaderState, setLoaderState] = useState("");
   const [dataSet, setDataSet] = useState("");
-  const [modalData, setModalData] = useState(null);
+  const [modalData, setModalData] = useState(false);
 
-  const isLoggedIn = useSelector((state) => state?.auth?.isValid);
+  const { isValid: isLoggedIn, data: id } = useSelector((state) => state?.auth);
 
   useEffect(() => {
     const getData = async () => {
@@ -40,7 +37,7 @@ const DetailedProduct = () => {
   }, [p_id]);
 
   const goBack = useCallback(() => {
-    router.replace(`/${router.query.productType}`);
+    router.back();
   }, [router]);
 
   let images = [];
@@ -59,20 +56,29 @@ const DetailedProduct = () => {
       />
     ));
 
-  console.log(dataSet);
+  const addToCart = async () => {
+    if (modalData) setModalData(false);
+    if (!isLoggedIn)
+      return alert("Please Log in to your account to continue further");
 
-  const addToCart = (e) => {
-    if (isLoggedIn === null) return setModalData(true);
-    alert("proceed");
+    const res = await axios.get(
+      `https://bechdal-api.herokuapp.com/api/v1/add-to-cart/${dataSet._id}?u_id=${id}`
+    );
+
+    const { data } = res;
+
+    if (data) alert("Added product to cart");
+
+    router.push("/buyproduct");
   };
 
   return (
     <>
       {modalData && (
         <Modal
-          title="Account Log in required"
-          body="Please log into your account to proceed further"
-          buttonText="Close"
+          title={modalData?.title}
+          body={modalData?.body}
+          buttonText={modalData?.buttonText}
         />
       )}
       <div className="container">
@@ -82,7 +88,11 @@ const DetailedProduct = () => {
             Go Back
           </Button>
         </div>
-        {loaderState && <Loader text="Getting Ad for you..." />}
+        {loaderState && (
+          <div className="layout">
+            <Loader text="Getting Ad for you..." />{" "}
+          </div>
+        )}
         {!loaderState && (
           <div className={styles.detailedProduct}>
             <div className={styles.product__left}>
@@ -105,7 +115,7 @@ const DetailedProduct = () => {
               </p>
               <div className={styles.product__buttons}>
                 <Button type="button" onClick={addToCart}>
-                  Buy now
+                  Add To Cart
                 </Button>
                 <Button type="button" styles={styles.saveBtn}>
                   <FaHeart style={{ fontSize: "22px" }} />
