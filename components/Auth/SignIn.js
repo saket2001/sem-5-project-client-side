@@ -13,13 +13,21 @@ import Loader from "../Loader/Loader";
 const SignIN = () => {
   const router = useRouter();
   const dispatch = useDispatch(authActions);
-  // const router = useRouter();
+
   const [loaderState, setLoaderState] = useState(null);
   const [modalData, setModalData] = useState(null);
+  const [modalState, setModalState] = useState(false);
 
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const closeModal = () => {
+    setModalState(false);
+  };
+  const openModal = () => {
+    setModalState(true);
+  };
 
   const formHandler = async (e) => {
     setLoaderState(true);
@@ -44,6 +52,7 @@ const SignIN = () => {
     );
 
     const userData = await res.json();
+    console.log(userData);
 
     // check data
     if (userData.type) {
@@ -53,9 +62,16 @@ const SignIN = () => {
       window.sessionStorage.setItem("IsLoggedIn", "true");
       window.sessionStorage.setItem("LoggedId", userData.data.id);
       setLoaderState(false);
+      openModal();
+      setModalData({
+        title: "Success !!",
+        text: "User login successful. You will be headed to home page",
+        btnText: "Close",
+      });
       router.push("/");
     } else {
       setLoaderState(false);
+      openModal();
       setModalData({
         title: "Error !!",
         text: "User login has failed.Please try again with correct details",
@@ -66,11 +82,12 @@ const SignIN = () => {
 
   return (
     <>
-      {!loaderState && modalData && (
+      {!loaderState && modalState && (
         <Modal
           title={modalData?.title}
           body={modalData?.text}
           buttonText={modalData?.btnText}
+          onClick={closeModal}
         />
       )}
       {loaderState && (

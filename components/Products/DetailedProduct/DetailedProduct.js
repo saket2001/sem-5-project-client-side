@@ -4,22 +4,21 @@ import Image from "next/image";
 import styles from "./DetailedProduct.module.css";
 import { FaHeart, FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
-import { MoneyFormatter, useSession, Decrypt } from "../../../hooks/export";
+import { MoneyFormatter, useSession } from "../../../hooks/export";
 import { useSelector, useDispatch } from "react-redux";
-import { cartActions } from "../../../Store/cart";
 import { Modal, Loader, VerifiedTag, Button, ImageSlider } from "../../export";
 
 const DetailedProduct = () => {
   useSession();
-  const dispatch = useDispatch(cartActions);
   const router = useRouter();
   const p_id = router.query.productID;
+
+  const { isValid: isLoggedIn, data: id } = useSelector((state) => state?.auth);
 
   const [loaderState, setLoaderState] = useState("");
   const [dataSet, setDataSet] = useState("");
   const [modalData, setModalData] = useState(false);
-
-  const { isValid: isLoggedIn, data: id } = useSelector((state) => state?.auth);
+  const [modalState, setModalState] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -56,10 +55,22 @@ const DetailedProduct = () => {
       />
     ));
 
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
+
   const addToCart = async () => {
-    if (modalData) setModalData(false);
-    if (!isLoggedIn)
-      return alert("Please Log in to your account to continue further");
+    if (!isLoggedIn) {
+      openModal();
+      return setModalData({
+        title: "Error!",
+        body: "Please log in your account to add this product to cart.",
+        buttonText: "Close",
+      });
+    }
 
     const res = await axios.get(
       `https://bechdal-api.herokuapp.com/api/v1/add-to-cart/${dataSet._id}?u_id=${id}`
@@ -67,18 +78,28 @@ const DetailedProduct = () => {
 
     const { data } = res;
 
-    if (data) alert("Added product to cart");
+    console.log(data);
 
-    router.push("/buyproduct");
+    if (data) {
+      openModal();
+      setModalData({
+        title: "Success!",
+        body: "Added product to your cart. Taking you to your cart once you close this message.",
+        buttonText: "Close",
+      });
+
+      router.push("/buyproduct");
+    }
   };
 
   return (
     <>
-      {modalData && (
+      {modalState && (
         <Modal
           title={modalData?.title}
           body={modalData?.body}
           buttonText={modalData?.buttonText}
+          onClick={closeModal}
         />
       )}
       <div className="container">

@@ -10,12 +10,20 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const router = useRouter();
   const loggedInId = useSelector((state) => state?.auth?.data);
   const loggedInLocation = useSelector((state) => state?.auth?.location);
-  const [modalData, setModalData] = useState(true);
+  const [modalData, setModalData] = useState(false);
+  const [modalState, setModalState] = useState(false);
 
   const [file1, setFile1] = useState("");
   const [file2, setFile2] = useState("");
   const [file3, setFile3] = useState("");
   const [file4, setFile4] = useState("");
+
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -43,6 +51,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
       }
     );
     console.log(res.data);
+    openModal();
     setModalData({
       title: "Alert User !!",
       text: res.data.message,
@@ -61,6 +70,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
           title={modalData?.title}
           body={modalData?.text}
           buttonText={modalData?.btnText}
+          onClick={closeModal}
         />
       )}
       <form

@@ -11,10 +11,17 @@ import { Decrypt, MoneyFormatter } from "../../../hooks/export";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../../Store/cart";
 
-const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
+const ProductItem = ({
+  Data,
+  option = false,
+  option2 = false,
+  buyProduct,
+  removeItem,
+}) => {
   const router = useRouter();
   const dispatch = useDispatch(cartActions);
   const [modalData, setModalData] = useState(false);
+  const [modalState, setModalState] = useState(false);
   const { data } = useSelector((state) => state?.auth);
 
   let imagesArr = [];
@@ -32,6 +39,13 @@ const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
         loading="lazy"
       />
     );
+
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
 
   const callAPi = async (url, method, data) => {
     const res = await fetch(url, {
@@ -54,14 +68,17 @@ const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
       "POST",
       { state: newValue }
     );
-    setModalData({
-      title: "Ad Update!",
-      text: message,
-      btnText: "Close",
-    });
-    setTimeout(() => {
-      router.reload();
-    }, 3000);
+    if (message) {
+      openModal();
+      setModalData({
+        title: "Ad Update!",
+        text: message,
+        btnText: "Close",
+      });
+      setTimeout(() => {
+        router.reload();
+      }, 3000);
+    }
   };
 
   const deleteAd = async () => {
@@ -71,35 +88,34 @@ const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
       )}`,
       "DELETE"
     );
-    setModalData({
-      title: "Ad Update!",
-      text: message,
-      btnText: "Close",
-    });
-    setTimeout(() => {
-      router.reload();
-    }, 3000);
-  };
-
-  const removeItem = async () => {
-    const message = await callAPi(
-      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${Data._id}?u_id=${data}`
-    );
-    if (message) alert("Product removed from cart successfully");
-    dispatch(cartActions.removeItem(Data._id));
+    if (message) {
+      openModal();
+      setModalData({
+        title: "Ad Update!",
+        text: message,
+        btnText: "Close",
+      });
+      setTimeout(() => {
+        router.reload();
+      }, 3000);
+    }
   };
 
   const handleBuy = () => {
     buyProduct(Data._id, data, Data.title);
   };
+  const handleRemove = () => {
+    removeItem(Data._id, data, Data.title);
+  };
 
   return (
     <>
-      {modalData && (
+      {modalData && modalState && (
         <Modal
           title={modalData?.title}
           body={modalData?.text}
           buttonText={modalData?.btnText}
+          onClick={closeModal}
         />
       )}
       <div
@@ -161,7 +177,11 @@ const ProductItem = ({ Data, option = false, option2 = false, buyProduct }) => {
               <button type="button" className={styles.btn} onClick={handleBuy}>
                 Buy
               </button>
-              <button type="button" className={styles.btn} onClick={removeItem}>
+              <button
+                type="button"
+                className={styles.btn}
+                onClick={handleRemove}
+              >
                 <FaTrash style={{ color: "#b82f10" }} />
               </button>
             </>

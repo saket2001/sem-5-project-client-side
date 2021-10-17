@@ -16,6 +16,15 @@ export default function Buyproduct() {
   const { cart } = useSelector((state) => state?.cart);
 
   const [loaderState, setLoaderState] = useState(null);
+  const [modalData, setModalData] = useState(false);
+  const [modalState, setModalState] = useState(false);
+
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -43,13 +52,35 @@ export default function Buyproduct() {
     const { data } = await axios.get(
       `https://bechdal-api.herokuapp.com/api/v1/buy-product/${p_id}?u_id=${u_id}&title=${title}`
     );
-    if (data) alert(data);
-
+    if (data) {
+      openModal();
+      setModalData({
+        title: "Ad Update!",
+        text: data,
+        btnText: "Close",
+      });
+    }
     // removing the add from cart
     await axios.get(
       `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`
     );
     dispatch(cartActions.removeItem(p_id));
+  };
+
+  const removeItem = async (p_id, u_id) => {
+    const { data } = await axios.get(
+      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`
+    );
+
+    if (data) {
+      openModal();
+      setModalData({
+        title: "Ad Update!",
+        text: "Product Removed from cart successfully.",
+        btnText: "Close",
+      });
+      dispatch(cartActions.removeItem(p_id));
+    }
   };
 
   return (
@@ -59,6 +90,14 @@ export default function Buyproduct() {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Layout>
+        {modalData && modalState && (
+          <Modal
+            title={modalData?.title}
+            body={modalData?.text}
+            buttonText={modalData?.btnText}
+            onClick={closeModal}
+          />
+        )}
         <main className="container">
           {!isValid && (
             <div className="layout">
@@ -96,6 +135,7 @@ export default function Buyproduct() {
                           Data={item}
                           option2={true}
                           buyProduct={buyProduct}
+                          removeItem={removeItem}
                         />
                       ))}
                   </div>

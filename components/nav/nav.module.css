@@ -43,6 +43,7 @@
     font-size: 1rem;
 }
 
+.location_logo,
 .cart_logo,
 .user_logo,
 .nav__menu_logo {
@@ -96,6 +97,13 @@
 /* nav menu */
 .nav__menu_logo {
     display: none;
+    padding: 0.2rem 0.4rem;
+}
+
+.nav__menu_logo:hover {
+    transform: scale(0.9);
+    background-color: #c9bdbd5b;
+    border-radius: 50%;
 }
 
 .menu__nav__items {
@@ -128,6 +136,7 @@
     color: #d6ecec;
 }
 
+
 @media screen and (max-width:768px) {
 
     .navbar {
@@ -145,6 +154,10 @@
         font-size: 1.05rem;
     }
 
+    .location_logo:hover {
+        transform: none;
+    }
+
     .nav__location {
         display: none;
     }
@@ -158,12 +171,14 @@
         height: 25px;
     }
 
+    .location_logo,
     .cart_logo,
     .user_logo,
     .nav__menu_logo {
         padding: 0.3rem;
     }
 
+    .location_logo svg,
     .cart_logo svg,
     .user_logo svg,
     .nav__menu_logo svg {

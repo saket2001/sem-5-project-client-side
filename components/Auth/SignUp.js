@@ -26,7 +26,15 @@ export default function SignUp() {
   const inputCode = useRef();
 
   const [loaderState, setLoaderState] = useState(null);
-  const [modalData, setModalData] = useState(null);
+  const [modalData, setModalData] = useState(false);
+  const [modalState, setModalState] = useState(false);
+
+  const openModal = () => {
+    setModalState(true);
+  };
+  const closeModal = () => {
+    setModalState(false);
+  };
 
   const formHandler = async (e) => {
     e.preventDefault();
@@ -54,6 +62,7 @@ export default function SignUp() {
     // if user exists with mail entered then show error msg
     if (emailData) {
       setLoaderState(false);
+      openModal();
       setModalData({
         title: "User Already Exists",
         text: "Entered Email is already in use by another user. Please use another email id.",
@@ -81,6 +90,7 @@ export default function SignUp() {
         dispatch(authActions.updateStatus());
 
         setLoaderState(false);
+        openModal();
         setModalData({
           title: "New User Created",
           text: "Your Account will go under inspection for verified status, then only you can shop from another users or sell products. \n Thank You ",
@@ -90,6 +100,7 @@ export default function SignUp() {
         router.replace("/");
       } else {
         setLoaderState(false);
+        openModal();
         setModalData({
           title: "Error in account creation",
           text: "Sorry for inconvenience caused, but Some error occurred while creating your account. \n Please try again later.",
@@ -106,6 +117,7 @@ export default function SignUp() {
           title={modalData?.title}
           body={modalData?.text}
           buttonText={modalData?.btnText}
+          onClick={closeModal}
         />
       )}
       <div className="signIn_container">

@@ -64,6 +64,9 @@ const Nav = () => {
           title="Success"
           body="You logged out of your account successfully"
           buttonText="Close"
+          onClick={() => {
+            setModalState(false);
+          }}
         />
       )}
       <nav className={styles.navbar}>
@@ -79,7 +82,7 @@ const Nav = () => {
           </p>
         </div>
         <div className={styles.nav__location}>
-          <div className={styles.user_logo}>
+          <div className={styles.location_logo}>
             <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
             <p>{userLocation ? userLocation : "Location unable"}</p>
           </div>
@@ -180,7 +183,7 @@ const Nav = () => {
             className={styles.nav__item}
             style={{ background: "#cacacab0", borderRadius: "10px" }}
           >
-            <div className={styles.user_logo}>
+            <div className={styles.location_logo}>
               <FaMapMarkerAlt
                 style={{ fontSize: "26px", marginRight: "2px" }}
               />

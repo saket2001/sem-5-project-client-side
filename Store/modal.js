@@ -6,8 +6,8 @@ export const modalSlice = createSlice({
     isOn: false,
   },
   reducers: {
-    toggleModal(state) {
-      state.isOn = !state.isOn;
+    toggleModal(state, action) {
+      state.isOn = action.payload;
     },
   },
 });
