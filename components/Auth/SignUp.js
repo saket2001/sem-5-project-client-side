@@ -82,7 +82,6 @@ export default function SignUp() {
       );
 
       const data = await res.json();
-      console.log(data);
 
       if (data) {
         // storing user id in redux
@@ -97,7 +96,7 @@ export default function SignUp() {
           btnText: "Close",
         });
         // push to home screen
-        router.replace("/");
+        router.replace("/sign-in");
       } else {
         setLoaderState(false);
         openModal();

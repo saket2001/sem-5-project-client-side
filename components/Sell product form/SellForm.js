@@ -39,10 +39,8 @@ const SellForm = ({ categoryState, subCategoryState }) => {
     formData.append("userId", loggedInId);
     formData.append("city", loggedInLocation);
 
-    console.log(formData);
-
     const res = await axios.post(
-      "https://bechdal-api.herokuapp.com/api/v1/post-ad",
+      "https://bechdal-api.herokuapp.com/api/v1/post-ad/",
       formData,
       {
         headers: {
@@ -50,17 +48,25 @@ const SellForm = ({ categoryState, subCategoryState }) => {
         },
       }
     );
-    console.log(res.data);
-    openModal();
-    setModalData({
-      title: "Alert User !!",
-      text: res.data.message,
-      btnText: "Close",
-    });
+    if (res.data.type) {
+      openModal();
+      setModalData({
+        title: "Alert User !!",
+        text: res.data.message,
+        btnText: "Close",
+      });
 
-    setTimeout(() => {
-      router.replace("/");
-    }, 3000);
+      setTimeout(() => {
+        router.replace("/");
+      }, 3000);
+    } else {
+      openModal();
+      setModalData({
+        title: "Alert User !!",
+        text: "Error in posting your ad. Please try again later in sometime.",
+        btnText: "Close",
+      });
+    }
   };
 
   return (
