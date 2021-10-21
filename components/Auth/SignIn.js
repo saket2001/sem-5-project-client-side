@@ -52,6 +52,7 @@ const SignIN = () => {
     );
 
     const userData = await res.json();
+    console.log(userData);
 
     // check data
     if (userData.type) {
@@ -60,11 +61,12 @@ const SignIN = () => {
       // set session
       window.sessionStorage.setItem("IsLoggedIn", "true");
       window.sessionStorage.setItem("LoggedId", userData.data.id);
+      window.sessionStorage.setItem("token", userData.token);
       setLoaderState(false);
       openModal();
       setModalData({
         title: "Success !!",
-        text: "User login successful. You will be headed to home page",
+        text: `User login successful. Your Session will expire in 20 mins. Happy Shopping!`,
         btnText: "Close",
       });
       router.push("/");

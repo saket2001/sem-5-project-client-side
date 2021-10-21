@@ -12,7 +12,7 @@ import axios from "axios";
 export default function Buyproduct() {
   useSession();
   const dispatch = useDispatch(cartActions);
-  const { data, isValid } = useSelector((state) => state?.auth);
+  const { data, isValid, token } = useSelector((state) => state?.auth);
   const { cart } = useSelector((state) => state?.cart);
 
   const [loaderState, setLoaderState] = useState(null);
@@ -30,7 +30,12 @@ export default function Buyproduct() {
     const getData = async () => {
       setLoaderState(true);
       const res = await axios.get(
-        `https://bechdal-api.herokuapp.com/api/v1/get-cart/${data}`
+        `https://bechdal-api.herokuapp.com/api/v1/get-cart/${data}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       const adIdsArr = res.data;
@@ -46,11 +51,16 @@ export default function Buyproduct() {
       setLoaderState(false);
     };
     getData();
-  }, [cart, data, dispatch]);
+  }, [cart, data, dispatch, token]);
 
   const buyProduct = async (p_id, u_id, title) => {
     const { data } = await axios.get(
-      `https://bechdal-api.herokuapp.com/api/v1/buy-product/${p_id}?u_id=${u_id}&title=${title}`
+      `https://bechdal-api.herokuapp.com/api/v1/buy-product/${p_id}?u_id=${u_id}&title=${title}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     if (data) {
       openModal();
@@ -59,17 +69,34 @@ export default function Buyproduct() {
         text: data,
         btnText: "Close",
       });
+      // removing the add from cart
+      await axios.get(
+        `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(cartActions.removeItem(p_id));
+    } else {
+      openModal();
+      setModalData({
+        title: "Error!",
+        text: "Something went wrong while buying this ad. Please try again later.",
+        btnText: "Close",
+      });
     }
-    // removing the add from cart
-    await axios.get(
-      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`
-    );
-    dispatch(cartActions.removeItem(p_id));
   };
 
   const removeItem = async (p_id, u_id) => {
     const { data } = await axios.get(
-      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`
+      `https://bechdal-api.herokuapp.com/api/v1/remove-from-cart/${p_id}?u_id=${u_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     if (data) {

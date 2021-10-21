@@ -15,7 +15,7 @@ import useSession from "../../../hooks/useSession";
 const MyProfilePage = () => {
   useSession();
   // redux
-  const { isValid, data } = useSelector((state) => state.auth);
+  const { isValid, data, token } = useSelector((state) => state.auth);
 
   const [loader, setLoaderState] = useState(null);
   const [userData, setUserData] = useState(data);
@@ -25,7 +25,12 @@ const MyProfilePage = () => {
       setLoaderState(true);
 
       const res = await fetch(
-        `https://bechdal-api.herokuapp.com/api/v1/users/${data}`
+        `https://bechdal-api.herokuapp.com/api/v1/users/${data}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       const resData = await res.json();
@@ -33,6 +38,7 @@ const MyProfilePage = () => {
       if (resData) {
         setUserData(resData);
         setLoaderState(false);
+      } else {
       }
     };
     loadData();
@@ -45,6 +51,23 @@ const MyProfilePage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="layout">
+        {!userData && (
+          <div
+            className="layout"
+            style={{ minHeight: "100vh", padding: "0 1rem" }}
+          >
+            <Image
+              alt="not found image"
+              src={notFoundImg}
+              width="200"
+              height="200"
+            />
+            <p className="error_info">
+              Not able to get your personal information from server right now.
+              Please login again or try again later.
+            </p>
+          </div>
+        )}
         {!isValid && (
           <div
             className="layout"

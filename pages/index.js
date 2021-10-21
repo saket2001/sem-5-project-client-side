@@ -107,7 +107,7 @@ export default function Home({ ads }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(
     "https://bechdal-api.herokuapp.com/api/v1/featured-ads"
   );
@@ -118,6 +118,5 @@ export async function getStaticProps() {
     props: {
       ads: data,
     },
-    revalidate: 2,
   };
 }

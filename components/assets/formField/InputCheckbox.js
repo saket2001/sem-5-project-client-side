@@ -4,9 +4,19 @@ import styles from "../assets.module.css";
 
 const InputCheckbox = (props) => {
   return (
-    <label className={styles.container} htmlFor={props.for}>
+    <label
+      className={styles.container}
+      htmlFor={props.for}
+      onClick={props.onClick}
+    >
       {props.label}
-      <input type="checkbox" name={props.name} id={props.id} ref={props.ref} />
+      <input
+        type="radio"
+        name={props.name}
+        id={props.id}
+        ref={props.ref}
+        data-value={props.label}
+      />
       <span className={styles.checkmark}></span>
     </label>
   );

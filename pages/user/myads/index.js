@@ -67,7 +67,7 @@ const MyAdPage = () => {
           <div className={styles.container}>
             {isLoading && <Loader text="Getting your posted ads" />}
             {/* when nothing to show */}
-            {!isLoading && AdData?.length === 0 && (
+            {!isLoading && AdData?.length < 1 && (
               <div className={styles.message}>
                 <h1>Oops No Ads Found !</h1>
                 <p>

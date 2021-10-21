@@ -13,7 +13,11 @@ const DetailedProduct = () => {
   const router = useRouter();
   const p_id = router.query.productID;
 
-  const { isValid: isLoggedIn, data: id } = useSelector((state) => state?.auth);
+  const {
+    isValid: isLoggedIn,
+    data: id,
+    token,
+  } = useSelector((state) => state?.auth);
 
   const [loaderState, setLoaderState] = useState("");
   const [dataSet, setDataSet] = useState("");
@@ -73,12 +77,15 @@ const DetailedProduct = () => {
     }
 
     const res = await axios.get(
-      `https://bechdal-api.herokuapp.com/api/v1/add-to-cart/${dataSet._id}?u_id=${id}`
+      `https://bechdal-api.herokuapp.com/api/v1/add-to-cart/${dataSet._id}?u_id=${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     const { data } = res;
-
-    console.log(data);
 
     if (data) {
       openModal();

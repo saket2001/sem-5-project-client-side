@@ -37,6 +37,13 @@ const Nav = () => {
   const [userMenuState, setUserMenuState] = useState(false);
   const [modalState, setModalState] = useState(null);
 
+  // for logging out after session ends
+  useEffect(() => {
+    setTimeout(() => {
+      LogoutHandler();
+    }, 1000 * 60 * 20);
+  }, []);
+
   const navHandler = useCallback(() => {
     setUserMenuState(false);
     setMenuState((prevState) => !prevState);
@@ -50,7 +57,8 @@ const Nav = () => {
   const LogoutHandler = () => {
     clearSessionStorage();
     dispatch(authActions.updateStatus());
-    dispatch(authActions.updateUserData(""));
+    dispatch(authActions.updateUserData(null));
+    dispatch(authActions.updateToken(null));
     setModalState(true);
   };
   const goToCart = () => {
@@ -117,11 +125,11 @@ const Nav = () => {
             </div>
           )}
           {/* search logo */}
-          <div className={styles.cart_logo}>
+          {/* <div className={styles.cart_logo}>
             <Link href="/search" passHref>
               <FaSearch style={{ fontSize: "26px" }} />
             </Link>
-          </div>
+          </div> */}
           {/* cart logo */}
           {isLoggedIn && (
             <div className={styles.cart_logo} onClick={goToCart}>

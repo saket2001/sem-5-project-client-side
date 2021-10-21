@@ -6,6 +6,7 @@ export const authSlice = createSlice({
     isValid: null,
     data: null,
     location: null,
+    token: null,
   },
   reducers: {
     //   for changing the auth signed in or signup status
@@ -18,6 +19,9 @@ export const authSlice = createSlice({
     },
     updateUserLocation(state, action) {
       state.location = action.payload;
+    },
+    updateToken(state, action) {
+      state.token = action.payload;
     },
   },
 });

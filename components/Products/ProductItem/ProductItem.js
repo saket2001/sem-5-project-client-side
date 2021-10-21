@@ -22,7 +22,7 @@ const ProductItem = ({
   const dispatch = useDispatch(cartActions);
   const [modalData, setModalData] = useState(false);
   const [modalState, setModalState] = useState(false);
-  const { data } = useSelector((state) => state?.auth);
+  const { data, token } = useSelector((state) => state?.auth);
 
   let imagesArr = [];
 
@@ -53,6 +53,7 @@ const ProductItem = ({
       body: JSON.stringify(data),
       headers: {
         "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     const message = await res.json();

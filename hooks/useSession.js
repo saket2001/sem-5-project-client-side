@@ -7,20 +7,26 @@ export default function useSession() {
   const dispatch = useDispatch(authActions);
 
   // get data from session storage
-  const [isLoggedIn, setLoggedStatus] = useSessionStorageString("IsLoggedIn");
-  const [LoggedId, setLoggedId] = useSessionStorageString("LoggedId");
-  const [LoggedLocation, setLoggedLocation] =
-    useSessionStorageString("Location");
+  const [isLoggedIn] = useSessionStorageString("IsLoggedIn");
+  const [LoggedId] = useSessionStorageString("LoggedId");
+  const [LoggedLocation] = useSessionStorageString("Location");
+  const [token] = useSessionStorageString("token");
 
   useEffect(() => {
     if (LoggedLocation !== "") {
       dispatch(authActions.updateUserLocation(LoggedLocation));
     }
 
-    if (isLoggedIn === "true" && LoggedId != "" && LoggedLocation !== "") {
+    if (
+      isLoggedIn === "true" &&
+      LoggedId != "" &&
+      LoggedLocation !== "" &&
+      token !== ""
+    ) {
       dispatch(authActions.updateStatus(true));
       dispatch(authActions.updateUserData(LoggedId));
       dispatch(authActions.updateUserLocation(LoggedLocation));
+      dispatch(authActions.updateToken(token));
     }
-  }, [LoggedId, isLoggedIn, dispatch, LoggedLocation]);
+  }, [LoggedId, isLoggedIn, dispatch, LoggedLocation, token]);
 }

@@ -8,8 +8,11 @@ import Modal from "../modal/Modal";
 
 const SellForm = ({ categoryState, subCategoryState }) => {
   const router = useRouter();
-  const loggedInId = useSelector((state) => state?.auth?.data);
-  const loggedInLocation = useSelector((state) => state?.auth?.location);
+  const {
+    data: loggedInId,
+    token,
+    location: loggedInLocation,
+  } = useSelector((state) => state?.auth);
   const [modalData, setModalData] = useState(false);
   const [modalState, setModalState] = useState(false);
 
@@ -45,6 +48,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
       {
         headers: {
           "Content-type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
         },
       }
     );
