@@ -187,6 +187,10 @@
         font-size: 0.9rem;
     }
 
+    .location_logo:hover {
+        transform: none;
+    }
+
     .nav__menu_logo {
         display: flex;
     }

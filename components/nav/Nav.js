@@ -108,9 +108,11 @@ const Nav = () => {
               <a className={styles.nav__item}>Sell</a>
             </Link>
           )}
-          <Link href="/contactus">
-            <a className={styles.nav__item}>Contact us</a>
-          </Link>
+          {isLoggedIn && (
+            <Link href="/contactus">
+              <a className={styles.nav__item}>Contact us</a>
+            </Link>
+          )}
           {!isLoggedIn && (
             <Link href="/sign-in">
               <a className={styles.nav__item}>Login</a>
@@ -124,12 +126,6 @@ const Nav = () => {
               <FaUser style={{ fontSize: "26px" }} />
             </div>
           )}
-          {/* search logo */}
-          {/* <div className={styles.cart_logo}>
-            <Link href="/search" passHref>
-              <FaSearch style={{ fontSize: "26px" }} />
-            </Link>
-          </div> */}
           {/* cart logo */}
           {isLoggedIn && (
             <div className={styles.cart_logo} onClick={goToCart}>
@@ -232,18 +228,20 @@ const Nav = () => {
               </a>
             </Link>
           )}
-          <Link
-            href="/contactus"
-            className={styles.nav__item}
-            onClick={navHandler}
-          >
-            <a onClick={navHandler}>
-              <div className={styles.user_logo}>
-                <FaHeadset style={{ fontSize: "26px" }} />
-              </div>
-              Contact us
-            </a>
-          </Link>
+          {isLoggedIn && (
+            <Link
+              href="/contactus"
+              className={styles.nav__item}
+              onClick={navHandler}
+            >
+              <a onClick={navHandler}>
+                <div className={styles.user_logo}>
+                  <FaHeadset style={{ fontSize: "26px" }} />
+                </div>
+                Contact us
+              </a>
+            </Link>
+          )}
           {!isLoggedIn && (
             <Link
               href="/sign-in"

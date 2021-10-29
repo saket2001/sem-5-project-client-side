@@ -147,6 +147,9 @@ const SignIN = () => {
               <div className={styles.form__link}>
                 New here ? <Link href="/sign-up">Create a new account</Link>
               </div>
+              <div className={styles.form__link}>
+                <Link href="/">Go To Homepage</Link>
+              </div>
             </div>
           </form>
         </div>

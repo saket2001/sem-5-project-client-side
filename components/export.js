@@ -15,6 +15,8 @@ import SellForm from "./Sell product form/SellForm";
 import CategoryForm from "./Sell product form/CategoryForm";
 import SellProductForm from "./Sell product form/SellProductForm";
 import Button from "./assets/button/Button";
+import InputField from "./assets/formField/InputField";
+import InputText from "./assets/formField/InputText";
 import InputCheckbox from "./assets/formField/InputCheckbox";
 import Layout from "./layout/Layout";
 
@@ -38,4 +40,6 @@ export {
   CategoryForm,
   SellProductForm,
   InputCheckbox,
+  InputField,
+  InputText,
 };
