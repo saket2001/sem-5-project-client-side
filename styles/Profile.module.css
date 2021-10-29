@@ -10,6 +10,8 @@
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .user_img h2 {
@@ -36,6 +38,11 @@
 
 .user_form h3 {
   font-size: 1.1rem;
+}
+
+.profile_button {
+  display: flex;
+  justify-content: flex-start;
 }
 
 

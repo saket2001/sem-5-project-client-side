@@ -85,8 +85,8 @@
 }
 
 .nav__items a {
-    font-size: 0.8rem;
-    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
     color: #ffffffee;
     transition: all 5ms ease;
 }

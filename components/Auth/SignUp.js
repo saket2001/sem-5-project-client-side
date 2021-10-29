@@ -51,7 +51,6 @@ export default function SignUp() {
       city: inputCity.current.value,
       pinCode: inputCode.current.value,
     };
-    console.log(userData);
     // checking if entered email is already entered in db
     const emailRes = await fetch(
       `https://bechdal-api.herokuapp.com/api/v1/check-email/${inputEmail.current.value}`
@@ -96,7 +95,9 @@ export default function SignUp() {
           btnText: "Close",
         });
         // push to home screen
-        router.replace("/sign-in");
+        setTimeout(() => {
+          router.replace("/sign-in");
+        }, 4000);
       } else {
         setLoaderState(false);
         openModal();
@@ -111,7 +112,7 @@ export default function SignUp() {
 
   return (
     <>
-      {!loaderState && modalData && (
+      {!loaderState && modalData && modalState && (
         <Modal
           title={modalData?.title}
           body={modalData?.text}
