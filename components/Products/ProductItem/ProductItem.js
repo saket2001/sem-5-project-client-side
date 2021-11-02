@@ -15,6 +15,7 @@ const ProductItem = ({
   Data,
   option = false,
   option2 = false,
+  option3 = false,
   buyProduct,
   removeItem,
 }) => {
@@ -83,17 +84,26 @@ const ProductItem = ({
   };
 
   const deleteAd = async () => {
-    const message = await callAPi(
-      `https://bechdal-api.herokuapp.com/api/v1/ads/${Data._id}?id=${Decrypt(
-        Data.userId
-      )}`,
-      "DELETE"
-    );
-    if (message) {
+    let message = "";
+    if (option2) {
+      message = await callAPi(
+        `https://bechdal-api.herokuapp.com/api/v1/ads/${Data._id}?id=${Decrypt(
+          Data.userId
+        )}`,
+        "DELETE"
+      );
+    }
+    if (option3) {
+      message = await callAPi(
+        `https://bechdal-api.herokuapp.com/api/v1/remove-favourite/${data}?adId=${Data._id}`,
+        "GET"
+      );
+    }
+    if (message.type) {
       openModal();
       setModalData({
         title: "Ad Update!",
-        text: message,
+        text: message.message,
         btnText: "Close",
       });
       setTimeout(() => {
@@ -186,6 +196,11 @@ const ProductItem = ({
                 <FaTrash style={{ color: "#b82f10" }} />
               </button>
             </>
+          )}
+          {option3 && (
+            <button type="button" className={styles.btn} onClick={deleteAd}>
+              <FaTrash style={{ color: "#b82f10" }} />
+            </button>
           )}
         </div>
       </div>

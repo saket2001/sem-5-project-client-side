@@ -41,7 +41,7 @@ const Nav = () => {
   useEffect(() => {
     setTimeout(() => {
       LogoutHandler();
-    }, 1000 * 60 * 20);
+    }, 1000 * 60 * 30);
   }, []);
 
   const navHandler = useCallback(() => {
@@ -61,6 +61,7 @@ const Nav = () => {
     dispatch(authActions.updateToken(null));
     setModalState(true);
   };
+
   const goToCart = () => {
     router.push("/buyproduct");
   };

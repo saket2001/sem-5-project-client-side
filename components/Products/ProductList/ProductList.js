@@ -4,7 +4,7 @@ import styles from "./productlist.module.css";
 import Image from "next/image";
 import notFoundImg from "../../../public/notFound.svg";
 
-const ProductList = ({ dataList, option }) => {
+const ProductList = ({ dataList, option, option2, option3 }) => {
   let content = (
     <div className="layout">
       <Image alt="not found image" src={notFoundImg} width="200" height="200" />
@@ -20,7 +20,13 @@ const ProductList = ({ dataList, option }) => {
 
   if (dataList)
     content = dataList.map((data, i) => (
-      <ProductItem key={i} Data={data} option={option} />
+      <ProductItem
+        key={i}
+        Data={data}
+        option={option}
+        option2={option2}
+        option3={option3}
+      />
     ));
 
   return <div className={styles.productList}>{content}</div>;

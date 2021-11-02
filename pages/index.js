@@ -47,7 +47,7 @@ export default function Home({ ads }) {
       <div className={styles.cover}>
         <div className={styles.cover__content}>
           <h2 className={styles.content__title}>
-            Shopping & Selling Just Got Easier
+            Buying & Selling Just Got Easier
           </h2>
           <p className={styles.content__small}>
             Explore Wide Range Of Products{" "}

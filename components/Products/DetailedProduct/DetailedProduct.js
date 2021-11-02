@@ -43,6 +43,35 @@ const DetailedProduct = () => {
     router.back();
   }, [router]);
 
+  const saveAd = async (adId) => {
+    if (!isLoggedIn) {
+      openModal();
+      return setModalData({
+        title: "Error!",
+        body: "Please log in your account to add this product to cart.",
+        buttonText: "Close",
+      });
+    }
+
+    const { data } = await axios.get(
+      `https://bechdal-api.herokuapp.com/api/v1/save-to-favourite/${id}?adId=${dataSet._id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (data.type) {
+      openModal();
+      setModalData({
+        title: "Success!",
+        body: data.message,
+        buttonText: "Close",
+      });
+    }
+  };
+
   let images = [];
   if (dataSet?.images)
     images = dataSet?.images?.map((img, i) => (
@@ -145,7 +174,7 @@ const DetailedProduct = () => {
                 <Button type="button" onClick={addToCart}>
                   Add To Cart
                 </Button>
-                <Button type="button" styles={styles.saveBtn}>
+                <Button type="button" styles={styles.saveBtn} onClick={saveAd}>
                   <FaHeart style={{ fontSize: "22px" }} />
                   Save
                 </Button>

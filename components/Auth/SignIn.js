@@ -65,7 +65,7 @@ const SignIN = () => {
       openModal();
       setModalData({
         title: "Success !!",
-        text: `User login successful. Your Session will expire in 20 mins. Happy Shopping!`,
+        text: `User login successful. Your Session will expire in 30 mins. Happy Shopping!`,
         btnText: "Close",
       });
       router.push("/");

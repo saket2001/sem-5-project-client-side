@@ -54,7 +54,7 @@ const MyAdPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       {!isLoggedIn && (
-        <div className="container">
+        <div className="error_box">
           <h2 className="error_heading">Permission Denied!!</h2>
           <p className="error_info">
             You need to login into your account to view this page.Please try
@@ -68,9 +68,9 @@ const MyAdPage = () => {
             {isLoading && <Loader text="Getting your posted ads" />}
             {/* when nothing to show */}
             {!isLoading && AdData?.length < 1 && (
-              <div className={styles.message}>
-                <h1>Oops No Ads Found !</h1>
-                <p>
+              <div className="error_box">
+                <h1 className="error_heading">Oops No Ads Found !</h1>
+                <p className="error_info">
                   It looks like you haven&apos;t posted any ads yet. What are
                   you waiting for, lets get started.
                 </p>
