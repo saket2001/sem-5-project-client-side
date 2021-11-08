@@ -6,8 +6,9 @@
 }
 
 .user_img {
-  width: 30%;
+  width: 38%;
   padding: 0.5rem 1rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -29,6 +30,31 @@
   padding: 0.2rem 0;
 }
 
+.profileImage_container {
+  margin: 0.4rem 0;
+  padding: 0.5rem 0;
+}
+
+.userImage {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 100%;
+  background-color: #686767d3;
+  display: grid;
+  place-items: center;
+  margin: 0.2rem 0;
+}
+
+.userImage p {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 3.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .user_form {
   width: 100%;
   border-radius: 8px;
@@ -44,6 +70,7 @@
   display: flex;
   justify-content: flex-start;
 }
+
 
 @media screen and (max-width: 768px) {
   .user_container {
@@ -61,5 +88,14 @@
 
   .user_form h3 {
     font-size: 1rem;
+  }
+
+  .userImage {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .userImage p {
+    font-size: 2rem;
   }
 }

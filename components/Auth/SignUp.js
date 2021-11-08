@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Button from "../assets/button/Button";
 import Image from "next/image";
@@ -9,22 +9,14 @@ import Loader from "../Loader/Loader";
 import Modal from "../modal/Modal";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
+import axios from "axios";
 
 export default function SignUp() {
   // redux
   const dispatch = useDispatch(authActions);
   const router = useRouter();
 
-  const inputName = useRef();
-  const inputUsername = useRef();
-  const inputPassword = useRef();
-  const inputEmail = useRef();
-  const inputContact = useRef();
-  const inputAddress = useRef();
-  const inputState = useRef();
-  const inputCity = useRef();
-  const inputCode = useRef();
-
+  const [file, setFile] = useState(null);
   const [loaderState, setLoaderState] = useState(null);
   const [modalData, setModalData] = useState(false);
   const [modalState, setModalState] = useState(false);
@@ -40,49 +32,33 @@ export default function SignUp() {
     e.preventDefault();
 
     setLoaderState(true);
-    const userData = {
-      fullName: inputName.current.value,
-      username: inputUsername.current.value,
-      email: inputEmail.current.value,
-      password: inputPassword.current.value,
-      contact: inputContact.current.value,
-      address: inputAddress.current.value,
-      state: inputState.current.value,
-      city: inputCity.current.value,
-      pinCode: inputCode.current.value,
-    };
-    // checking if entered email is already entered in db
-    const emailRes = await fetch(
-      `https://bechdal-api.herokuapp.com/api/v1/check-email/${inputEmail.current.value}`
+    const signUpForm = document.getElementById("sign-up-form");
+    const form = new FormData(signUpForm);
+    form.append("image", file);
+
+    const { data } = await axios.post(
+      "https://bechdaal-api.herokuapp.com/api/v1/user-sign-up",
+      form,
+      {
+        headers: {
+          "Content-type": "multipart/form-data",
+        },
+      }
     );
+    console.log(data);
 
-    const emailData = await emailRes.json();
-
+    // checking if entered email is already entered in db
     // if user exists with mail entered then show error msg
-    if (emailData) {
+    if (!data.type) {
       setLoaderState(false);
       openModal();
       setModalData({
-        title: "User Already Exists",
-        text: "Entered Email is already in use by another user. Please use another email id.",
-        btnText: "close",
+        title: "Error!!",
+        text: data.message,
+        btnText: "Close",
       });
-      // else if doesn't exists then send to db
     } else {
-      const res = await fetch(
-        "https://bechdal-api.herokuapp.com/api/v1/user-sign-up",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        }
-      );
-
-      const data = await res.json();
-
-      if (data) {
+      if (data.type) {
         // storing user id in redux
         dispatch(authActions.updateUserData(data._id));
         dispatch(authActions.updateStatus());
@@ -134,7 +110,11 @@ export default function SignUp() {
                 width="400px"
               />
             </div>
-            <form className={styles.form} onSubmit={formHandler}>
+            <form
+              className={styles.form}
+              onSubmit={formHandler}
+              id="sign-up-form"
+            >
               <div className={styles.form__head}>
                 <h1>Welcome Fellow Shopper</h1>
                 <p>
@@ -144,88 +124,104 @@ export default function SignUp() {
               </div>
 
               <div className={styles.form__body}>
-                <div className={styles.form__item}>
-                  <label htmlFor="fullname">Full Name</label>
-                  <input id="fullname" type="text" ref={inputName} required />
-                </div>
-                <div className={styles.form__item}>
-                  <label htmlFor="username">Username</label>
-                  <input
-                    id="username"
-                    type="text"
-                    ref={inputUsername}
-                    required
-                  />
-                </div>
-                <div className={styles.form__item}>
-                  <label htmlFor="password">Password</label>
-                  <input
-                    id="password"
-                    type="password"
-                    ref={inputPassword}
-                    minLength="8"
-                    required
-                  />
+                <div className={styles.form__row}>
+                  <div className={styles.form__item}>
+                    <label htmlFor="fullname">Full Name</label>
+                    <input id="fullname" type="text" name="fullName" required />
+                  </div>
+                  <div className={styles.form__item}>
+                    <label htmlFor="username">Username</label>
+                    <input id="username" type="text" name="username" required />
+                  </div>
                 </div>
                 <div className={styles.form__item}>
                   <label htmlFor="email">Email</label>
-                  <input id="email" type="email" ref={inputEmail} required />
+                  <input id="email" type="email" name="email" required />
                 </div>
 
-                <div className={styles.form__item}>
-                  <label htmlFor="contact">Contact no</label>
-                  <input
-                    id="contact"
-                    type="numeric"
-                    ref={inputContact}
-                    minLength="10"
-                    maxLength="10"
-                    required
-                  />
+                <div className={styles.form__row}>
+                  <div className={styles.form__item}>
+                    <label htmlFor="password">Password</label>
+                    <input
+                      id="password"
+                      type="password"
+                      name="password"
+                      minLength="8"
+                      required
+                    />
+                  </div>
+                  <div className={styles.form__item}>
+                    <label htmlFor="contact">Contact no</label>
+                    <input
+                      id="contact"
+                      type="numeric"
+                      name="contact"
+                      minLength="10"
+                      maxLength="10"
+                      required
+                    />
+                  </div>
                 </div>
+
                 <div className={styles.form__item}>
                   <label htmlFor="address">Address</label>
                   <textarea
                     id="address"
-                    ref={inputAddress}
-                    rows="7"
-                    cols="30"
+                    name="address"
+                    rows="5"
+                    cols="20"
                     required
                   />
                 </div>
-
                 <div className={styles.form__item}>
                   <label htmlFor="state">State</label>
                   <input
                     id="state"
                     type="text"
-                    ref={inputState}
+                    name="state"
                     minLength="5"
                     required
                   />
                 </div>
-                <div className={styles.form__item}>
-                  <label htmlFor="city">City</label>
-                  <input
-                    id="city"
-                    type="text"
-                    ref={inputCity}
-                    minLength="5"
-                    required
-                  />
-                </div>
-                <div className={styles.form__item}>
-                  <label htmlFor="code">Pin code</label>
-                  <input
-                    id="code"
-                    type="text"
-                    ref={inputCode}
-                    minLength="4"
-                    maxLength="7"
-                    required
-                  />
+                <div className={styles.form__row}>
+                  <div className={styles.form__item}>
+                    <label htmlFor="city">City</label>
+                    <input
+                      id="city"
+                      type="text"
+                      name="city"
+                      minLength="5"
+                      required
+                    />
+                  </div>
+                  <div className={styles.form__item}>
+                    <label htmlFor="code">Pin code</label>
+                    <input
+                      id="code"
+                      type="text"
+                      name="pinCode"
+                      minLength="4"
+                      maxLength="7"
+                      required
+                    />
+                  </div>
                 </div>
 
+                <div className={styles.form__item}>
+                  <label htmlFor="state">Select Your Account Image</label>
+                  <input
+                    type="file"
+                    id="File1"
+                    accept=".jpg, .png, .jpeg"
+                    required
+                    onChange={(e) => {
+                      if (e.target.files[0].size <= 160000)
+                        setFile(e.target.files[0]);
+                      else alert("Upload file smaller then 20kb in size");
+                    }}
+                  />
+                </div>
+                <br />
                 <p className={styles.extra__text}>
                   Add real and accurate details only as your account will be
                   verified based on this details

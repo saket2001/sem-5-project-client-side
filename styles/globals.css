@@ -136,6 +136,11 @@ p {
   background: linear-gradient(to right, #ed213a, #93291e);
 }
 
+.form {
+  margin: 0.2rem 0;
+  padding: 0.5rem 0;
+}
+
 @media screen and (max-width:768px) {
   .error_heading {
     font-size: 1rem;

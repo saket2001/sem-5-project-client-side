@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Layout from "../../../components/layout/Layout";
-import InputField from "../../../components/assets/formField/InputField";
-import InputText from "../../../components/assets/formField/InputText";
+import btoa from "btoa";
+import {
+  Layout,
+  InputField,
+  InputText,
+  Loader,
+  Button,
+  Modal,
+} from "../../../components/export";
 import styles from "../../../styles/Profile.module.css";
-import { FaUserAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import notFoundImg from "../../../public/notFound.svg";
-import Loader from "../../../components/Loader/Loader";
-import Decrypt from "../../../hooks/Decrypt";
-import useSession from "../../../hooks/useSession";
-import Button from "../../../components/assets/button/Button";
+import { useSession, Decrypt } from "../../../hooks/export";
 import axios from "axios";
-import { Modal } from "../../../components/export";
 import router from "next/router";
 import { useClearSessionStorage } from "react-use-window-sessionstorage";
 import { authActions } from "../../../Store/auth";
 
 const MyProfilePage = () => {
   useSession();
+  let imagesArr = [];
   const dispatch = useDispatch(authActions);
   const clearSessionStorage = useClearSessionStorage();
   // redux
@@ -29,6 +31,8 @@ const MyProfilePage = () => {
   const [userData, setUserData] = useState(data);
   const [modalState, setModalState] = useState(false);
   const [ModalData, setModalData] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
+  // const [file, setFile] = useState(null);
 
   const openModal = () => {
     setModalState(true);
@@ -41,7 +45,7 @@ const MyProfilePage = () => {
     const loadData = async () => {
       setLoaderState(true);
 
-      const res = await fetch(
+      const res = await axios.get(
         `https://bechdal-api.herokuapp.com/api/v1/users/${data}`,
         {
           headers: {
@@ -50,15 +54,33 @@ const MyProfilePage = () => {
         }
       );
 
-      const resData = await res.json();
-      if (resData) {
-        setUserData(resData);
+      console.log(res.data);
+      if (res.data) {
+        setUserData(res.data);
         setLoaderState(false);
       } else {
+        setLoaderState(false);
       }
     };
     loadData();
   }, [data, token]);
+
+  if (userData?.userImage && userData?.userImage?.length > 0)
+    userData?.userImage.forEach((img) => {
+      imagesArr = (
+        <Image
+          src={`data:${img.contentType};base64,${btoa(
+            String.fromCharCode(...new Uint8Array(img?.data?.data))
+          )}`}
+          alt="user profile image"
+          width="120px"
+          height="120px"
+          layout="responsive"
+        />
+      );
+    });
+
+  console.log(imagesArr);
 
   const deleteAccount = async () => {
     setLoaderState(true);
@@ -70,7 +92,6 @@ const MyProfilePage = () => {
         },
       }
     );
-    console.log(res);
     if (res.data) {
       setLoaderState(false);
       openModal();
@@ -98,6 +119,43 @@ const MyProfilePage = () => {
       });
     }
   };
+
+  // const changeImageHandler = async (e) => {
+  //   e.preventDefault();
+  //   const form = document.getElementById("change-image-form");
+  //   const newForm = new FormData(form);
+  //   newForm.append("image", file);
+  //   newForm.append("u_id", data);
+
+  //   const { data } = await axios.post(
+  //     `http://localhost:5000/api/v1/change-user-image`,
+  //     newForm,
+  //     {
+  //       headers: {
+  //         "Content-type": "multipart/form-data",
+  //       },
+  //     }
+  //   );
+
+  //   if (data.type) {
+  //     setLoaderState(false);
+  //     openModal();
+  //     setModalData({
+  //       title: "User image changed successfully",
+  //       text: "On your demand your account has been updated with a new image. Your page will load for better user experience.",
+  //       btnText: "Close",
+  //     });
+  //     router.reload();
+  //   } else {
+  //     setLoaderState(false);
+  //     openModal();
+  //     setModalData({
+  //       title: "Error!!",
+  //       text: "Some error occurred while changing your account user image. please try again later.",
+  //       btnText: "Close",
+  //     });
+  //   }
+  // };
 
   return (
     <Layout>
@@ -161,12 +219,49 @@ const MyProfilePage = () => {
           <div className={styles.user_container}>
             <div className={styles.user_img}>
               <h2>View Profile</h2>
-              <FaUserAlt fontSize="100px" />
+              <div className={styles.profileImage_container}>
+                {imagesArr.length > 0 && imagesArr}
+                {imagesArr.length === 0 && (
+                  <div className={styles.userImage}>
+                    <p>{` ${userData?.fullName?.split(" ")[0][0]}${
+                      userData?.fullName?.split(" ")[1][0]
+                    } `}</p>
+                  </div>
+                )}
+              </div>
               <p>
                 Your Personal information won&apos;t be disclosed to all the
                 users, thus helping you from spam calls
               </p>
               <p>Will be shown only to the interested user</p>
+              {/* <Button
+                type="button"
+                style={{ margin: "0.2rem 0", width: "auto" }}
+                onClick={() => setShowForm((prev) => !prev)}
+              >
+                Change Profile Picture
+              </Button>
+              {showForm && (
+                <form id="change-image-form" className="form">
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    onChange={(e) => {
+                      if (e.target.files[0].size <= 160000)
+                        setFile(e.target.files[0]);
+                      else alert("Upload file smaller then 20kb in size");
+                    }}
+                  />
+                  <Button
+                    type="button"
+                    style={{ margin: "0.2rem 0", width: "auto" }}
+                    onClick={changeImageHandler}
+                  >
+                    Submit
+                  </Button>
+                </form>
+              )} */}
               <Button
                 type="button"
                 style={{ margin: "0.2rem 0", width: "auto" }}

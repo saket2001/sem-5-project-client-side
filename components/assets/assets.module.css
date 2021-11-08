@@ -46,17 +46,15 @@
     border-radius: 3px;
     border: 1px solid #b8acac;
     background-color: transparent;
-    transition: all .3s ease;
+    transition: all 1s ease;
 }
-
-
 
 .form__item input[type='text']:focus,
 .form__item input[type='password']:focus,
 .form__item input[type='email']:focus,
 .form__item input[type='numeric']:focus,
 .form__item textarea:focus {
-    border: 0.09rem solid blue;
+    border: 1px solid blue;
 }
 
 .form__item textarea {
