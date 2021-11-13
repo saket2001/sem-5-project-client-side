@@ -30,7 +30,7 @@ const ProductItem = ({
   if (Data.images)
     imagesArr = (
       <Image
-        src={`data:${Data?.images[0].contentType};base64,${btoa(
+        src={`data:${Data?.images[0]?.contentType};base64,${btoa(
           String.fromCharCode(...new Uint8Array(Data?.images[0]?.data.data))
         )}`}
         alt="product cover image"
@@ -84,6 +84,7 @@ const ProductItem = ({
   };
 
   const deleteAd = async () => {
+    alert("in");
     let message = "";
     if (option2) {
       message = await callAPi(
@@ -166,7 +167,7 @@ const ProductItem = ({
               View
             </Link>
           </button>
-          {option && (
+          {option2 && (
             <>
               <button type="button" className={styles.btn}>
                 <FiEdit2 style={{ color: "#b82f10" }} />
@@ -183,7 +184,7 @@ const ProductItem = ({
               </button>
             </>
           )}
-          {option2 && (
+          {option3 && (
             <>
               <button type="button" className={styles.btn} onClick={handleBuy}>
                 Buy
@@ -197,11 +198,11 @@ const ProductItem = ({
               </button>
             </>
           )}
-          {option3 && (
+          {/* {option3 && (
             <button type="button" className={styles.btn} onClick={deleteAd}>
               <FaTrash style={{ color: "#b82f10" }} />
             </button>
-          )}
+          )} */}
         </div>
       </div>
     </>

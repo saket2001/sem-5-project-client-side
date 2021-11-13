@@ -37,7 +37,7 @@ export default function SignUp() {
     form.append("image", file);
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/v1/user-sign-up",
+      "https://bechdal-api.herokuapp.com/api/v1/user-sign-up",
       form,
       {
         headers: {

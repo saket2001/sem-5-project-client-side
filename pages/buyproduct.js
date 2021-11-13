@@ -160,7 +160,7 @@ export default function Buyproduct() {
                         <ProductItem
                           key={item._id}
                           Data={item}
-                          option2={true}
+                          option3={true}
                           buyProduct={buyProduct}
                           removeItem={removeItem}
                         />

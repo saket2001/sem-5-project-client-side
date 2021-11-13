@@ -15,7 +15,10 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const [modalData, setModalData] = useState(false);
   const [modalState, setModalState] = useState(false);
 
-  const [files, setFiles] = useState("");
+  const [file1, setFile1] = useState("");
+  const [file2, setFile2] = useState("");
+  const [file3, setFile3] = useState("");
+  const [file4, setFile4] = useState("");
 
   const openModal = () => {
     setModalState(true);
@@ -30,7 +33,10 @@ const SellForm = ({ categoryState, subCategoryState }) => {
     const sellForm = document.getElementById("sellForm");
 
     let formData = new FormData(sellForm);
-    formData.append("images", files);
+    formData.append("images", file1);
+    formData.append("images", file2);
+    formData.append("images", file3);
+    formData.append("images", file4);
 
     formData.append("category", subCategoryState);
     formData.append("userId", loggedInId);
@@ -137,7 +143,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
           </div>
           <span className="form__warning">
             We accept jpg, png and jpeg only. All your images should be less
-            then 25kb in size.
+            then 1mb in size.
           </span>
           {/* file input */}
 
@@ -149,9 +155,18 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               required
               multiple
               onChange={(e) => {
-                console.log(e.target.files);
-                if (e.target.files[0].size <= 160000) setFiles(e.target.files);
-                else alert("Upload file smaller then 20kb in size");
+                if (
+                  e.target.files[0].size +
+                    e.target.files[1].size +
+                    e.target.files[2].size +
+                    e.target.files[3].size <=
+                  8000000
+                ) {
+                  setFile1(e.target.files[0]);
+                  setFile2(e.target.files[1]);
+                  setFile3(e.target.files[2]);
+                  setFile4(e.target.files[3]);
+                } else alert("Upload file smaller then 1mb in size");
               }}
             />
           </div>
