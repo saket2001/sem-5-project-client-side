@@ -1,10 +1,8 @@
 import React from "react";
 
-import styles from "../assets.module.css";
-
 const InputText = (props) => {
   return (
-    <div className={styles.form__item}>
+    <div className="form__item">
       <label htmlFor={props.for}>{props.label}</label>
       <textarea
         id={props.id}
@@ -14,6 +12,7 @@ const InputText = (props) => {
         value={props.value}
         placeholder={props.placeholder}
         name={props.name}
+        readOnly
       />
     </div>
   );

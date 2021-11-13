@@ -37,7 +37,7 @@ export default function SignUp() {
     form.append("image", file);
 
     const { data } = await axios.post(
-      "https://bechdaal-api.herokuapp.com/api/v1/user-sign-up",
+      "http://localhost:5000/api/v1/user-sign-up",
       form,
       {
         headers: {
@@ -125,22 +125,22 @@ export default function SignUp() {
 
               <div className={styles.form__body}>
                 <div className={styles.form__row}>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="fullname">Full Name</label>
                     <input id="fullname" type="text" name="fullName" required />
                   </div>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="username">Username</label>
                     <input id="username" type="text" name="username" required />
                   </div>
                 </div>
-                <div className={styles.form__item}>
+                <div className="form__item">
                   <label htmlFor="email">Email</label>
                   <input id="email" type="email" name="email" required />
                 </div>
 
                 <div className={styles.form__row}>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="password">Password</label>
                     <input
                       id="password"
@@ -150,11 +150,11 @@ export default function SignUp() {
                       required
                     />
                   </div>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="contact">Contact no</label>
                     <input
                       id="contact"
-                      type="numeric"
+                      type="number"
                       name="contact"
                       minLength="10"
                       maxLength="10"
@@ -163,7 +163,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className={styles.form__item}>
+                <div className="form__item">
                   <label htmlFor="address">Address</label>
                   <textarea
                     id="address"
@@ -173,7 +173,7 @@ export default function SignUp() {
                     required
                   />
                 </div>
-                <div className={styles.form__item}>
+                <div className="form__item">
                   <label htmlFor="state">State</label>
                   <input
                     id="state"
@@ -184,7 +184,7 @@ export default function SignUp() {
                   />
                 </div>
                 <div className={styles.form__row}>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="city">City</label>
                     <input
                       id="city"
@@ -194,7 +194,7 @@ export default function SignUp() {
                       required
                     />
                   </div>
-                  <div className={styles.form__item}>
+                  <div className="form__item">
                     <label htmlFor="code">Pin code</label>
                     <input
                       id="code"
@@ -207,7 +207,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className={styles.form__item}>
+                <div className="form__item">
                   <label htmlFor="state">Select Your Account Image</label>
                   <input
                     type="file"
@@ -222,7 +222,7 @@ export default function SignUp() {
                   />
                 </div>
                 <br />
-                <p className={styles.extra__text}>
+                <p className="form__item_info">
                   Add real and accurate details only as your account will be
                   verified based on this details
                 </p>
@@ -232,8 +232,11 @@ export default function SignUp() {
                 </div>
 
                 <hr />
-                <div className={styles.form__link}>
+                <div className="form__link">
                   Already have an account ? <Link href="/sign-in">Sign in</Link>
+                </div>
+                <div className="form__link">
+                  <Link href="/">Go To Homepage</Link>
                 </div>
               </div>
             </form>

@@ -90,6 +90,16 @@
     font-weight: 500;
 }
 
+.user__heading {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.user__info {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sec-clr);
+}
 
 /*  */
 .seller__container {

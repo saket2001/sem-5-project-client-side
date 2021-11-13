@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { Modal, Loader, VerifiedTag, Button, ImageSlider } from "../../export";
+import { useCallback, useEffect, useState } from "react";
+import { MoneyFormatter, useSession } from "../../../hooks/export";
+import { FaHeart, FaArrowLeft } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
 import styles from "./DetailedProduct.module.css";
-import { FaHeart, FaArrowLeft } from "react-icons/fa";
 import axios from "axios";
-import { MoneyFormatter, useSession } from "../../../hooks/export";
-import { useSelector, useDispatch } from "react-redux";
-import { Modal, Loader, VerifiedTag, Button, ImageSlider } from "../../export";
 
 const DetailedProduct = () => {
   useSession();
@@ -180,14 +180,18 @@ const DetailedProduct = () => {
                 </Button>
               </div>
               <div className={styles.seller__container}>
-                <p>Posted By</p>
-                <h2>{dataSet?.fullName || "Seller Name Not Available"}</h2>
-                <p>Posted On</p>
-                <h2>{new Date(dataSet.adDate).toDateString()}</h2>
-                <p>AD Address</p>
-                <h2>
-                  {dataSet.state}, {dataSet.city}
-                </h2>
+                <h2 className={styles.user__heading}>Posted By</h2>
+                <p className={styles.user__info}>
+                  {dataSet?.fullName || "Seller Name Not Available"}
+                </p>
+                <h2 className={styles.user__heading}>Posted On</h2>
+                <p className={styles.user__info}>
+                  {new Date(dataSet.adDate).toDateString()}
+                </p>
+                <h2 className={styles.user__heading}>AD Address</h2>
+                <p className={styles.user__info}>
+                  {dataSet?.state}, {dataSet?.city}
+                </p>
               </div>
             </div>
           </div>

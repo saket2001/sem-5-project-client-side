@@ -1,14 +1,13 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import Button from "../assets/button/Button";
 import Image from "next/image";
 import signInLogo from "../../public/signin.svg";
 import styles from "./auth.module.css";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth";
-import Modal from "../modal/Modal";
-import Loader from "../Loader/Loader";
+import { Modal, Loader, Button } from "../export";
+import { encrypt } from "../../hooks/export";
 
 const SignIN = () => {
   const router = useRouter();
@@ -58,8 +57,8 @@ const SignIN = () => {
       dispatch(authActions.updateUserData(userData.data));
       dispatch(authActions.updateStatus(true));
       // set session
-      window.sessionStorage.setItem("IsLoggedIn", "true");
-      window.sessionStorage.setItem("LoggedId", userData.data.id);
+      window.sessionStorage.setItem("IsLoggedIn", encrypt("true"));
+      window.sessionStorage.setItem("LoggedId", encrypt(userData.data.id));
       window.sessionStorage.setItem("token", userData.token);
       setLoaderState(false);
       openModal();
@@ -104,7 +103,7 @@ const SignIN = () => {
               <p>We love seeing you coming back to our site</p>
             </div>
             <div className={styles.form__body}>
-              <div className={styles.form__item}>
+              <div className="form__item">
                 <label htmlFor="username">Username</label>
                 <input
                   id="username"
@@ -114,7 +113,7 @@ const SignIN = () => {
                   required
                 />
               </div>
-              <div className={styles.form__item}>
+              <div className="form__item">
                 <label htmlFor="Email">Email</label>
                 <input
                   id="Email"
@@ -125,7 +124,7 @@ const SignIN = () => {
                 />
               </div>
 
-              <div className={styles.form__item}>
+              <div className="form__item">
                 <label htmlFor="password">Password</label>
                 <input
                   id="password"
@@ -143,10 +142,10 @@ const SignIN = () => {
                 </Button>
               </div>
               <hr />
-              <div className={styles.form__link}>
+              <div className="form__link">
                 New here ? <Link href="/sign-up">Create a new account</Link>
               </div>
-              <div className={styles.form__link}>
+              <div className="form__link">
                 <Link href="/">Go To Homepage</Link>
               </div>
             </div>

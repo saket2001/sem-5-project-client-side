@@ -41,8 +41,6 @@ const ProductItem = ({
       />
     );
 
-  console.log(Data.images);
-
   const openModal = () => {
     setModalState(true);
   };

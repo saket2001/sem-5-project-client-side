@@ -21,7 +21,6 @@ import { authActions } from "../../../Store/auth";
 
 const MyProfilePage = () => {
   useSession();
-  let imagesArr = [];
   const dispatch = useDispatch(authActions);
   const clearSessionStorage = useClearSessionStorage();
   // redux
@@ -53,7 +52,6 @@ const MyProfilePage = () => {
           },
         }
       );
-
       console.log(res.data);
       if (res.data) {
         setUserData(res.data);
@@ -64,23 +62,6 @@ const MyProfilePage = () => {
     };
     loadData();
   }, [data, token]);
-
-  if (userData?.userImage && userData?.userImage?.length > 0)
-    userData?.userImage.forEach((img) => {
-      imagesArr = (
-        <Image
-          src={`data:${img.contentType};base64,${btoa(
-            String.fromCharCode(...new Uint8Array(img?.data?.data))
-          )}`}
-          alt="user profile image"
-          width="120px"
-          height="120px"
-          layout="responsive"
-        />
-      );
-    });
-
-  console.log(imagesArr);
 
   const deleteAccount = async () => {
     setLoaderState(true);
@@ -133,6 +114,7 @@ const MyProfilePage = () => {
   //     {
   //       headers: {
   //         "Content-type": "multipart/form-data",
+  //         Authorization: `Bearer ${token}`,
   //       },
   //     }
   //   );
@@ -157,6 +139,16 @@ const MyProfilePage = () => {
   //   }
   // };
 
+  let imageUrl = "";
+  if (userData?.userImage) {
+    if (userData?.userImage[0].data.type === "Buffer") {
+      imageUrl = `data:${userData?.userImage[0].contentType};base64,${btoa(
+        Buffer.from(userData?.userImage[0]?.data.data)
+      )}`;
+    } else
+      imageUrl = `data:${userData?.userImage[0].contentType};base64,${userData?.userImage[0].data}`;
+  }
+
   return (
     <Layout>
       <Head>
@@ -172,7 +164,7 @@ const MyProfilePage = () => {
             onClick={closeModal}
           />
         )}
-        {!userData && (
+        {!userData && !loader && (
           <div
             className="layout"
             style={{ minHeight: "100vh", padding: "0 1rem" }}
@@ -189,7 +181,7 @@ const MyProfilePage = () => {
             </p>
           </div>
         )}
-        {!isValid && (
+        {!isValid && !loader && (
           <div
             className="layout"
             style={{ minHeight: "100vh", padding: "0 1rem" }}
@@ -220,8 +212,16 @@ const MyProfilePage = () => {
             <div className={styles.user_img}>
               <h2>View Profile</h2>
               <div className={styles.profileImage_container}>
-                {imagesArr.length > 0 && imagesArr}
-                {imagesArr.length === 0 && (
+                {imageUrl && (
+                  <Image
+                    alt="user profile image"
+                    src={imageUrl}
+                    width="220px"
+                    height="220px"
+                    className={styles.userImage__pic}
+                  />
+                )}
+                {!imageUrl && (
                   <div className={styles.userImage}>
                     <p>{` ${userData?.fullName?.split(" ")[0][0]}${
                       userData?.fullName?.split(" ")[1][0]
@@ -289,7 +289,7 @@ const MyProfilePage = () => {
                 value={userData?.userStatus}
               />
               <br />
-              <hr />
+              <hr className="hr" />
               <br />
               <h3>Contact Information</h3>
               <InputField
@@ -303,7 +303,7 @@ const MyProfilePage = () => {
                 value={Decrypt(userData?.email)}
               />
               <br />
-              <hr />
+              <hr className="hr" />
               <br />
               <h3>User Location</h3>
               <InputText

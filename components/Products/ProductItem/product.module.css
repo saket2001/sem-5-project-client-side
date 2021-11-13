@@ -85,6 +85,7 @@
     border: 0.09rem solid var(--spl-clr);
     color: var(--spl-clr);
     transition: all 0.2ms ease;
+    background-color: transparent;
 }
 
 .product__options .btn:hover {

@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: 0.5fr 0.65fr;
     grid-gap: 0.2rem;
     place-items: center;
     width: 90%;
@@ -27,10 +27,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0.5rem 0;
 }
 
 .form .form__head p {
-    text-align: center;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--sec-clr);
@@ -46,10 +46,9 @@
 }
 
 .form__head h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
     text-transform: uppercase;
-    text-align: center;
 }
 
 .form__head p {
@@ -77,72 +76,17 @@
     margin: 0 0.2rem;
 }
 
-.form .extra__text {
-    margin-top: 0.2rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0 0.2rem;
-    color: var(--sec-clr);
-}
-
-.form__link {
-    text-align: center;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-}
-
-.form__link a {
-    color: var(--spl-clr);
-    cursor: pointer;
-}
-
-/* form item */
-.form__item {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0.2rem;
-}
-
 .form__row {
-    width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.form__item label {
-    font-size: 1rem;
-    padding: 0.1rem 0;
-    margin: 0.1rem 0;
+.form__row .form__item input[type='text'],
+.form__row .form__item input[type='password'],
+.form__row .form__item input[type='email'],
+.form__row .form__item input[type='number'] {
+    width: 50%;
 }
-
-.form__item input[type='text'],
-.form__item input[type='password'],
-.form__item input[type='email'],
-.form__item input[type='numeric'],
-.form__item textarea {
-    width: 100%;
-    padding: 0.2rem 0.5rem;
-    outline: 0;
-    border: 0;
-    font-size: 0.9rem;
-    border-radius: 3px;
-    border: 1px solid #b8acac;
-    background-color: transparent;
-    transition: all .4s ease-in;
-}
-
-.form__item input[type='text']:focus,
-.form__item input[type='password']:focus,
-.form__item input[type='email']:focus,
-.form__item input[type='numeric']:focus,
-.form__item textarea:focus {
-    border: 0.09rem solid blue;
-}
-
-.form__item textarea {
-    width: auto;
-}
-
 
 @media screen and (max-width:768px) {
     .container {
@@ -186,24 +130,10 @@
         padding: 0.8rem 0;
     }
 
-    /* form item */
-    .form__item label {
-        font-size: 0.9rem;
-        padding: 0.2rem 0;
-    }
-
     .form__row {
         width: 100%;
         display: flex;
         flex-direction: column;
     }
 
-    .form__item input[type='text'],
-    .form__item input[type='password'],
-    .form__item input[type='email'],
-    .form__item input[type='numeric'],
-    .form__item textarea {
-        width: 80%;
-        padding: 0.2rem 0.35rem;
-    }
 }

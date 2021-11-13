@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Button from "../assets/button/Button";
 import styles from "./sellProduct.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/dist/client/router";
-import Modal from "../modal/Modal";
+import { Modal, Button, InputCheckbox } from "../export";
 
 const SellForm = ({ categoryState, subCategoryState }) => {
   const router = useRouter();
@@ -16,10 +15,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
   const [modalData, setModalData] = useState(false);
   const [modalState, setModalState] = useState(false);
 
-  const [file1, setFile1] = useState("");
-  const [file2, setFile2] = useState("");
-  const [file3, setFile3] = useState("");
-  const [file4, setFile4] = useState("");
+  const [files, setFiles] = useState("");
 
   const openModal = () => {
     setModalState(true);
@@ -34,10 +30,8 @@ const SellForm = ({ categoryState, subCategoryState }) => {
     const sellForm = document.getElementById("sellForm");
 
     let formData = new FormData(sellForm);
-    formData.append("images", file1);
-    formData.append("images", file2);
-    formData.append("images", file3);
-    formData.append("images", file4);
+    formData.append("images", files);
+
     formData.append("category", subCategoryState);
     formData.append("userId", loggedInId);
     formData.append("city", loggedInLocation);
@@ -95,12 +89,12 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             {categoryState} / {subCategoryState}
           </p>
         </div>
-        <hr className="mx-4 border bg-black" />
+        <hr className="hr" />
 
         <div className={styles.form__body}>
           <h3>Add Some Details</h3>
 
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_title">AD Title</label>
             <input
               type="text"
@@ -112,7 +106,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             />
           </div>
 
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_description">AD Description</label>
             <textarea
               id="ad_description"
@@ -124,7 +118,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               minLength="20"
             />
           </div>
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_price">Ad Price</label>
             <input
               type="number"
@@ -135,74 +129,38 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               minLength="2"
             />
           </div>
-          <p className="m-1 font-normal text-red-600 text-lg ">
-            Always add pictures from different angles of your product and four
-            images of your product are required
-          </p>
-          <span className="mx-1 mb-2 text-sm text-red-600">
+          <div className="form__item">
+            <p className="form__item_info">
+              Always add pictures from different angles of your product and four
+              images of your product are required
+            </p>
+          </div>
+          <span className="form__warning">
             We accept jpg, png and jpeg only. All your images should be less
             then 25kb in size.
           </span>
           {/* file input */}
 
-          <div className="m-1">
+          <div className="form__item">
             <input
               type="file"
               id="File1"
               accept=".jpg, .png, .jpeg"
               required
+              multiple
               onChange={(e) => {
-                if (e.target.files[0].size <= 160000)
-                  setFile1(e.target.files[0]);
-                else alert("Upload file smaller then 20kb in size");
-              }}
-            />
-          </div>
-          <div className="m-1">
-            <input
-              type="file"
-              id="File2"
-              required
-              accept=".jpg, .png, .jpeg"
-              onChange={(e) => {
-                if (e.target.files[0].size <= 160000)
-                  setFile2(e.target.files[0]);
-                else alert("Upload file smaller then 20kb in size");
-              }}
-            />
-          </div>
-          <div className="m-1">
-            <input
-              type="file"
-              id="File3"
-              required
-              accept=".jpg, .png, .jpeg"
-              onChange={(e) => {
-                if (e.target.files[0].size <= 160000)
-                  setFile3(e.target.files[0]);
-                else alert("Upload file smaller then 20kb in size");
-              }}
-            />
-          </div>
-          <div className="m-1">
-            <input
-              type="file"
-              id="File4"
-              required
-              accept=".jpg, .png, .jpeg"
-              onChange={(e) => {
-                if (e.target.files[0].size <= 160000)
-                  setFile4(e.target.files[0]);
+                console.log(e.target.files);
+                if (e.target.files[0].size <= 160000) setFiles(e.target.files);
                 else alert("Upload file smaller then 20kb in size");
               }}
             />
           </div>
         </div>
-        <hr className="mx-4 border bg-black" />
+        <hr className="hr" />
         <div className={styles.form__body}>
           <h3>Seller Details</h3>
 
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="name">Full name</label>
             <input
               type="text"
@@ -213,7 +171,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               minLength="5"
             />
           </div>
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_address">Address</label>
             <textarea
               id="ad_address"
@@ -225,7 +183,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               name="address"
             />
           </div>
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_state">State</label>
             <input
               type="text"
@@ -236,7 +194,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               name="state"
             />
           </div>
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_city">City</label>
             <input
               disabled="true"
@@ -249,7 +207,7 @@ const SellForm = ({ categoryState, subCategoryState }) => {
               name="city"
             />
           </div>
-          <div className={styles.form__item}>
+          <div className="form__item">
             <label htmlFor="ad_pincode">Pin code</label>
             <input
               type="number"
@@ -262,32 +220,28 @@ const SellForm = ({ categoryState, subCategoryState }) => {
             />
           </div>
         </div>
-        <hr className="mx-4 border bg-black" />
+        <hr className="hr" />
         <div className={styles.form__body}>
           <h3>Extra Ad Features</h3>
-          <label
-            htmlFor="feature-ad"
-            className="flex flex-wrap items-center text-md"
-          >
-            <input
-              type="checkbox"
-              className="mr-2 text-red-600"
-              name="featured"
-              id="featured"
-            />
-            Do you want to put your ad into features section ?
-            <span className="text-sm mx-1 text-red-600">
-              (it will reach maximum users & cost extra 50rs)
+          <label htmlFor="feature-ad">
+            <input type="checkbox" name="featured" id="featured" />
+            <span className="form__item_info">
+              You can list your Ad in our featured section for maximum reach to
+              users.
+            </span>
+            <span className="form__warning">
+              (It will cost you only 50.00 र)
             </span>
           </label>
         </div>
-        <hr className="mx-4 border bg-black" />
-
-        <p className="m-1 font-normal text-red-600 text-lg ">
-          Your ad will be revived by our team in person by visiting your house
-          in next 24hrs <br /> If your ad product passes the inspection your ad
-          will be made online to other users
-        </p>
+        <hr />
+        <div className="form__item">
+          <p className="form__item_info">
+            Your ad will be revived by our team in person by visiting your house
+            in next 24hrs <br /> If your ad product passes the inspection your
+            ad will be made online to other users
+          </p>
+        </div>
         <div className={styles.form__action}>
           <Button type="submit" onSubmit={submitForm}>
             Submit Ad

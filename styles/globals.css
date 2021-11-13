@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 
 * {
@@ -75,7 +71,6 @@ p {
   align-items: center;
 }
 
-
 .error_heading {
   font-size: 1.2rem;
   text-align: center;
@@ -141,6 +136,84 @@ p {
   padding: 0.5rem 0;
 }
 
+.hr {
+  margin: 0.1rem 0.5rem;
+  background: var(--spl-clr);
+}
+
+/* input css */
+/* form item */
+.form__item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem;
+}
+
+.form__item label {
+  font-size: 1rem;
+  padding: 0.1rem 0;
+  margin: 0.1rem 0;
+}
+
+.form__item input[type='text'],
+.form__item input[type='password'],
+.form__item input[type='email'],
+.form__item input[type='number'],
+.form__item textarea {
+  width: auto;
+  padding: 0.4rem 0.5rem;
+  outline: 0;
+  font-size: 0.9rem;
+  border-radius: 3px;
+  border: 1px solid #b8acac;
+  background-color: transparent;
+  transition: all .3s ease;
+  border-radius: 5px;
+}
+
+.form__item input[type='text']:focus,
+.form__item input[type='password']:focus,
+.form__item input[type='email']:focus,
+.form__item input[type='number']:focus,
+.form__item textarea:focus {
+  border: 0.09rem solid #443d3dd8;
+}
+
+.form__item input[type='checkbox'] {
+  width: 5rem;
+}
+
+.form__item textarea {
+  width: auto;
+}
+
+.form__item_info {
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.3rem;
+  font-weight: 600;
+  color: var(--sec-clr);
+}
+
+.form__warning {
+  font-size: 0.7rem;
+  color: var(--spl-clr);
+  padding: 0 0.2rem;
+  font-weight: 500;
+}
+
+.form__link {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.form__link a {
+  color: var(--spl-clr);
+  cursor: pointer;
+}
+
 @media screen and (max-width:768px) {
   .error_heading {
     font-size: 1rem;
@@ -151,4 +224,17 @@ p {
     font-size: 0.7rem;
     width: 100%;
   }
+
+  /* form item */
+  .form__item label {
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
+  }
+
+  .form__row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
 }

@@ -2,6 +2,7 @@ import { authActions } from "../Store/auth";
 import { useDispatch } from "react-redux";
 import { useSessionStorageString } from "react-use-window-sessionstorage";
 import { useEffect } from "react";
+import Decrypt from "./Decrypt";
 
 export default function useSession() {
   const dispatch = useDispatch(authActions);
@@ -18,13 +19,13 @@ export default function useSession() {
     }
 
     if (
-      isLoggedIn === "true" &&
-      LoggedId != "" &&
+      Decrypt(isLoggedIn) === "true" &&
+      Decrypt(LoggedId) != "" &&
       LoggedLocation !== "" &&
       token !== ""
     ) {
       dispatch(authActions.updateStatus(true));
-      dispatch(authActions.updateUserData(LoggedId));
+      dispatch(authActions.updateUserData(Decrypt(LoggedId)));
       dispatch(authActions.updateUserLocation(LoggedLocation));
       dispatch(authActions.updateToken(token));
     }

@@ -6,7 +6,6 @@ import Footer from "./footer/Footer";
 import Nav from "./nav/Nav";
 import ImageSlider from "./ImageSlider/ImageSlider";
 import VerifiedTag from "./Verified Tag/VerifiedTag";
-import SearchBar from "./search bar/SearchBar";
 import DetailedProduct from "./Products/DetailedProduct/DetailedProduct";
 import ProductItem from "./Products/ProductItem/ProductItem";
 import ProductList from "./Products/ProductList/ProductList";
@@ -31,7 +30,6 @@ export {
   Nav,
   ImageSlider,
   VerifiedTag,
-  SearchBar,
   DetailedProduct,
   ProductItem,
   ProductList,

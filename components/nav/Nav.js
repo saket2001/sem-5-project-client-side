@@ -59,6 +59,7 @@ const Nav = () => {
     dispatch(authActions.updateStatus());
     dispatch(authActions.updateUserData(null));
     dispatch(authActions.updateToken(null));
+    router.replace("/");
     setModalState(true);
   };
 
@@ -93,7 +94,7 @@ const Nav = () => {
         <div className={styles.nav__location}>
           <div className={styles.location_logo}>
             <FaMapMarkerAlt style={{ fontSize: "26px", marginRight: "2px" }} />
-            <p>{userLocation ? userLocation : "Location unable"}</p>
+            <p>{userLocation ? userLocation : "Location unavailable"}</p>
           </div>
         </div>
 
@@ -116,7 +117,12 @@ const Nav = () => {
           )}
           {!isLoggedIn && (
             <Link href="/sign-in">
-              <a className={styles.nav__item}>Login</a>
+              <a className={styles.nav__item}>Sign In</a>
+            </Link>
+          )}
+          {!isLoggedIn && (
+            <Link href="/sign-up">
+              <a className={styles.nav__item}>Sign Up</a>
             </Link>
           )}
         </div>
@@ -192,7 +198,7 @@ const Nav = () => {
               <FaMapMarkerAlt
                 style={{ fontSize: "26px", marginRight: "2px" }}
               />
-              <p>{userLocation ? userLocation : "Location unable"}</p>
+              <p>{userLocation ? userLocation : "Location unavailable"}</p>
             </div>
           </div>
           <Link href="/" className={styles.nav__item}>
@@ -253,7 +259,7 @@ const Nav = () => {
                 <div className={styles.user_logo}>
                   <FaUser style={{ fontSize: "26px" }} />
                 </div>
-                Log in
+                Sign In/Sign Up
               </a>
             </Link>
           )}
