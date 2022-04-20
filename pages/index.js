@@ -37,6 +37,7 @@ export default function Home({ ads }) {
   return (
     <Layout>
       <Head>
+        {/* <link rel="manifest" href="manifest.json" /> */}
         <title>Home</title>
         <meta
           name="description"
